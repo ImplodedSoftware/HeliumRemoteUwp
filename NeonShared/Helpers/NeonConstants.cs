@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NeonShared.Helpers
+﻿namespace NeonShared.Helpers
 {
     public class NeonConstants
     {

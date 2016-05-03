@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NeonShared.Interfaces;
+﻿using NeonShared.Interfaces;
 
 namespace NeonShared.Classes
 {
     public class NeonAppRepository
     {
         private static NeonAppRepository _instance;
-        public INeonAppRepository Repository { get; set; }
 
-        public NeonAppRepository()
-        {
-            
-        }
+        public INeonAppRepository Repository { get; set; }
 
         public static NeonAppRepository Instance
         {

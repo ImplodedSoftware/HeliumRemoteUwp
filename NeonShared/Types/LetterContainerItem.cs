@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NeonShared.Types
+﻿namespace NeonShared.Types
 {
     public class LetterContainerItem
     {

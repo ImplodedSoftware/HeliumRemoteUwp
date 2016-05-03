@@ -14,7 +14,9 @@ namespace NeonShared.ViewModels
         {
             _webService = webService;
         }
+
         public IEnumerable<Track> Tracks { get; private set; }
+
         public async Task Populate(ViewTypeTracks vt, ViewParameters param)
         {
             if (vt == ViewTypeTracks.Genre)

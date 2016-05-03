@@ -8,7 +8,7 @@ namespace NeonShared.ViewModels
 {
     public class PlaylistsVm : IPlaylistsVm
     {
-        readonly IWebService _webService;
+        private readonly IWebService _webService;
 
         public PlaylistsVm(IWebService webService)
         {
@@ -26,7 +26,7 @@ namespace NeonShared.ViewModels
             var idx = 0;
             foreach (var pls in playlists)
             {
-                res.Add(new PlaylistContainerItem { Index = idx++, Playlist = pls });
+                res.Add(new PlaylistContainerItem {Index = idx++, Playlist = pls});
             }
             Playlists = new List<PlaylistContainerItem>(res);
         }
