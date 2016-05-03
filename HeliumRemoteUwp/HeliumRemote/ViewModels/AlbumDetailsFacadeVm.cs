@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.Graphics.Display;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -24,6 +22,11 @@ namespace HeliumRemote.ViewModels
     public class AlbumDetailsFacadeVm : ViewModelBase, IAlbumDetailsFacadeVm
     {
         private readonly IAlbumDetailsVm _albumDetailsVm;
+        private readonly IPlayerProvider _playerProvider;
+
+        private Album _album;
+
+        private ObservableCollection<IAlbumDetailItem> _albumDetailCells;
 
         private Thickness _elementMargin;
 
@@ -33,13 +36,10 @@ namespace HeliumRemote.ViewModels
         private bool _isFavourite;
         private int _ratingWidth;
 
-        private Album _album;
-
-        private ObservableCollection<IAlbumDetailItem> _albumDetailCells;
-
-        public AlbumDetailsFacadeVm(IAlbumDetailsVm albumDetailsVm)
+        public AlbumDetailsFacadeVm(IAlbumDetailsVm albumDetailsVm, IPlayerProvider playerProvider)
         {
             _albumDetailsVm = albumDetailsVm;
+            _playerProvider = playerProvider;
             ShowTrackActionsCommand = new RelayCommand<int>(ShowTrackActionsExecute, null);
             ShowAlbumActionsCommand = new RelayCommand(ShowAlbumActionsExecute, null);
             ChangeFavouriteCommand = new RelayCommand(ChangeFavouriteExecute, null);
@@ -174,6 +174,22 @@ namespace HeliumRemote.ViewModels
             }
         }
 
+        public void AdjustUiParts()
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                ElementMargin = new Thickness(0, 8, 8, 0);
+                IconSize = 18;
+                RatingWidth = 80;
+            }
+            else
+            {
+                ElementMargin = new Thickness(0, 8, 24, 0);
+                IconSize = 36;
+                RatingWidth = 120;
+            }
+        }
+
         private async void ChangeFavouriteExecute()
         {
             IsFavourite = !IsFavourite;
@@ -192,13 +208,13 @@ namespace HeliumRemote.ViewModels
             switch (dlg.ResultCode)
             {
                 case AppConstants.TRK_RES_CODE_PLAYNOW:
-                    await CompositionRoot.WebService.PlayTrack(id);
+                    await _playerProvider.PlayTrack(id);
                     break;
                 case AppConstants.TRK_RES_CODE_ENQUEUENEXT:
-                    await CompositionRoot.WebService.EnqueueTrackNext(id);
+                    await _playerProvider.EnqueueNext(id);
                     break;
                 case AppConstants.TRK_RES_CODE_ENQUEUELAST:
-                    await CompositionRoot.WebService.EnqueueTrackLast(id);
+                    await _playerProvider.EnqueueLast(id);
                     break;
             }
         }
@@ -210,32 +226,15 @@ namespace HeliumRemote.ViewModels
             switch (dlg.ResultCode)
             {
                 case AppConstants.ALB_RES_CODE_PLAYNOW:
-                    await CompositionRoot.WebService.PlayAlbum(_album.Id);
+                    await _playerProvider.PlayAlbum(_album.Id);
                     break;
                 case AppConstants.ALB_RES_CODE_ENQUEUENEXT:
-                    await CompositionRoot.WebService.EnqueueAlbumNext(_album.Id);
+                    await _playerProvider.EnqueueAlbumNext(_album.Id);
                     break;
                 case AppConstants.ALB_RES_CODE_ENQUEUELAST:
-                    await CompositionRoot.WebService.EnqueueAlbumLast(_album.Id);
+                    await _playerProvider.EnqueueAlbumLast(_album.Id);
                     break;
             }
         }
-
-        public void AdjustUiParts()
-        {
-            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
-            {
-                ElementMargin = new Thickness(0, 8, 8, 0);
-                IconSize = 18;
-                RatingWidth = 80;
-            }
-            else
-            {
-                ElementMargin = new Thickness(0, 8, 24, 0);
-                IconSize = 36;
-                RatingWidth = 120;
-            }
-        }
-
     }
 }

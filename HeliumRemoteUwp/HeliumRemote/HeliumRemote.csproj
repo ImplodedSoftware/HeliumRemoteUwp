@@ -109,6 +109,7 @@
     <Compile Include="Classes\AppConstants.cs" />
     <Compile Include="Classes\NeonSession.cs" />
     <Compile Include="Classes\OpenMenuFlyoutAction.cs" />
+    <Compile Include="Classes\RemotePlayerProvider.cs" />
     <Compile Include="Converters\AlbumDetailsSelector.cs" />
     <Compile Include="Converters\AlbumImageDownloadConverter.cs" />
     <Compile Include="Converters\AlternationConverter.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Interfaces\ILetterFacadeVm.cs" />
     <Compile Include="Interfaces\INowPlayingVm.cs" />
     <Compile Include="Interfaces\IPlaylistsFacadeVm.cs" />
+    <Compile Include="Interfaces\IPlayerProvider.cs" />
     <Compile Include="Interfaces\ISearchFacadeVm.cs" />
     <Compile Include="Interfaces\ITracksVmFacade.cs" />
     <Compile Include="Interfaces\IViewFilter.cs" />
