@@ -1,2 +1,13 @@
 HeliumRemoteUwp/HeliumRemote/bin/
 HeliumRemoteUwp/HeliumRemote/obj/
+HeliumRemoteUwp/HeliumRemote/AppPackages/
+HeliumRemoteUwp/HeliumRemote/BundleArtifacts/
+HeliumRemoteUwp/HeliumRemote/HeliumRemote_StoreKey.pfx
+HeliumRemoteUwp/HeliumRemote/Package.StoreAssociation.xml
+HeliumRemoteUwp/HeliumRemote/_language-sv.appx
+HeliumRemoteUwp/HeliumRemote/_pkginfo.txt
+HeliumRemoteUwp/HeliumRemote/_scale-100.appx
+HeliumRemoteUwp/HeliumRemote/_scale-125.appx
+HeliumRemoteUwp/HeliumRemote/_scale-150.appx
+HeliumRemoteUwp/HeliumRemote/_scale-225.appx
+HeliumRemoteUwp/HeliumRemote/_scale-400.appx
