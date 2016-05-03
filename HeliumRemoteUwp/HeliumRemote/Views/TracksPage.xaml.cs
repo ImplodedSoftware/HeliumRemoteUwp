@@ -49,6 +49,7 @@ namespace HeliumRemote.Views
         private async void TracksPage_OnLoaded(object sender, RoutedEventArgs e)
         {
             await _vm.Refresh(_params);
+            _vm.AdjustUiParts();
         }
     }
 }

@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Classes;
+using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Types;
 using HeliumRemote.Views;
@@ -21,6 +22,8 @@ namespace HeliumRemote.ViewModels
     {
         private readonly ITracksVm _tracksVm;
 
+        private Thickness _elementMargin;
+
         private List<Track> _originalTracks;
 
         private ObservableCollection<TrackContainer> _tracks;
@@ -32,6 +35,16 @@ namespace HeliumRemote.ViewModels
         }
 
         public RelayCommand<int> ShowTrackActionsCommand { get; }
+
+        public Thickness ElementMargin
+        {
+            get { return _elementMargin; }
+            set
+            {
+                _elementMargin = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public ObservableCollection<TrackContainer> Tracks
         {
@@ -71,6 +84,17 @@ namespace HeliumRemote.ViewModels
             ((App) Application.Current).ActiveViewType = param.ViewType;
         }
 
+        public void AdjustUiParts()
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                ElementMargin = new Thickness(0, 8, 8, 0);
+            }
+            else
+            {
+                ElementMargin = new Thickness(0, 8, 24, 0);
+            }
+        }
 
         public void FilterData(string expr)
         {
@@ -89,7 +113,7 @@ namespace HeliumRemote.ViewModels
             var idx = 0;
             foreach (var trk in resd)
             {
-                Tracks.Add(new TrackContainer { Index = idx++, Track = trk });
+                Tracks.Add(new TrackContainer {Index = idx++, Track = trk});
             }
         }
 
@@ -99,7 +123,7 @@ namespace HeliumRemote.ViewModels
             var idx = 0;
             foreach (var trk in _tracksVm.Tracks)
             {
-                Tracks.Add(new TrackContainer { Index = idx++, Track = trk });
+                Tracks.Add(new TrackContainer {Index = idx++, Track = trk});
             }
         }
 

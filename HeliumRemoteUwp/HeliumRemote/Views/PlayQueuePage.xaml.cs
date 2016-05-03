@@ -28,6 +28,7 @@ namespace HeliumRemote.Views
 
         private async void PlayQueuePage_OnLoaded(object sender, RoutedEventArgs e)
         {
+            _vm.AdjustUiParts();
             AppHelpers.UpdatePageTitle(TranslationHelper.GetString("PlayQueueTitle"));
             await _vm.Refresh();
         }

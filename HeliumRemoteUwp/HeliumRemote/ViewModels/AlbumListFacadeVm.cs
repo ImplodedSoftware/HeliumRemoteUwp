@@ -25,6 +25,8 @@ namespace HeliumRemote.ViewModels
         private readonly IAlbumListVm _albumListVm;
 
         private ObservableCollection<AlbumContainer> _albums;
+
+        private Thickness _elementMargin;
         private List<Album> _originalAlbums;
 
         public AlbumListFacadeVm(IAlbumListVm albumListVm)
@@ -82,6 +84,28 @@ namespace HeliumRemote.ViewModels
                 AppHelpers.ContentFrame.Navigate(typeof (AlbumDetailsPage), item);
         }
 
+        public Thickness ElementMargin
+        {
+            get { return _elementMargin; }
+            set
+            {
+                _elementMargin = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public void AdjustUiParts()
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                ElementMargin = new Thickness(0, 8, 8, 0);
+            }
+            else
+            {
+                ElementMargin = new Thickness(0, 8, 24, 0);
+            }
+        }
+
 
         public void FilterData(string expr)
         {
@@ -97,7 +121,7 @@ namespace HeliumRemote.ViewModels
                 );
             foreach (var album in resd)
             {
-                Albums.Add(new AlbumContainer { Album = album });
+                Albums.Add(new AlbumContainer {Album = album});
             }
         }
 
@@ -106,7 +130,7 @@ namespace HeliumRemote.ViewModels
             _albums.Clear();
             foreach (var album in _albumListVm.Albums)
             {
-                Albums.Add(new AlbumContainer { Album = album });
+                Albums.Add(new AlbumContainer {Album = album});
             }
         }
 

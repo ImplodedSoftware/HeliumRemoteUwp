@@ -50,7 +50,9 @@ namespace HeliumRemote.Views
 
         private async void AlbumListPage_OnLoaded(object sender, RoutedEventArgs e)
         {
+            _vm.AdjustUiParts();
             await _vm.Refresh(_parameters);
         }
+
     }
 }

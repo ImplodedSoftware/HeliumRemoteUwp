@@ -225,7 +225,7 @@ namespace HeliumRemote.ViewModels
         {
             if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
             {
-                ElementMargin = new Thickness(0, 8, 0, 0);
+                ElementMargin = new Thickness(0, 8, 8, 0);
                 IconSize = 18;
                 RatingWidth = 80;
             }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
@@ -16,6 +16,8 @@ namespace HeliumRemote.ViewModels
     public class PlayQueueVm : ViewModelBase
     {
         private readonly IWebService _webService;
+
+        private Thickness _elementMargin;
         private ObservableCollection<TrackContainer> _tracks;
 
         public PlayQueueVm()
@@ -36,6 +38,16 @@ namespace HeliumRemote.ViewModels
             }
         }
 
+        public Thickness ElementMargin
+        {
+            get { return _elementMargin; }
+            set
+            {
+                _elementMargin = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private void PlayByIndexExecute(int index)
         {
             _webService.PlayByIndex(index);
@@ -51,6 +63,18 @@ namespace HeliumRemote.ViewModels
                 trks.Add(new TrackContainer {Track = trk, Index = i, PlayQueueIndex = i});
             }
             Tracks = new ObservableCollection<TrackContainer>(trks);
+        }
+
+        public void AdjustUiParts()
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                ElementMargin = new Thickness(0, 0, 0, 0);
+            }
+            else
+            {
+                ElementMargin = new Thickness(0, 0, 24, 0);
+            }
         }
 
         public void PropagateUpdate()
