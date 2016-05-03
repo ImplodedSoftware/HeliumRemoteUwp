@@ -15,5 +15,6 @@ namespace HeliumRemote.Interfaces
         void OnTapped(object sender, TappedRoutedEventArgs e);
         Thickness ElementMargin { get; set; }
         int RatingWidth { get; set; }
+        Task AdjustUiParts(int artistId);
     }
 }

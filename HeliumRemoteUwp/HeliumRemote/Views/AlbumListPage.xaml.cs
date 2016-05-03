@@ -11,17 +11,18 @@ using NeonShared.Types;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AlbumListPage : Page
     {
-        private IAlbumListFacadeVm _vm;
         private ViewParameters _parameters;
+        private readonly IAlbumListFacadeVm _vm;
+
         public AlbumListPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             _vm = CompositionRoot.AlbumListFacadeVm;
-            this.DataContext = _vm;
+            DataContext = _vm;
         }
 
 
@@ -51,7 +52,5 @@ namespace HeliumRemote.Views
         {
             await _vm.Refresh(_parameters);
         }
-
-
     }
 }

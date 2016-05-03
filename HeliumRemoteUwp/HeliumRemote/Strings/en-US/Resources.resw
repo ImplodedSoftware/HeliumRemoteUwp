@@ -354,4 +354,10 @@
   <data name="SettingsTitle.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Appearences" xml:space="preserve">
+    <value>Appearences</value>
+  </data>
+  <data name="Discography" xml:space="preserve">
+    <value>Discography</value>
+  </data>
 </root>

@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Navigation;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
+using NeonShared.Helpers;
 using NeonShared.Types;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -11,15 +12,16 @@ using NeonShared.Types;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class TracksPage : Page
     {
-        private ViewParameters _params;
         private readonly ITracksVmFacade _vm;
+        private ViewParameters _params;
+
         public TracksPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             _vm = CompositionRoot.TracksVmFacade;
             DataContext = _vm;
         }
@@ -28,10 +30,11 @@ namespace HeliumRemote.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _params = (ViewParameters) e.Parameter;
-            var tit = string.Format("{0}: {1}", TranslationHelper.GetString(_params.ViewType.ToString()),  _params.Letter);
+            var tit = string.Format("{0}: {1}", TranslationHelper.GetString(_params.ViewType.ToString()), _params.Letter);
             if (_params.ViewType == UwpViewTypes.RatingLetters)
             {
-                var verb = TranslationHelper.GetString(string.Format("Rating{0}", NeonShared.Helpers.NeonHelpers.DownsizeRating(_params.Value)));
+                var verb =
+                    TranslationHelper.GetString(string.Format("Rating{0}", NeonHelpers.DownsizeRating(_params.Value)));
                 tit = string.Format("{0}: {1}", TranslationHelper.GetString(_params.ViewType.ToString()), verb);
             }
             else if (_params.ViewType == UwpViewTypes.FavouriteTracks)
@@ -47,6 +50,5 @@ namespace HeliumRemote.Views
         {
             await _vm.Refresh(_params);
         }
-
     }
 }

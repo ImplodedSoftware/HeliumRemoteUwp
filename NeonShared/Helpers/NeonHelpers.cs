@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace NeonShared.Helpers
 {
@@ -71,13 +69,13 @@ namespace NeonShared.Helpers
                 duration = duration - (h * 3600);
                 var m = duration / 60;
                 duration = duration - (m * 60);
-                return String.Format("{0:00}:{1:00}:{2:00}", h, m, duration);
+                return string.Format("{0:00}:{1:00}:{2:00}", h, m, duration);
             }
             else
             {
                 var m = duration / 60;
                 duration = duration - (m * 60);
-                return String.Format("{0:00}:{1:00}", m, duration);
+                return string.Format("{0:00}:{1:00}", m, duration);
             }
         }
 

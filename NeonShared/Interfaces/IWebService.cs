@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Neon.Api.Pcl.Models.Entities;
 
@@ -82,7 +81,7 @@ namespace NeonShared.Interfaces
         Task PlaySmartPlaylist(int id);
         Task EnqueueSmartPlaylistNext(int playlistId);
         Task EnqueueSmartPlaylistLast(int playlistId);
-        Task<Neon.Api.Pcl.Models.Entities.Version> BuildNumber();
+        Task<Version> BuildNumber();
         Task<IEnumerable<User>> Users();
         Task<string> Login(string username, string password);
         Task<Track> GetTrack(int detailId);

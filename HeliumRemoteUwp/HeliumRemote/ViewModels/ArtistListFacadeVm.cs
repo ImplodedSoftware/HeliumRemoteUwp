@@ -8,9 +8,9 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
+using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
-using HeliumRemote.Views;
 using NeonShared.Types;
 
 namespace HeliumRemote.ViewModels
@@ -19,57 +19,32 @@ namespace HeliumRemote.ViewModels
     {
         private readonly IArtistListVm _artistListVm;
 
+        private bool _isBusy;
+        private ObservableCollection<Artist> _artists;
+
+        private List<Artist> _originalArtists;
+
         public ArtistListFacadeVm(IArtistListVm artistListVm)
         {
             _artistListVm = artistListVm;
         }
 
-        private void filterData(string expr)
-        {
-            artists.Clear();
-            if (string.IsNullOrEmpty(expr))
-            {
-                clearFilter();
-                return;
-            }
-
-            var sc = StringComparer.CurrentCultureIgnoreCase;
-            var resd = originalArtists.Where(
-                x => x.ArtistName.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0 
-                );
-            foreach (var artist in resd)
-            {
-                Artists.Add(artist);
-            }
-        }
-
-        private void clearFilter()
-        {
-            artists.Clear();
-            foreach (var artist in _artistListVm.Artists)
-            {
-                Artists.Add(artist);
-            }
-        }
-
-        private List<Artist> originalArtists;
-        private ObservableCollection<Artist> artists;
-
         public ObservableCollection<Artist> Artists
         {
-            get { return artists; }
+            get { return _artists; }
             private set
             {
-                artists = value;
-                RaisePropertyChanged("Artists");
+                _artists = value;
+                RaisePropertyChanged();
             }
         }
+
         public async Task Refresh(ViewParameters parameters)
         {
             await _artistListVm.Refresh(parameters);
-            originalArtists = (List<Artist>) _artistListVm.Artists;
+            _originalArtists = (List<Artist>) _artistListVm.Artists;
             Artists = new ObservableCollection<Artist>(_artistListVm.Artists);
-            ((App)Application.Current).ViewFilter = this;
+            ((App) Application.Current).ViewFilter = this;
             ((App) Application.Current).ActiveViewType = parameters.ViewType;
         }
 
@@ -78,42 +53,55 @@ namespace HeliumRemote.ViewModels
             Artist item = null;
             if (sender is ListBox)
             {
-                var lst = (ListBox)sender;
-                item = (Artist)lst.SelectedItem;
+                var lst = (ListBox) sender;
+                item = (Artist) lst.SelectedItem;
             }
             else if (sender is GridView)
             {
-                var lv = (GridView)sender;
-                item = (Artist)lv.SelectedItem;
+                var lv = (GridView) sender;
+                item = (Artist) lv.SelectedItem;
             }
             if (item == null)
                 return;
-            AppHelpers.ContentFrame.Navigate(typeof(ArtistDetailPage), item.Id);
+            AppHelpers.ContentFrame.Navigate(typeof (ArtistDetailPage), item.Id);
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged();
+            }
         }
 
         public void FilterData(string expr)
         {
-            filterData(expr);
+            _artists.Clear();
+            if (string.IsNullOrEmpty(expr))
+            {
+                ClearFilter();
+                return;
+            }
+
+            var resd = _originalArtists.Where(
+                x => x.ArtistName.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0
+                );
+            foreach (var artist in resd)
+            {
+                Artists.Add(artist);
+            }
         }
 
         public void ClearFilter()
         {
-            clearFilter();
-        }
-
-        private bool _isBusy;
-
-        public bool IsBusy
-        {
-            get
+            _artists.Clear();
+            foreach (var artist in _artistListVm.Artists)
             {
-                return _isBusy;
-            }
-            set
-            {
-                _isBusy = value;
-                RaisePropertyChanged("IsBusy");
+                Artists.Add(artist);
             }
         }
+
     }
 }

@@ -9,14 +9,13 @@ using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Types;
+using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
-using HeliumRemote.Views;
 using NeonShared.Types;
 
 namespace HeliumRemote.ViewModels
 {
-
     public enum SearchViews
     {
         None,
@@ -24,71 +23,78 @@ namespace HeliumRemote.ViewModels
         Albums,
         Tracks
     }
+
     public class SearchFacadeVm : ViewModelBase, ISearchFacadeVm
     {
         private readonly ISearchVm _vm;
 
-        public Action UpdateUi { get; set; }
+        private SearchViews _activeView;
+        private ObservableCollection<AlbumContainer> _albums;
+
+        private ObservableCollection<Artist> _artists;
+
+        private bool _hasAlbums;
+
+        private bool _hasArtists;
+
+        private bool _hasTracks;
+
+        private ObservableCollection<TrackContainer> _tracks;
 
         public SearchFacadeVm(ISearchVm vm)
         {
             _vm = vm;
-            ShowArtistsCommand = new RelayCommand(showArtistsExecute, null);
-            ShowAlbumsCommand = new RelayCommand(showAlbumsExecute, null);
-            ShowTracksCommand = new RelayCommand(showTracksExecute, null);
+            ShowArtistsCommand = new RelayCommand(ShowArtistsExecute, null);
+            ShowAlbumsCommand = new RelayCommand(ShowAlbumsExecute, null);
+            ShowTracksCommand = new RelayCommand(ShowTracksExecute, null);
         }
 
-        private void showArtistsExecute()
-        {
-            ActiveView = SearchViews.Artists;
-        }
-        private void showAlbumsExecute()
-        {
-            ActiveView = SearchViews.Albums;
-        }
-        private void showTracksExecute()
-        {
-            ActiveView = SearchViews.Tracks;
-        }
+        public Action UpdateUi { get; set; }
 
 
         public RelayCommand ShowArtistsCommand { get; }
         public RelayCommand ShowAlbumsCommand { get; }
         public RelayCommand ShowTracksCommand { get; }
 
-        private SearchViews _activeView;
         public SearchViews ActiveView
         {
-            get {  return _activeView; }
+            get { return _activeView; }
             set
             {
                 _activeView = value;
-                RaisePropertyChanged("ActiveView");
+                RaisePropertyChanged();
                 UpdateUi();
             }
         }
 
-        private ObservableCollection<Artist> _artists;
-
         public ObservableCollection<Artist> Artists
         {
             get { return _artists; }
-            set { _artists = value; RaisePropertyChanged("Artists"); }
+            set
+            {
+                _artists = value;
+                RaisePropertyChanged();
+            }
         }
-        private ObservableCollection<AlbumContainer> _albums;
 
         public ObservableCollection<AlbumContainer> Albums
         {
             get { return _albums; }
-            set { _albums = value; RaisePropertyChanged("Albums"); }
+            set
+            {
+                _albums = value;
+                RaisePropertyChanged();
+            }
         }
-
-        private ObservableCollection<TrackContainer> _tracks;
 
         public ObservableCollection<TrackContainer> Tracks
         {
             get { return _tracks; }
-            set { _tracks = value; RaisePropertyChanged("Tracks"); }
+            set
+            {
+                _tracks = value;
+                RaisePropertyChanged();
+            }
         }
 
         public async Task Refresh(ViewParameters parameters)
@@ -97,13 +103,13 @@ namespace HeliumRemote.ViewModels
             Artists = new ObservableCollection<Artist>(_vm.Artists);
             var res = new ObservableCollection<AlbumContainer>();
             foreach (var item in _vm.Albums)
-                res.Add(new AlbumContainer { Album = item });
+                res.Add(new AlbumContainer {Album = item});
             Albums = res;
             var idx = 0;
             var trkres = new ObservableCollection<TrackContainer>();
             foreach (var trk in _vm.Tracks)
             {
-                trkres.Add(new TrackContainer { Index = idx++, Track = trk });
+                trkres.Add(new TrackContainer {Index = idx++, Track = trk});
             }
             Tracks = trkres;
             HasArtists = Artists.Count > 0;
@@ -115,31 +121,37 @@ namespace HeliumRemote.ViewModels
                 ActiveView = SearchViews.Albums;
             else if (HasTracks)
                 ActiveView = SearchViews.Tracks;
-            ((App)Application.Current).ActiveViewType = parameters.ViewType;
+            ((App) Application.Current).ActiveViewType = parameters.ViewType;
         }
-
-        private bool _hasArtists;
 
         public bool HasArtists
         {
             get { return _hasArtists; }
-            set { _hasArtists = value; RaisePropertyChanged("HasArtists"); }
+            set
+            {
+                _hasArtists = value;
+                RaisePropertyChanged();
+            }
         }
-
-        private bool _hasAlbums;
 
         public bool HasAlbums
         {
             get { return _hasAlbums; }
-            set { _hasAlbums = value; RaisePropertyChanged("HasAlbums"); }
+            set
+            {
+                _hasAlbums = value;
+                RaisePropertyChanged();
+            }
         }
-
-        private bool _hasTracks;
 
         public bool HasTracks
         {
             get { return _hasTracks; }
-            set { _hasTracks = value; RaisePropertyChanged("HasTracks"); }
+            set
+            {
+                _hasTracks = value;
+                RaisePropertyChanged();
+            }
         }
 
         public void GridView_OnTapped(object sender, TappedRoutedEventArgs e)
@@ -165,19 +177,32 @@ namespace HeliumRemote.ViewModels
                 AlbumContainer item = null;
                 if (sender is GridView)
                 {
-                    var grd = (GridView)sender;
-                    item = (AlbumContainer)grd.SelectedItem;
+                    var grd = (GridView) sender;
+                    item = (AlbumContainer) grd.SelectedItem;
                 }
                 else if (sender is ListBox)
                 {
-                    var lb = (ListBox)sender;
-                    item = (AlbumContainer)lb.SelectedItem;
+                    var lb = (ListBox) sender;
+                    item = (AlbumContainer) lb.SelectedItem;
                 }
                 if (item != null)
-                    AppHelpers.ContentFrame.Navigate(typeof(AlbumDetailsPage), item);
+                    AppHelpers.ContentFrame.Navigate(typeof (AlbumDetailsPage), item);
             }
         }
 
+        private void ShowArtistsExecute()
+        {
+            ActiveView = SearchViews.Artists;
+        }
 
+        private void ShowAlbumsExecute()
+        {
+            ActiveView = SearchViews.Albums;
+        }
+
+        private void ShowTracksExecute()
+        {
+            ActiveView = SearchViews.Tracks;
+        }
     }
 }

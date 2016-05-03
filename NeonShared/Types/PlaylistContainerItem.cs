@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Neon.Api.Pcl.Models.Entities;
+﻿using Neon.Api.Pcl.Models.Entities;
 
 namespace NeonShared.Types
 {

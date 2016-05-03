@@ -1,50 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Classes;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Types;
+using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
 using NeonShared.Types;
-using HeliumRemote.Views;
 
 namespace HeliumRemote.ViewModels
 {
     public class TracksVmFacade : ViewModelBase, ITracksVmFacade, IViewFilter
     {
-        public RelayCommand<int> ShowTrackActionsCommand { get; }
-
         private readonly ITracksVm _tracksVm;
+
+        private List<Track> _originalTracks;
+
+        private ObservableCollection<TrackContainer> _tracks;
 
         public TracksVmFacade(ITracksVm tracksVm)
         {
             _tracksVm = tracksVm;
-            ShowTrackActionsCommand = new RelayCommand<int>(showTrackActionsExecute, null);
+            ShowTrackActionsCommand = new RelayCommand<int>(ShowTrackActionsExecute, null);
         }
 
-        private List<Track> originalTracks;
-
-        private ObservableCollection<TrackContainer> tracks;
+        public RelayCommand<int> ShowTrackActionsCommand { get; }
 
         public ObservableCollection<TrackContainer> Tracks
         {
-            get {return tracks;}
-            set { tracks = value; RaisePropertyChanged("Tracks"); }
+            get { return _tracks; }
+            set
+            {
+                _tracks = value;
+                RaisePropertyChanged();
+            }
         }
+
         public async Task Refresh(ViewParameters param)
         {
             var vt = ViewTypeTracks.None;
             if (param.ViewType == UwpViewTypes.GenreLetters)
-                vt = ViewTypeTracks.Genre;   
+                vt = ViewTypeTracks.Genre;
             else if (param.ViewType == UwpViewTypes.RatingLetters)
                 vt = ViewTypeTracks.Rating;
             else if (param.ViewType == UwpViewTypes.PlayedDateDayLetters)
@@ -62,47 +65,37 @@ namespace HeliumRemote.ViewModels
             {
                 res.Add(new TrackContainer {Index = idx++, Track = trk});
             }
-            originalTracks = (List<Track>)_tracksVm.Tracks;
+            _originalTracks = (List<Track>) _tracksVm.Tracks;
             Tracks = res;
-            ((App)Application.Current).ViewFilter = this;
-            ((App)Application.Current).ActiveViewType = param.ViewType;
+            ((App) Application.Current).ViewFilter = this;
+            ((App) Application.Current).ActiveViewType = param.ViewType;
         }
 
-        public async Task OnLoaded(object sender, RoutedEventArgs e)
-        {
-        }
-        public void OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            
-        }
 
-        private void filterData(string expr)
+        public void FilterData(string expr)
         {
-            Debug.WriteLine("filterData");
-            tracks.Clear();
-            var idx = 0;
+            _tracks.Clear();
             if (string.IsNullOrEmpty(expr))
             {
-                clearFilter();
+                ClearFilter();
                 return;
             }
 
-            var sc = StringComparer.CurrentCultureIgnoreCase;
-            var resd = originalTracks.Where(
+            var resd = _originalTracks.Where(
                 x => x.Title.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                x.Artist.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                x.Album.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0
+                     x.Artist.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                     x.Album.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0
                 );
-            idx = 0;
+            var idx = 0;
             foreach (var trk in resd)
             {
                 Tracks.Add(new TrackContainer { Index = idx++, Track = trk });
             }
         }
 
-        private void clearFilter()
+        public void ClearFilter()
         {
-            tracks.Clear();
+            _tracks.Clear();
             var idx = 0;
             foreach (var trk in _tracksVm.Tracks)
             {
@@ -110,11 +103,10 @@ namespace HeliumRemote.ViewModels
             }
         }
 
-        private async void showTrackActionsExecute(int id)
+        private static async void ShowTrackActionsExecute(int id)
         {
-            //var btn = sender as Button;
             var dlg = new ActionDialogTracks();
-            var result = await dlg.ShowAsync();
+            await dlg.ShowAsync();
             switch (dlg.ResultCode)
             {
                 case AppConstants.TRK_RES_CODE_PLAYNOW:
@@ -126,19 +118,7 @@ namespace HeliumRemote.ViewModels
                 case AppConstants.TRK_RES_CODE_ENQUEUELAST:
                     await CompositionRoot.WebService.EnqueueTrackLast(id);
                     break;
-
             }
-            //btn.Content = "Result: " + result;
-        }
-
-        public void FilterData(string expr)
-        {
-            filterData(expr);
-        }
-
-        public void ClearFilter()
-        {
-            clearFilter();
         }
     }
 }

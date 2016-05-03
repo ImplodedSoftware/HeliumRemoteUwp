@@ -9,7 +9,7 @@ namespace NeonShared.ViewModels
 {
     public class LetterVm : ILetterVm
     {
-        IWebService _webService;
+        private readonly IWebService _webService;
 
         public LetterVm(IWebService webService)
         {
@@ -28,24 +28,24 @@ namespace NeonShared.ViewModels
                     lst = (List<string>) await _webService.AlbumLetters();
                     break;
                 case UwpViewTypes.AlbumArtistLetters:
-                    lst = (List<string>)await _webService.AlbumArtistLetters();
+                    lst = (List<string>) await _webService.AlbumArtistLetters();
                     break;
                 case UwpViewTypes.GenreLetters:
-                    var tmplst = (List<Genre>)await _webService.GenreLetters();
+                    var tmplst = (List<Genre>) await _webService.GenreLetters();
                     lst = new List<string>();
-                    foreach(var genre in tmplst)
+                    foreach (var genre in tmplst)
                     {
-                        lst.Add(genre.Name);                        
+                        lst.Add(genre.Name);
                     }
                     break;
                 case UwpViewTypes.LabelLetters:
-                    lst = (List<string>)await _webService.LabelLetters();
+                    lst = (List<string>) await _webService.LabelLetters();
                     break;
                 case UwpViewTypes.LabelsByLetter:
-                    lst = (List<string>)await _webService.LabelsByLetter(param.Letter);
+                    lst = (List<string>) await _webService.LabelsByLetter(param.Letter);
                     break;
                 case UwpViewTypes.RatingLetters:
-                    lst = (List<string>) await _webService.GetRatingLetters();
+                    lst = await _webService.GetRatingLetters();
                     break;
                 case UwpViewTypes.YearLetters:
                     lst = await _webService.GetYearLetters();
@@ -78,18 +78,20 @@ namespace NeonShared.ViewModels
                     var v = int.Parse(letter);
                     res.Add(new LetterContainerItem {Index = idx++, Letter = AppHelpers.GetRatingName(v), Value = v});
                 }
-                else if (viewType == UwpViewTypes.AddedDateMonthLetters || viewType == UwpViewTypes.PlayedDateMonthLetters)
+                else if (viewType == UwpViewTypes.AddedDateMonthLetters ||
+                         viewType == UwpViewTypes.PlayedDateMonthLetters)
                 {
                     var v = int.Parse(letter);
-                    res.Add(new LetterContainerItem { Index = idx++, Letter = AppHelpers.GetMonthName(v), Value = v });
+                    res.Add(new LetterContainerItem {Index = idx++, Letter = AppHelpers.GetMonthName(v), Value = v});
                 }
-                else if (viewType == UwpViewTypes.YearLetters || viewType == UwpViewTypes.AddedDateYearLetters || viewType == UwpViewTypes.PlayedDateYearLetters)
+                else if (viewType == UwpViewTypes.YearLetters || viewType == UwpViewTypes.AddedDateYearLetters ||
+                         viewType == UwpViewTypes.PlayedDateYearLetters)
                 {
-                    res.Add(new LetterContainerItem { Index = idx++, Letter = letter, Value = int.Parse(letter) });
+                    res.Add(new LetterContainerItem {Index = idx++, Letter = letter, Value = int.Parse(letter)});
                 }
                 else
                 {
-                    res.Add(new LetterContainerItem { Index = idx++, Letter = letter });
+                    res.Add(new LetterContainerItem {Index = idx++, Letter = letter});
                 }
             }
             Letters = new List<LetterContainerItem>(res);

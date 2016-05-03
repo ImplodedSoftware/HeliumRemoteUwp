@@ -8,12 +8,15 @@ namespace NeonShared.ViewModels
 {
     public class AlbumListVm : IAlbumListVm
     {
-        private IWebService _webService;
+        private readonly IWebService _webService;
+
         public AlbumListVm(IWebService webService)
         {
             _webService = webService;
         }
+
         public IEnumerable<Album> Albums { get; private set; }
+
         public async Task Refresh(ViewParameters param)
         {
             if (param.ViewType == UwpViewTypes.YearLetters)
@@ -27,6 +30,5 @@ namespace NeonShared.ViewModels
             else
                 Albums = await _webService.AlbumsByLetter(param.Letter);
         }
-
     }
 }

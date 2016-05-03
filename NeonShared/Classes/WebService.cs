@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,9 +7,6 @@ using System.Threading.Tasks;
 #if HR || HMS 
 using Foundation;
 using HMMShared.Repositories;
-#endif
-#if WINDOWS_UWP
-using Windows.Data.Json;
 #endif
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Helpers;
@@ -490,7 +485,7 @@ namespace NeonShared.Classes
             await generalHttpCall(NeonUrls.EnqueueSmartPlaylistLast(playlistId));
         }
 
-        public async Task<Neon.Api.Pcl.Models.Entities.Version> BuildNumber()
+        public async Task<Version> BuildNumber()
         {
             var url = NeonUrls.Version;
             var json = await generalHttpCall(url);

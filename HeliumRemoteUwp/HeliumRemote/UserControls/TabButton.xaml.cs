@@ -10,31 +10,34 @@ namespace HeliumRemote.UserControls
     public sealed partial class TabButton : UserControl
     {
         public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register(
-          "IsSelected",
-          typeof(bool),
-          typeof(TabButton),
-          new PropertyMetadata(null)
-        );
-        public static readonly DependencyProperty CustomTextProperty = DependencyProperty.Register(
-          "CustomText",
-          typeof(string),
-          typeof(TabButton),
-          new PropertyMetadata(null)
-        );
-        public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
-          "ClickCommand",
-          typeof(RelayCommand),
-          typeof(TabButton),
-          new PropertyMetadata(null)
-        );
+            "IsSelected",
+            typeof (bool),
+            typeof (TabButton),
+            new PropertyMetadata(null)
+            );
 
-        public void SetCustomWidth(int width)
+        public static readonly DependencyProperty CustomTextProperty = DependencyProperty.Register(
+            "CustomText",
+            typeof (string),
+            typeof (TabButton),
+            new PropertyMetadata(null)
+            );
+
+        public static readonly DependencyProperty ClickCommandProperty = DependencyProperty.Register(
+            "ClickCommand",
+            typeof (RelayCommand),
+            typeof (TabButton),
+            new PropertyMetadata(null)
+            );
+
+        public TabButton()
         {
-            ContentGrid.Width = width;
+            InitializeComponent();
         }
+
         public bool IsSelected
         {
-            get { return (bool)GetValue(IsSelectedProperty); }
+            get { return (bool) GetValue(IsSelectedProperty); }
             set
             {
                 SetValue(IsSelectedProperty, value);
@@ -50,18 +53,20 @@ namespace HeliumRemote.UserControls
                 }
             }
         }
+
         public string CustomText
         {
-            get { return (string)GetValue(CustomTextProperty); }
+            get { return (string) GetValue(CustomTextProperty); }
             set
             {
                 SetValue(CustomTextProperty, value);
                 TextBlock.Text = CustomText;
             }
         }
+
         public RelayCommand ClickCommand
         {
-            get { return (RelayCommand)GetValue(ClickCommandProperty); }
+            get { return (RelayCommand) GetValue(ClickCommandProperty); }
             set
             {
                 SetValue(ClickCommandProperty, value);
@@ -69,9 +74,9 @@ namespace HeliumRemote.UserControls
             }
         }
 
-        public TabButton()
+        public void SetCustomWidth(int width)
         {
-            this.InitializeComponent();
+            ContentGrid.Width = width;
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
@@ -20,6 +18,7 @@ namespace NeonShared.ViewModels
         public IEnumerable<Track> Tracks { get; private set; }
         public IEnumerable<Album> Albums { get; private set; }
         public IEnumerable<Artist> Artists { get; private set; }
+
         public async Task Populate(ViewParameters param)
         {
             Tracks = await _webService.TrackSearch(param.Letter);

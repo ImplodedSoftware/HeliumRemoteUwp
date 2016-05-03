@@ -8,13 +8,15 @@ namespace NeonShared.ViewModels
 {
     public class ArtistListVm : IArtistListVm
     {
-        private IWebService _webService;
+        private readonly IWebService _webService;
 
         public ArtistListVm(IWebService webService)
         {
             _webService = webService;
         }
+
         public IEnumerable<Artist> Artists { get; private set; }
+
         public async Task Refresh(ViewParameters parameters)
         {
             IEnumerable<Artist> res = null;

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -14,87 +13,55 @@ using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Types;
+using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
-using HeliumRemote.Views;
 using NeonShared.Types;
 
 namespace HeliumRemote.ViewModels
 {
     public class AlbumListFacadeVm : ViewModelBase, IAlbumListFacadeVm, IViewFilter
     {
-        private List<Album> originalAlbums;
+        private readonly IAlbumListVm _albumListVm;
+
+        private ObservableCollection<AlbumContainer> _albums;
+        private List<Album> _originalAlbums;
+
+        public AlbumListFacadeVm(IAlbumListVm albumListVm)
+        {
+            _albumListVm = albumListVm;
+            PlayNowCommand = new RelayCommand<int>(PlayNowExecute, null);
+            EnqueueNextCommand = new RelayCommand<int>(EnqueueNextExecute, null);
+            EnqueueLastCommand = new RelayCommand<int>(EnqueueLastExecute, null);
+            AddToPlaylistCommand = new RelayCommand<int>(AddToPlaylistExecute, null);
+            ShowAlbumActionsCommand = new RelayCommand<int>(ShowAlbumActionsExecute, null);
+        }
+
         public RelayCommand<int> PlayNowCommand { get; }
         public RelayCommand<int> EnqueueNextCommand { get; }
         public RelayCommand<int> EnqueueLastCommand { get; }
         public RelayCommand<int> AddToPlaylistCommand { get; }
         public RelayCommand<int> ShowAlbumActionsCommand { get; }
 
-        private readonly IAlbumListVm _albumListVm;
-        public AlbumListFacadeVm(IAlbumListVm albumListVm)
-        {
-            _albumListVm = albumListVm;
-            PlayNowCommand = new RelayCommand<int>(playNowExecute, null);
-            EnqueueNextCommand = new RelayCommand<int>(enqueueNextExecute, null);
-            EnqueueLastCommand = new RelayCommand<int>(enqueueLastExecute, null);
-            AddToPlaylistCommand = new RelayCommand<int>(addToPlaylistExecute, null);
-            ShowAlbumActionsCommand = new RelayCommand<int>(showAlbumActionsExecute, null);
-        }
-
-        private async void showAlbumActionsExecute(int id)
-        {
-            var dlg = new ActionDialogAlbum();
-            var result = await dlg.ShowAsync();
-            switch (dlg.ResultCode)
-            {
-                case AppConstants.ALB_RES_CODE_PLAYNOW:
-                    await CompositionRoot.WebService.PlayAlbum(id);
-                    break;
-                case AppConstants.ALB_RES_CODE_ENQUEUENEXT:
-                    await CompositionRoot.WebService.EnqueueAlbumNext(id);
-                    break;
-                case AppConstants.ALB_RES_CODE_ENQUEUELAST:
-                    await CompositionRoot.WebService.EnqueueAlbumLast(id);
-                    break;
-            }
-        }
-
-        private async void playNowExecute(int id)
-        {
-            await CompositionRoot.WebService.PlayAlbum(id);
-        }
-        private async void enqueueNextExecute(int id)
-        {
-            await CompositionRoot.WebService.EnqueueAlbumNext(id);
-        }
-        private async void enqueueLastExecute(int id)
-        {
-            await CompositionRoot.WebService.EnqueueAlbumLast(id);
-        }
-        private void addToPlaylistExecute(int id)
-        {
-        }
-
-        private ObservableCollection<AlbumContainer> albums;
-
         public ObservableCollection<AlbumContainer> Albums
         {
-            get { return albums;}
+            get { return _albums; }
             private set
             {
-                albums = value;
-                RaisePropertyChanged("Albums");
+                _albums = value;
+                RaisePropertyChanged();
             }
         }
+
         public async Task Refresh(ViewParameters param)
         {
             await _albumListVm.Refresh(param);
             var res = new ObservableCollection<AlbumContainer>();
             foreach (var item in _albumListVm.Albums)
                 res.Add(new AlbumContainer {Album = item});
-            originalAlbums = (List<Album>)_albumListVm.Albums;
+            _originalAlbums = (List<Album>) _albumListVm.Albums;
             Albums = res;
-            ((App)Application.Current).ViewFilter = this;
+            ((App) Application.Current).ViewFilter = this;
             ((App) Application.Current).ActiveViewType = param.ViewType;
         }
 
@@ -112,32 +79,21 @@ namespace HeliumRemote.ViewModels
                 item = (AlbumContainer) lb.SelectedItem;
             }
             if (item != null)
-                AppHelpers.ContentFrame.Navigate(typeof(AlbumDetailsPage), item);
+                AppHelpers.ContentFrame.Navigate(typeof (AlbumDetailsPage), item);
         }
 
 
-        private void clearFilter()
+        public void FilterData(string expr)
         {
-            albums.Clear();
-            foreach (var album in _albumListVm.Albums)
-            {
-                Albums.Add(new AlbumContainer { Album = album });
-            }
-        }
-
-        private void filterData(string expr)
-        {
-            Debug.WriteLine("filterData");
-            albums.Clear();
+            _albums.Clear();
             if (string.IsNullOrEmpty(expr))
             {
-                clearFilter();
+                ClearFilter();
             }
 
-            var sc = StringComparer.CurrentCultureIgnoreCase;
-            var resd = originalAlbums.Where(
+            var resd = _originalAlbums.Where(
                 x => x.Name.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                x.Artist.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0 
+                     x.Artist.IndexOf(expr, StringComparison.OrdinalIgnoreCase) >= 0
                 );
             foreach (var album in resd)
             {
@@ -145,15 +101,50 @@ namespace HeliumRemote.ViewModels
             }
         }
 
-
-        public void FilterData(string expr)
-        {
-            filterData(expr);
-        }
-
         public void ClearFilter()
         {
-            clearFilter();
+            _albums.Clear();
+            foreach (var album in _albumListVm.Albums)
+            {
+                Albums.Add(new AlbumContainer { Album = album });
+            }
+        }
+
+        private async void ShowAlbumActionsExecute(int id)
+        {
+            var dlg = new ActionDialogAlbum();
+            await dlg.ShowAsync();
+            switch (dlg.ResultCode)
+            {
+                case AppConstants.ALB_RES_CODE_PLAYNOW:
+                    await CompositionRoot.WebService.PlayAlbum(id);
+                    break;
+                case AppConstants.ALB_RES_CODE_ENQUEUENEXT:
+                    await CompositionRoot.WebService.EnqueueAlbumNext(id);
+                    break;
+                case AppConstants.ALB_RES_CODE_ENQUEUELAST:
+                    await CompositionRoot.WebService.EnqueueAlbumLast(id);
+                    break;
+            }
+        }
+
+        private async void PlayNowExecute(int id)
+        {
+            await CompositionRoot.WebService.PlayAlbum(id);
+        }
+
+        private async void EnqueueNextExecute(int id)
+        {
+            await CompositionRoot.WebService.EnqueueAlbumNext(id);
+        }
+
+        private async void EnqueueLastExecute(int id)
+        {
+            await CompositionRoot.WebService.EnqueueAlbumLast(id);
+        }
+
+        private void AddToPlaylistExecute(int id)
+        {
         }
     }
 }

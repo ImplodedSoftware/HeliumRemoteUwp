@@ -7,9 +7,9 @@ namespace HeliumRemote.Types
 {
     public class TrackContainer : ViewModelBase
     {
+        private int _index;
         public Track Track { get; set; }
         public int CurrentCd { get; set; }
-        private int _index;
 
         public int Index
         {
@@ -18,13 +18,15 @@ namespace HeliumRemote.Types
                 var aid = ((App) Application.Current).ActiveId;
                 if (Track.Id == aid)
                     return AppConstants.ACTIVE_ID_DECORATOR;
-                else
-                {
-                    return _index;
-                }
+                return _index;
             }
-            set { _index = value; RaisePropertyChanged("Index");}
+            set
+            {
+                _index = value;
+                RaisePropertyChanged();
+            }
         }
+
         public int PlayQueueIndex { get; set; }
     }
 }

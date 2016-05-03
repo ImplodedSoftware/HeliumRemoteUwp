@@ -11,21 +11,23 @@ using NeonShared.Types;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class ArtistListPage : Page
     {
         private readonly IArtistListFacadeVm _vm;
         private ViewParameters _parameters;
+
         public ArtistListPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             _vm = CompositionRoot.ArtistListFacadeVm;
-            this.DataContext = _vm;
+            DataContext = _vm;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _parameters = (ViewParameters)e.Parameter;
+            _parameters = (ViewParameters) e.Parameter;
             var tit = _parameters.ViewType.ToString();
             if (_parameters.ViewType == UwpViewTypes.ArtistLetters)
                 tit = string.Format("{0}: {1}", TranslationHelper.GetString("ArtistsTitle"), _parameters.Letter);
@@ -33,8 +35,6 @@ namespace HeliumRemote.Views
                 tit = TranslationHelper.GetString("FavouriteArtistsTitle");
             else if (_parameters.ViewType == UwpViewTypes.AlbumArtistLetters)
                 tit = string.Format("{0}: {1}", TranslationHelper.GetString("AlbumArtistLetters"), _parameters.Letter);
-            //if (_parameters.ViewType == )
-            //AppHelpers.UpdatePageTitle(string.Format("Artists: {0}", _parameters.Letter));
             AppHelpers.UpdatePageTitle(tit);
         }
 
@@ -45,5 +45,4 @@ namespace HeliumRemote.Views
             _vm.IsBusy = false;
         }
     }
-
 }

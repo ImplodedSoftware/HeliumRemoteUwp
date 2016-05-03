@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using NeonShared.Classes;
+﻿using NeonShared.Classes;
 
 namespace NeonShared.Helpers
 {
@@ -232,7 +229,7 @@ namespace NeonShared.Helpers
 
         public static string PlayByIndex(int index)
         {
-            return baseUrl + string.Format(NeonUrls.URL_PLAY_INDEX, index);
+            return baseUrl + string.Format(URL_PLAY_INDEX, index);
         }
 
         public static string PlayQueueIndex
@@ -413,13 +410,7 @@ namespace NeonShared.Helpers
             return baseUrl + string.Format(URL_ENQUEUE_SMARTPLAYLIST_LAST, playlistId);
         }
 
-        public static string Version
-        {
-            get
-            {
-                return baseUrl + URL_VERSION;                
-            }   
-        }
+        public static string Version => baseUrl + URL_VERSION;
         public static string Users => baseUrl + URL_GET_USERS;
         public static string Login => baseUrl + URL_GET_LOGIN;
         public static string GetTrack(int detailId)
