@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeliumRemote", "HeliumRemote\HeliumRemote.csproj", "{211024C0-EC16-46F1-86FB-96F8F1378B7E}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NeonShared", "NeonShared\NeonShared.shproj", "{621272BB-B05A-4B37-B8F1-3EF59900BF51}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NeonShared", "..\NeonShared\NeonShared.shproj", "{621272BB-B05A-4B37-B8F1-3EF59900BF51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeliumRemote", "HeliumRemoteUwp\HeliumRemote\HeliumRemote.csproj", "{211024C0-EC16-46F1-86FB-96F8F1378B7E}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\NeonShared\NeonShared.projitems*{621272bb-b05a-4b37-b8f1-3ef59900bf51}*SharedItemsImports = 13
-		..\NeonShared\NeonShared.projitems*{211024c0-ec16-46f1-86fb-96f8f1378b7e}*SharedItemsImports = 4
+		NeonShared\NeonShared.projitems*{621272bb-b05a-4b37-b8f1-3ef59900bf51}*SharedItemsImports = 13
+		NeonShared\NeonShared.projitems*{211024c0-ec16-46f1-86fb-96f8f1378b7e}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
