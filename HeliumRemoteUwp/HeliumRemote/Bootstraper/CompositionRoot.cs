@@ -13,8 +13,6 @@ namespace HeliumRemote.Bootstraper
 
         static CompositionRoot()
         {
-            //SimpleIoc.Default.Register<IWebService, WebService>();
-
             SimpleIoc.Default.Register<IWebService>(() => new WebService());
 
             SimpleIoc.Default.Register<ILetterVm, LetterVm>();
@@ -49,14 +47,7 @@ namespace HeliumRemote.Bootstraper
 
         public static CompositionRoot Instance
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new CompositionRoot();
-                }
-                return _instance;
-            }
+            get { return _instance ?? (_instance = new CompositionRoot()); }
         }
     }
 }

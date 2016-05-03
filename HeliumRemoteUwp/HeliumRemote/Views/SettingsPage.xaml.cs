@@ -7,22 +7,22 @@ using HeliumRemote.ViewModels;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
-        private SettingsVm _vm;
+        private readonly SettingsVm _vm;
+
         public SettingsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             _vm = new SettingsVm();
             DataContext = _vm;
         }
 
-
         private void SettingsPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            _vm.MainFrame = this.Frame;
+            _vm.MainFrame = Frame;
         }
     }
 }

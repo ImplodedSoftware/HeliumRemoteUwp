@@ -3,7 +3,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
 using HeliumRemote.ViewModels;
@@ -13,11 +12,12 @@ using HeliumRemote.ViewModels;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class RootPage : Page
     {
         private readonly RootViewModel _vm;
+
         public RootPage()
         {
             InitializeComponent();
@@ -59,18 +59,11 @@ namespace HeliumRemote.Views
 
         private void HamburgerRadioButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (!SplitView.IsPaneOpen)
-            {
-                SplitView.IsPaneOpen = true;
-            }
-            else
-            {
-                SplitView.IsPaneOpen = false;
-            }
-            adjustUi();
+            SplitView.IsPaneOpen = !SplitView.IsPaneOpen;
+            AdjustUi();
         }
 
-        private void adjustUi()
+        private void AdjustUi()
         {
             if (SplitView.IsPaneOpen)
             {
@@ -83,6 +76,7 @@ namespace HeliumRemote.Views
                 SearchContainer.Visibility = Visibility.Collapsed;
             }
         }
+
         private void RootPage_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (!NeonSession.Instance.Instansiated)
@@ -92,23 +86,23 @@ namespace HeliumRemote.Views
                 frame.BackStack.Clear();
             }
             _vm.PlayQueueCommand.Execute(null);
-            adjustUi();
+            AdjustUi();
         }
 
         private void MiniPlayer_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            Frame.Navigate(typeof(NowPlayingPage));
+            Frame.Navigate(typeof (NowPlayingPage));
         }
 
         private void SearchButton_OnClick(object sender, RoutedEventArgs e)
         {
             SplitView.IsPaneOpen = true;
-            adjustUi();
+            AdjustUi();
         }
 
         private void SplitView_PaneClosed(SplitView sender, object args)
         {
-            adjustUi();
+            AdjustUi();
         }
     }
 }

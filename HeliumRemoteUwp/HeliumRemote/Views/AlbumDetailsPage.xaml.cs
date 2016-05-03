@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
@@ -14,15 +13,16 @@ using Neon.Api.Pcl.Models.Entities;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AlbumDetailsPage : Page
     {
-        private Album _album;
         private readonly IAlbumDetailsFacadeVm _vm;
+        private Album _album;
+
         public AlbumDetailsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             _vm = CompositionRoot.AlbumDetailsFacadeVm;
             _vm.Cvs = GroupedReleasesSource;
             DataContext = _vm;
@@ -50,33 +50,19 @@ namespace HeliumRemote.Views
                 return;
             _vm.ImageSize = AppHelpers.LargeImageSize;
             await _vm.Refresh(_album.Id);
-            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
-            {
-                _vm.ElementMargin = new Thickness(0, 8, 0, 0);
-                _vm.IconSize = 18;
-                _vm.RatingWidth = 80;
-            }
-            else
-            {
-                _vm.ElementMargin = new Thickness(0, 8, 24, 0);
-                _vm.IconSize = 36;
-                _vm.RatingWidth = 120;
-            }
+            _vm.AdjustUiParts();
         }
 
-        //ToDo: Figure out why x:Bind makes this to crash
         private void Image_OnImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            Debug.WriteLine("ImageFailed");
-            var img = (Image)sender;
+            var img = (Image) sender;
             img.Source = Application.Current.Resources["DefaultAlbumImageLarge"] as BitmapImage;
         }
 
         private void Image_OnImageOpened(object sender, RoutedEventArgs e)
         {
-            var img = (Image)sender;
+            var img = (Image) sender;
             img.MaxWidth = AppHelpers.LargeImageSize;
-            //img.MaxHeight = AppHelpers.LargeImageSize;
         }
     }
 }

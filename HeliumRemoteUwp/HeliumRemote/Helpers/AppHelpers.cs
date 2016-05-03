@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Graphics.Display;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using HeliumRemote.Types;
@@ -40,6 +41,7 @@ namespace HeliumRemote.Helpers
                 return 256;
             }
         }
+
         public static double LargeImageSizeDownload
         {
             get
@@ -47,58 +49,6 @@ namespace HeliumRemote.Helpers
                 var scaleFac = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
                 return scaleFac*256;
             }
-        }
-        public async static Task<bool> SettingsExists()
-        {
-            //var localSettings = ApplicationData.Current.LocalSettings;
-            //var value = localSettings.Values[NEON_SETTINGS];
-            //return value != null;
-
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            try
-            {
-                var foundFile = await storageFolder.GetFileAsync(SETTINGS_FILE);
-                return foundFile != null;
-            }
-            catch (FileNotFoundException)
-            {
-                return false;
-            }
-
-
-            //Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            //var lstfiles = await storageFolder.GetFilesAsync(CommonFileQuery.OrderByName);
-            //var foundfile = lstfiles.FirstOrDefault(x => x.Name == SETTINGS_FILE);
-            //return foundfile != null;
-        }
-
-        public async static Task SaveSettings(RemoteSettings settings)
-        {
-            //var json = JsonConvert.SerializeObject(settings);
-            //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            //localSettings.Values[NEON_SETTINGS] = json;
-
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile settingsFile = await storageFolder.CreateFileAsync(SETTINGS_FILE, Windows.Storage.CreationCollisionOption.ReplaceExisting);
-            var json = JsonConvert.SerializeObject(settings);
-            await Windows.Storage.FileIO.WriteTextAsync(settingsFile, json);
-
-            //Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            //Windows.Storage.StorageFile settingsFile = await storageFolder.CreateFileAsync(SETTINGS_FILE, Windows.Storage.CreationCollisionOption.ReplaceExisting);
-            //var json = JsonConvert.SerializeObject(settings);
-            //await Windows.Storage.FileIO.WriteTextAsync(settingsFile, json);
-        }
-
-        public async static Task<RemoteSettings> LoadSettings()
-        {
-            //var localSettings = ApplicationData.Current.LocalSettings;
-            //var value = localSettings.Values[NEON_SETTINGS];
-            //var json = (string)value;
-            //return JsonConvert.DeserializeObject<RemoteSettings>(json);
-            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            Windows.Storage.StorageFile settingsFile = await storageFolder.GetFileAsync(SETTINGS_FILE);
-            var json = await Windows.Storage.FileIO.ReadTextAsync(settingsFile);
-            return JsonConvert.DeserializeObject<RemoteSettings>(json);
         }
 
         public static Frame ContentFrame
@@ -110,19 +60,50 @@ namespace HeliumRemote.Helpers
             }
         }
 
-        public static void UpdatePageTitle(string title)
-        {
-            var app = (App)Application.Current;
-            app.RootViewModel.PageTitle = title;
-        }
-
         public static int ActiveId
         {
             get { return ((App) Application.Current).ActiveId; }
         }
 
+        public static async Task<bool> SettingsExists()
+        {
+            var storageFolder = ApplicationData.Current.LocalFolder;
+            try
+            {
+                var foundFile = await storageFolder.GetFileAsync(SETTINGS_FILE);
+                return foundFile != null;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
+        }
+
+        public static async Task SaveSettings(RemoteSettings settings)
+        {
+            var storageFolder = ApplicationData.Current.LocalFolder;
+            var settingsFile =
+                await storageFolder.CreateFileAsync(SETTINGS_FILE, CreationCollisionOption.ReplaceExisting);
+            var json = JsonConvert.SerializeObject(settings);
+            await FileIO.WriteTextAsync(settingsFile, json);
+        }
+
+        public static async Task<RemoteSettings> LoadSettings()
+        {
+            var storageFolder = ApplicationData.Current.LocalFolder;
+            var settingsFile = await storageFolder.GetFileAsync(SETTINGS_FILE);
+            var json = await FileIO.ReadTextAsync(settingsFile);
+            return JsonConvert.DeserializeObject<RemoteSettings>(json);
+        }
+
+        public static void UpdatePageTitle(string title)
+        {
+            var app = (App) Application.Current;
+            app.RootViewModel.PageTitle = title;
+        }
+
         public static string GetMonthName(int month)
-        {            
+        {
             return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
         }
 
@@ -130,6 +111,7 @@ namespace HeliumRemote.Helpers
         {
             return TranslationHelper.GetString(key);
         }
+
         public static string GetRatingName(int rating)
         {
             switch (rating)
@@ -160,6 +142,5 @@ namespace HeliumRemote.Helpers
                     return GetString("Rating0");
             }
         }
-
     }
 }

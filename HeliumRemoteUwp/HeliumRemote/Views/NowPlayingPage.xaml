@@ -5,11 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:HeliumRemote.UserControls"
-    xmlns:converters1="using:HeliumRemote.Converters"
+    xmlns:converters="using:HeliumRemote.Converters"
     Loaded="NowPlayingPage_OnLoaded"
     mc:Ignorable="d">
     <Page.Resources>
-        <converters1:RatingToImRatingConverter x:Key="RatingToImRatingConverter"/>
+        <converters:RatingToImRatingConverter x:Key="RatingToImRatingConverter"/>
+        <converters:TooltipConverter x:Key="TooltipConverter"/>
         <Style x:Key="CloseButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -158,22 +159,7 @@
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
-                                    <VisualState x:Name="PointerOver">
-                                        <Storyboard>
-                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="HorizontalTrackRect">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="VerticalTrackRect">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="HorizontalThumb">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightChromeAltLowBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="VerticalThumb">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightChromeAltLowBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>-->
-                                        </Storyboard>
-                                    </VisualState>
+                                    <VisualState x:Name="PointerOver"/>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}" FontWeight="{ThemeResource SliderHeaderThemeFontWeight}" Margin="{ThemeResource SliderHeaderThemeMargin}" TextWrapping="Wrap" Visibility="Collapsed" x:DeferLoadStrategy="Lazy"/>
@@ -260,8 +246,7 @@
                     <ColumnDefinition Width="48"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="{Binding TrackPosition, Converter={StaticResource DurationConverter}}" Style="{StaticResource TextStyleSmall}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <!--<Slider Grid.Column="1" Maximum="{Binding Duration}" Value="{Binding TrackPosition, Mode=TwoWay}" ValueChanged="RangeBase_OnValueChanged"/>-->
-                <Slider Grid.Column="1" Maximum="{Binding Duration}" ValueChanged="RangeBase_OnValueChanged" x:Name="PosSlider" Background="#666667" Style="{StaticResource PosSliderStyle}"/>
+                <Slider Grid.Column="1" Maximum="{Binding Duration}" ValueChanged="RangeBase_OnValueChanged" x:Name="PosSlider" Background="#666667" Style="{StaticResource PosSliderStyle}" ThumbToolTipValueConverter="{StaticResource TooltipConverter}"/>
                 <TextBlock Grid.Column="2" Text="{Binding Duration, Converter={StaticResource DurationConverter}}" Style="{StaticResource TextStyleSmall}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
         </StackPanel>

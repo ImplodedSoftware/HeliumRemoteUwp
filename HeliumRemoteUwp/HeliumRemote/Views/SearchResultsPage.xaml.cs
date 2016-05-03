@@ -12,17 +12,18 @@ using NeonShared.Types;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class SearchResultsPage : Page
     {
         private readonly ISearchFacadeVm _vm;
         private ViewParameters _parameters;
+
         public SearchResultsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             _vm = CompositionRoot.SearchFacadeVm;
-            this.DataContext = _vm;
+            DataContext = _vm;
             _vm.UpdateUi += () =>
             {
                 tbArtists.IsSelected = false;
@@ -39,8 +40,7 @@ namespace HeliumRemote.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _parameters = (ViewParameters)e.Parameter;
-            //AppHelpers.UpdatePageTitle(string.Format("Albums: {0}", _parameters.Letter));
+            _parameters = (ViewParameters) e.Parameter;
         }
 
         private async void SearchResultsPage_OnLoaded(object sender, RoutedEventArgs e)
@@ -54,9 +54,6 @@ namespace HeliumRemote.Views
             if (bc != 0)
             {
                 var bw = (int) (TopGrid.ActualWidth/bc);
-                //ArtistsButton.Width = bw;
-                //AlbumsButton.Width = bw;
-                //TracksButton.Width = bw;
 
                 tbArtists.Width = bw;
                 tbAlbums.Width = bw;
@@ -70,9 +67,8 @@ namespace HeliumRemote.Views
             }
             else
             {
-                TopGrid.Visibility = Visibility.Collapsed;                
+                TopGrid.Visibility = Visibility.Collapsed;
             }
         }
-
     }
 }

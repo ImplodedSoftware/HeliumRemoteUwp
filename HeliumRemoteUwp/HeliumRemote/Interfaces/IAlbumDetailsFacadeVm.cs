@@ -14,5 +14,6 @@ namespace HeliumRemote.Interfaces
         Thickness ElementMargin { get; set; }
         double IconSize { get; set; }
         int RatingWidth { get; set; }
-    }
+        void AdjustUiParts();
+   }
 }

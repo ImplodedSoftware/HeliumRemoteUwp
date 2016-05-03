@@ -9,6 +9,7 @@ namespace HeliumRemote.Types
         Header,
         AlbumItem
     }
+
     public interface IArtistDetailItem
     {
         ArtistDetailCellTypes CellType { get; }
@@ -17,38 +18,57 @@ namespace HeliumRemote.Types
     public class ArtistDetailTopCell : IArtistDetailItem
     {
         public Artist Artist { get; set; }
-        public ArtistDetailCellTypes CellType { get { return ArtistDetailCellTypes.TopItem;} }
+
+        public ArtistDetailCellTypes CellType
+        {
+            get { return ArtistDetailCellTypes.TopItem; }
+        }
     }
+
     public class ArtistDetailHeaderCell : IArtistDetailItem
     {
         public string Header { get; set; }
-        public ArtistDetailCellTypes CellType { get { return ArtistDetailCellTypes.Header; } }
+
+        public ArtistDetailCellTypes CellType
+        {
+            get { return ArtistDetailCellTypes.Header; }
+        }
     }
+
     public class ArtistDetailAlbumCell : IArtistDetailItem
     {
-        public Album Album{ get; set; }
-        public ArtistDetailCellTypes CellType { get { return ArtistDetailCellTypes.AlbumItem; } }
+        public Album Album { get; set; }
+
+        public ArtistDetailCellTypes CellType
+        {
+            get { return ArtistDetailCellTypes.AlbumItem; }
+        }
     }
-
-
-
 
 
     public class ArtistDetailItem : ViewModelBase
     {
-        private string name;
+        private string _name;
+        private string _picture;
 
         public string Name
         {
-            get { return name; }
-            set { name = value; RaisePropertyChanged("Name"); }
+            get { return _name; }
+            set
+            {
+                _name = value;
+                RaisePropertyChanged();
+            }
         }
-        private string picture;
 
         public string Picture
         {
-            get { return picture; }
-            set { picture = value; RaisePropertyChanged("Picture"); }
+            get { return _picture; }
+            set
+            {
+                _picture = value;
+                RaisePropertyChanged();
+            }
         }
     }
 }

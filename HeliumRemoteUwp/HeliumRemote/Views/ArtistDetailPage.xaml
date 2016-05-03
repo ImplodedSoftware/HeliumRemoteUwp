@@ -12,46 +12,6 @@
         <converters1:LargeFavouriteConverter x:Key="LargeFavouriteConverter"/>
         <converters1:DiscographyTextConverter x:Key="DiscographyTextConverter"/>
         <DataTemplate x:Key="TopTemplate">
-            <!--<Grid Background="{StaticResource DimBgExBrush}">
-                -->
-            <!--<Grid>
-                    <Image 
-                        Source="{Binding Album.Id, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Large}" 
-                        MaxHeight="320"   
-                        ImageFailed="Image_OnImageFailed" 
-                        Stretch="UniformToFill" 
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"/>
-                </Grid>-->
-            <!--
-                <Grid Background="{StaticResource DimBgBrush}">
-                    <TextBlock Style="{StaticResource PageTitleStyle}" Text="{Binding Album.Name}" VerticalAlignment="Top"/>
-                </Grid>
-                <Grid VerticalAlignment="Bottom" Background="{StaticResource DimBgBrush}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,8" VerticalAlignment="Bottom" Grid.Column="0">
-                        <Image Source="/Images/ad_dots.png" Height="36"/>
-                        <Image Source="{Binding Album.IsFavourite, Converter={StaticResource LargeFavouriteConverter}}" Margin="8,0,0,0"/>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
-                        <Image Source="{Binding Album.Rating, Converter={StaticResource RatingToImageConverter}, ConverterParameter=Dark}" Width="120" Margin="8,0,24,0" HorizontalAlignment="Right"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,24,0">
-                            <TextBlock Text="From" x:Uid="From" Style="{StaticResource TextStyle}"/>
-                            <TextBlock Text="{Binding Album.ReleaseYear}"  Margin="4,0,0,0" Style="{StaticResource TextStyle}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,24,0">
-                            <TextBlock Text="{Binding Album.TotalItems}" Style="{StaticResource TextStyle}"/>
-                            <TextBlock Text="Tracks" Margin="4,0,0,0" x:Uid="Tracks" Style="{StaticResource TextStyle}"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Grid>-->
-
-
-
             <Grid Background="White" Padding="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

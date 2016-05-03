@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Graphics.Display;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Classes;
+using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Types;
 using HeliumRemote.Views;
@@ -218,5 +220,22 @@ namespace HeliumRemote.ViewModels
                     break;
             }
         }
+
+        public void AdjustUiParts()
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                ElementMargin = new Thickness(0, 8, 0, 0);
+                IconSize = 18;
+                RatingWidth = 80;
+            }
+            else
+            {
+                ElementMargin = new Thickness(0, 8, 24, 0);
+                IconSize = 36;
+                RatingWidth = 120;
+            }
+        }
+
     }
 }

@@ -237,5 +237,21 @@ namespace HeliumRemote.ViewModels
         private static void addToPlaylistExecute(int id)
         {
         }
+
+        public async Task AdjustUiParts(int artistId)
+        {
+            if (DeviceTypeHelper.GetDeviceFormFactorType() == DeviceFormFactorType.Phone)
+            {
+                ElementMargin = new Thickness(0, 8, 0, 0);
+                RatingWidth = 80;
+            }
+            else
+            {
+                ElementMargin = new Thickness(0, 8, 24, 0);
+                RatingWidth = 120;
+            }
+            await Refresh(artistId);
+            AppHelpers.UpdatePageTitle(Artist.ArtistName);
+        }
     }
 }

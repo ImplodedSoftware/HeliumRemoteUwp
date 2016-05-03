@@ -11,22 +11,23 @@ using NeonShared.Types;
 namespace HeliumRemote.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class PlaylistsPage : Page
     {
         private ViewParameters _parameters;
-        private IPlaylistsFacadeVm _vm;
+        private readonly IPlaylistsFacadeVm _vm;
+
         public PlaylistsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             _vm = CompositionRoot.PlaylistsFacadeVm;
             DataContext = _vm;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _parameters = (ViewParameters)e.Parameter;
+            _parameters = (ViewParameters) e.Parameter;
             if (_parameters.ViewType == UwpViewTypes.Playlists)
             {
                 AppHelpers.UpdatePageTitle(TranslationHelper.GetString("PlaylistsTitle"));
@@ -43,6 +44,5 @@ namespace HeliumRemote.Views
         {
             await _vm.Populate(_parameters);
         }
-
     }
 }
