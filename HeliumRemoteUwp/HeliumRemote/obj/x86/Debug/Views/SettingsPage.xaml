@@ -1,0 +1,29 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="HeliumRemote.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                  
+    mc:Ignorable="d">
+    <Page.Resources>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource DefaultBgBrush}" Padding="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Style="{StaticResource PageTitleStyle}" x:Uid="SettingsTitle" Margin="0,0,0,8"/>
+        <RelativePanel Grid.Row="1">
+            <TextBlock x:ConnectionId='2' Style="{StaticResource TextStyle}" Text="Address" x:Uid="Address" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="AddressTb"/>
+            <TextBox x:ConnectionId='3' RelativePanel.Below="AddressTb" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="AddressTextBox" PlaceholderText="Enter address" Text="{Binding Address, Mode=TwoWay}"/>
+            <TextBlock x:ConnectionId='4' Style="{StaticResource TextStyle}" Text="Port" x:Uid="Port" x:Name="PortTb" RelativePanel.Below="AddressTextBox" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
+            <TextBox x:ConnectionId='5' RelativePanel.Below="PortTb" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="PortTextBox" PlaceholderText="Enter port" InputScope="Number"                                              Text="{Binding Port, Mode=TwoWay}"/>
+            <Button Margin="0,32,0,0" RelativePanel.Below="PortTextBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" HorizontalAlignment="Stretch" Command="{Binding LoginCommand}" Style="{StaticResource ImButtonStyle}">Connect</Button>
+        </RelativePanel>
+        <TextBlock TextWrapping="Wrap" Style="{StaticResource TextStyleDim}" x:Uid="HelperText" Grid.Row="2" Margin="0,16,0,0"/>
+    </Grid>
+</Page>
+

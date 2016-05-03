@@ -1,0 +1,62 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="HeliumRemote.Views.SearchResultsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:HeliumRemote.UserControls"
+    xmlns:converters1="using:HeliumRemote.Converters"
+                                       
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters1:SearchViewConverter x:Key="SearchViewConverter"/>
+    </Page.Resources>
+    
+    <Grid Background="{StaticResource DefaultBgBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:ConnectionId='2' x:Name="TopGrid" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <userControls:TabButton x:ConnectionId='6' Visibility="{Binding HasArtists, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="True" CustomText="Artists" Grid.Column="0" x:Name="tbArtists" ClickCommand="{Binding ShowArtistsCommand}" x:Uid="SearchButtonArtists"/>
+            <userControls:TabButton x:ConnectionId='7' Visibility="{Binding HasAlbums, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="False" CustomText="Albums" Grid.Column="1" x:Name="tbAlbums" ClickCommand="{Binding ShowAlbumsCommand}" x:Uid="SearchButtonAlbums"/>
+            <userControls:TabButton x:ConnectionId='8' Visibility="{Binding HasTracks, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="False" CustomText="Tracks" Grid.Column="2" x:Name="tbTracks" ClickCommand="{Binding ShowTracksCommand}" x:Uid="SearchButtonTracks"/>
+        </Grid>
+        <ListBox x:ConnectionId='3'
+            Grid.Row="1"
+                                                   
+            Background="{StaticResource DefaultBgBrush}"
+            ItemTemplate="{StaticResource ArtistListItem}"
+            Visibility="{Binding ActiveView, Converter={StaticResource SearchViewConverter}, ConverterParameter=Artists}"
+            ItemsSource="{Binding Artists}"
+            x:Name="ArtistsLb" 
+            ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"/>
+        <ListBox x:ConnectionId='4'
+            Grid.Row="1"
+                                                   
+            Background="{StaticResource DefaultBgBrush}"
+            ItemTemplate="{StaticResource AlbumListItem}"
+            Visibility="{Binding ActiveView, Converter={StaticResource SearchViewConverter}, ConverterParameter=Albums}"
+            ItemsSource="{Binding Albums}"
+            x:Name="AlbumsLb" 
+            ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"/>
+        <ListBox x:ConnectionId='5' 
+            x:Name="TracksLb"
+            Grid.Row="1"
+                                                   
+            Visibility="{Binding ActiveView, Converter={StaticResource SearchViewConverter}, ConverterParameter=Tracks}"
+            ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
+            Background="{StaticResource DefaultBgBrush}"
+            ItemTemplate="{StaticResource TrackTemplate}" 
+            ItemsSource="{Binding Tracks}">
+        </ListBox>
+
+    </Grid>
+</Page>
+

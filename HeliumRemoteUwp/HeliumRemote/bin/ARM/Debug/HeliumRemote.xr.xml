@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roots >
+  <Roots.Interfaces>
+    <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
+  </Roots.Interfaces>
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="Index" />
+    <RootPropertyPathName Name="DataContext" />
+    <RootPropertyPathName Name="PlayByIndexCommand" />
+    <RootPropertyPathName Name="PlayQueueIndex" />
+    <RootPropertyPathName Name="Track" />
+    <RootPropertyPathName Name="Rating" />
+    <RootPropertyPathName Name="IsFavourite" />
+    <RootPropertyPathName Name="Length" />
+    <RootPropertyPathName Name="Album" />
+    <RootPropertyPathName Name="Artist" />
+    <RootPropertyPathName Name="Title" />
+    <RootPropertyPathName Name="ShowTrackActionsCommand" />
+    <RootPropertyPathName Name="Id" />
+    <RootPropertyPathName Name="ArtistName" />
+    <RootPropertyPathName Name="AddToPlaylistCommand" />
+    <RootPropertyPathName Name="EnqueueLastCommand" />
+    <RootPropertyPathName Name="EnqueueNextCommand" />
+    <RootPropertyPathName Name="PlayNowCommand" />
+    <RootPropertyPathName Name="ReleaseYear" />
+    <RootPropertyPathName Name="Name" />
+    <RootPropertyPathName Name="ShowAlbumActionsCommand" />
+    <RootPropertyPathName Name="Playlist" />
+    <RootPropertyPathName Name="Count" />
+    <RootPropertyPathName Name="Letter" />
+    <RootPropertyPathName Name="Header" />
+    <RootPropertyPathName Name="ElementMargin" />
+    <RootPropertyPathName Name="TotalItems" />
+    <RootPropertyPathName Name="RatingWidth" />
+    <RootPropertyPathName Name="ChangeFavouriteCommand" />
+    <RootPropertyPathName Name="AlbumDetailCells" />
+    <RootPropertyPathName Name="Albums" />
+    <RootPropertyPathName Name="Country" />
+    <RootPropertyPathName Name="Key" />
+    <RootPropertyPathName Name="ArtistDetailCells" />
+    <RootPropertyPathName Name="IsBusy" />
+    <RootPropertyPathName Name="Artists" />
+    <RootPropertyPathName Name="Letters" />
+    <RootPropertyPathName Name="NextCommand" />
+    <RootPropertyPathName Name="PlayPauseCommand" />
+    <RootPropertyPathName Name="State" />
+    <RootPropertyPathName Name="PreviousCommand" />
+    <RootPropertyPathName Name="Duration" />
+    <RootPropertyPathName Name="TrackPosition" />
+    <RootPropertyPathName Name="InfoLine2" />
+    <RootPropertyPathName Name="InfoLine1" />
+    <RootPropertyPathName Name="AlbumId" />
+    <RootPropertyPathName Name="NowPlayingInfo" />
+    <RootPropertyPathName Name="MoreCommand" />
+    <RootPropertyPathName Name="CloseCommand" />
+    <RootPropertyPathName Name="Playlists" />
+    <RootPropertyPathName Name="Tracks" />
+    <RootPropertyPathName Name="SmartPlaylistsCommand" />
+    <RootPropertyPathName Name="PlaylistsCommand" />
+    <RootPropertyPathName Name="FavTracksCommand" />
+    <RootPropertyPathName Name="FavAlbumsCommand" />
+    <RootPropertyPathName Name="FavArtistsCommand" />
+    <RootPropertyPathName Name="PlayedDateCommand" />
+    <RootPropertyPathName Name="AddedDateCommand" />
+    <RootPropertyPathName Name="YearsCommand" />
+    <RootPropertyPathName Name="RatingsCommand" />
+    <RootPropertyPathName Name="LabelsCommand" />
+    <RootPropertyPathName Name="GenresCommand" />
+    <RootPropertyPathName Name="AlbumArtistCommand" />
+    <RootPropertyPathName Name="AlbumsCommand" />
+    <RootPropertyPathName Name="ArtistCommand" />
+    <RootPropertyPathName Name="PlayQueueCommand" />
+    <RootPropertyPathName Name="FilterCommand" />
+    <RootPropertyPathName Name="FilterAvailable" />
+    <RootPropertyPathName Name="FilterVisible" />
+    <RootPropertyPathName Name="PageTitle" />
+    <RootPropertyPathName Name="ActiveView" />
+    <RootPropertyPathName Name="HasTracks" />
+    <RootPropertyPathName Name="ShowTracksCommand" />
+    <RootPropertyPathName Name="HasAlbums" />
+    <RootPropertyPathName Name="ShowAlbumsCommand" />
+    <RootPropertyPathName Name="HasArtists" />
+    <RootPropertyPathName Name="ShowArtistsCommand" />
+    <RootPropertyPathName Name="LoginCommand" />
+    <RootPropertyPathName Name="Port" />
+    <RootPropertyPathName Name="Address" />
+  </Roots.PropertyPathNames>
+  <Roots.RootTypes>
+    <RootType FullName="Windows.UI.Xaml.Application">
+      <RootProperty Name="RequestedTheme" />
+      <RootProperty Name="Resources" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.ResourceDictionary">
+      <RootProperty Name="MergedDictionaries" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Converters.AlbumImageDownloadConverter" />
+    <RootType FullName="HeliumRemote.Converters.RatingToImageConverter" />
+    <RootType FullName="HeliumRemote.Converters.AlternationConverter" />
+    <RootType FullName="HeliumRemote.Converters.DurationConverter" />
+    <RootType FullName="HeliumRemote.Converters.ArtistImageDownloadConverter" />
+    <RootType FullName="HeliumRemote.Converters.BoolToVisibilityConverter" />
+    <RootType FullName="HeliumRemote.Converters.StringToVisibilityConverter" />
+    <RootType FullName="HeliumRemote.Converters.RightTappedRoutedEventArgsConverter" />
+    <RootType FullName="HeliumRemote.Converters.UpperCaseConverter" />
+    <RootType FullName="HeliumRemote.Converters.PlayStateImageConverter" />
+    <RootType FullName="HeliumRemote.Converters.BoolInvToVisibilityConverter" />
+    <RootType FullName="HeliumRemote.Converters.BoolToOpacityConverter" />
+    <RootType FullName="System.Double" />
+    <RootType FullName="Windows.UI.Color" />
+    <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
+      <RootProperty Name="Color" />
+      <RootProperty Name="Opacity" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="TextTrimming" />
+      <RootProperty Name="FontWeight" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="TextAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="HorizontalAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Imaging.BitmapImage">
+      <RootProperty Name="UriSource" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.DataTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.GridViewItem" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="VerticalContentAlignment" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Template" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="FontWeight" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="UseSystemFocusVisuals" />
+      <RootMethod Name="GetIsTemplateFocusTarget" />
+      <RootMethod Name="SetIsTemplateFocusTarget" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Source" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="MaxWidth" />
+      <RootProperty Name="MaxHeight" />
+      <RootProperty Name="Style" />
+      <RootEvent Name="ImageOpened" />
+      <RootEvent Name="ImageFailed" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBoxItem" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Style" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="CommandParameter" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Tag" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Visibility" />
+      <RootEvent Name="Click" />
+      <RootEvent Name="Tapped" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
+      <RootProperty Name="Target" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ControlTemplate">
+      <RootProperty Name="TargetType" />
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="Resources" />
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Name" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootEvent Name="Tapped" />
+      <RootMethod Name="GetColumn" />
+      <RootMethod Name="SetColumn" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
+      <RootMethod Name="GetColumnSpan" />
+      <RootMethod Name="SetColumnSpan" />
+      <RootMethod Name="GetRowSpan" />
+      <RootMethod Name="SetRowSpan" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.VisualStateManager">
+      <RootMethod Name="GetVisualStateGroups" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.TemplateBindingExtension" />
+    <RootType FullName="Windows.UI.Xaml.VisualStateGroup">
+      <RootProperty Name="States" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.VisualState">
+      <RootProperty Name="Storyboard" />
+      <RootProperty Name="Setters" />
+      <RootProperty Name="StateTriggers" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.Storyboard">
+      <RootProperty Name="Children" />
+      <RootMethod Name="GetTargetProperty" />
+      <RootMethod Name="SetTargetProperty" />
+      <RootMethod Name="GetTargetName" />
+      <RootMethod Name="SetTargetName" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.ObjectAnimationUsingKeyFrames">
+      <RootProperty Name="KeyFrames" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.DiscreteObjectKeyFrame">
+      <RootProperty Name="KeyTime" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.PointerDownThemeAnimation" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.PointerUpThemeAnimation" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="ContentTemplate" />
+      <RootProperty Name="ContentTransitions" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="VerticalContentAlignment" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontWeight" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Automation.AutomationProperties">
+      <RootMethod Name="GetAccessibilityView" />
+      <RootMethod Name="SetAccessibilityView" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Converter" />
+      <RootProperty Name="ElementName" />
+      <RootProperty Name="ConverterParameter" />
+      <RootProperty Name="Path" />
+      <RootProperty Name="FallbackValue" />
+      <RootProperty Name="Source" />
+      <RootProperty Name="Mode" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
+      <RootProperty Name="Width" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+      <RootEvent Name="PointerPressed" />
+      <RootEvent Name="PointerMoved" />
+      <RootEvent Name="Loaded" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Child" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="CornerRadius" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RelativePanel">
+      <RootProperty Name="Children" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootMethod Name="GetRightOf" />
+      <RootMethod Name="SetRightOf" />
+      <RootMethod Name="GetAlignRightWithPanel" />
+      <RootMethod Name="SetAlignRightWithPanel" />
+      <RootMethod Name="GetAlignLeftWithPanel" />
+      <RootMethod Name="SetAlignLeftWithPanel" />
+      <RootMethod Name="GetBelow" />
+      <RootMethod Name="SetBelow" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.ImageBrush">
+      <RootProperty Name="Stretch" />
+      <RootProperty Name="ImageSource" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactivity.Interaction">
+      <RootMethod Name="GetBehaviors" />
+      <RootMethod Name="SetBehaviors" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.FlyoutBase">
+      <RootMethod Name="GetAttachedFlyout" />
+      <RootMethod Name="SetAttachedFlyout" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactions.Core.EventTriggerBehavior">
+      <RootProperty Name="EventName" />
+      <RootProperty Name="Actions" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Classes.OpenMenuFlyoutAction" />
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyout">
+      <RootProperty Name="Items" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.MenuFlyoutItem">
+      <RootProperty Name="Text" />
+      <RootProperty Name="Command" />
+      <RootProperty Name="CommandParameter" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.NullExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Page">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Resources" />
+      <RootProperty Name="NavigationCacheMode" />
+      <RootEvent Name="Loaded" />
+    </RootType>
+    <RootType FullName="HeliumRemote.MainPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
+      <RootProperty Name="Content" />
+      <RootProperty Name="Resources" />
+    </RootType>
+    <RootType FullName="HeliumRemote.UserControls.ImRating">
+      <RootProperty Name="NumberOfStars" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="StarForegroundColor" />
+      <RootProperty Name="StarOutlineColor" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Path">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Fill" />
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
+      <RootProperty Name="Data" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Fill" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="HeliumRemote.UserControls.ImStar" />
+    <RootType FullName="HeliumRemote.UserControls.TabButton">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="IsSelected" />
+      <RootProperty Name="CustomText" />
+      <RootProperty Name="ClickCommand" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentDialog">
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Views.ActionDialogAlbum" />
+    <RootType FullName="HeliumRemote.Views.ActionDialogTracks" />
+    <RootType FullName="Windows.UI.Xaml.Data.CollectionViewSource">
+      <RootProperty Name="IsSourceGrouped" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Converters.LargeFavouriteConverter" />
+    <RootType FullName="HeliumRemote.Converters.AlbumDetailsSelector">
+      <RootProperty Name="TracksTemplate" />
+      <RootProperty Name="HeaderTemplate" />
+      <RootProperty Name="TopTemplate" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListBox">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="ItemContainerStyle" />
+      <RootProperty Name="ItemTemplateSelector" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemTemplate" />
+      <RootEvent Name="Tapped" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Views.AlbumDetailsPage" />
+    <RootType FullName="Windows.UI.Xaml.AdaptiveTrigger">
+      <RootProperty Name="MinWindowWidth" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.GridView">
+      <RootProperty Name="Background" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemContainerStyle" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="SelectionMode" />
+      <RootProperty Name="GroupStyle" />
+      <RootEvent Name="Tapped" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.BindExtension" />
+    <RootType FullName="HeliumRemote.Views.AlbumListPage" />
+    <RootType FullName="HeliumRemote.Converters.DiscographyTextConverter" />
+    <RootType FullName="HeliumRemote.Converters.ArtistDetailSelector">
+      <RootProperty Name="AlbumDetailTemplate" />
+      <RootProperty Name="HeaderTemplate" />
+      <RootProperty Name="TopTemplate" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.GroupStyle">
+      <RootProperty Name="HeaderTemplate" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Views.ArtistDetailPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ProgressRing">
+      <RootProperty Name="IsActive" />
+      <RootProperty Name="Visibility" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Views.ArtistListPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsPanelTemplate">
+      <RootProperty Name="Template" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.WrapGrid">
+      <RootProperty Name="ItemWidth" />
+      <RootProperty Name="ItemHeight" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ItemContainerStyle" />
+      <RootProperty Name="ItemsPanel" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListViewItem" />
+    <RootType FullName="HeliumRemote.Views.LettersPage" />
+    <RootType FullName="HeliumRemote.Converters.RatingToImRatingConverter" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Slider">
+      <RootProperty Name="Maximum" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Style" />
+      <RootEvent Name="ValueChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.UIElement">
+      <RootProperty Name="ManipulationMode" />
+      <RootProperty Name="Opacity" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Thumb">
+      <RootProperty Name="Background" />
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Width" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.TickBar">
+      <RootProperty Name="Fill" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Views.NowPlayingPage" />
+    <RootType FullName="HeliumRemote.Views.PlaylistsPage" />
+    <RootType FullName="HeliumRemote.Views.PlayQueuePage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.RadioButton" />
+    <RootType FullName="Windows.UI.Xaml.Controls.SplitView">
+      <RootProperty Name="OpenPaneLength" />
+      <RootProperty Name="CompactPaneLength" />
+      <RootProperty Name="IsPaneOpen" />
+      <RootProperty Name="PaneBackground" />
+      <RootProperty Name="DisplayMode" />
+      <RootProperty Name="Pane" />
+      <RootProperty Name="Content" />
+      <RootEvent Name="PaneClosed" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="HorizontalScrollBarVisibility" />
+      <RootProperty Name="VerticalScrollBarVisibility" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.AutoSuggestBox">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="PlaceholderText" />
+      <RootEvent Name="QuerySubmitted" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Frame">
+      <RootProperty Name="Name" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ProgressBar">
+      <RootProperty Name="Height" />
+      <RootProperty Name="Maximum" />
+      <RootProperty Name="Value" />
+      <RootProperty Name="Background" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="InputScope" />
+      <RootEvent Name="TextChanged" />
+      <RootEvent Name="KeyDown" />
+    </RootType>
+    <RootType FullName="HeliumRemote.Views.RootPage" />
+    <RootType FullName="HeliumRemote.Converters.SearchViewConverter" />
+    <RootType FullName="HeliumRemote.Views.SearchResultsPage" />
+    <RootType FullName="HeliumRemote.Views.SettingsPage" />
+    <RootType FullName="HeliumRemote.Views.TracksPage" />
+  </Roots.RootTypes>
+</Roots>
