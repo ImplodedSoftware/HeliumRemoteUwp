@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>621272bb-b05a-4b37-b8f1-3ef59900bf51</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>NeonShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\NeonAppRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\NeonBaseVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Classes\WebService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\NeonConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\NeonHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\NeonUrls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAlbumDetailsVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAlbumListVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\INeonAppRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IArtistDetailsVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IArtistListVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILetterVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlaylistsVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITracksVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IWebService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\LetterContainerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\PlaylistContainerItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\ViewParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\ViewTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AlbumDetailsVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AlbumListVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ArtistDetailsVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ArtistListVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LetterVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PlaylistsVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchVm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TracksVm.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,303 @@
+﻿<Page
+    x:Class="HeliumRemote.Views.RootPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    NavigationCacheMode="Enabled"
+    Loaded="RootPage_OnLoaded"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MenuButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Padding" Value="8,4,8,4"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+                <Setter Property="UseSystemFocusVisuals" Value="True"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="PointerOver"/>
+                                        <VisualState x:Name="Pressed"/>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ContentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledTransparentBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="FilterButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+                <Setter Property="BorderBrush" Value="{x:Null}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="8,4,8,4"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+                <Setter Property="UseSystemFocusVisuals" Value="True"/>
+                <Setter Property="Opacity" Value="0.75"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled"/>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource DefaultBgBrush}" x:Name="Root">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter Target="PlayerTimePane.Visibility" Value="Visible"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Mobile">
+                    <VisualState.Setters>
+                        <Setter Target="PlayerTimePane.Visibility" Value="Collapsed"/>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="MenuButton1" Width="52" Height="52" Click="HamburgerRadioButton_OnClick" Style="{StaticResource MenuButtonStyle}" Background="{StaticResource PaneColorBrush}" Grid.Column="0">
+                <TextBlock  FontFamily="Segoe MDL2 Assets" FontSize="22" Text="&#xE700;" Foreground="{StaticResource DefaultFontBrush}"/>
+            </Button>
+
+            <Grid x:Name="PageTitle" Padding="4" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource PageTitleStyle}" Text="{Binding PageTitle}" Grid.Column="0" Visibility="{Binding FilterVisible, Converter={StaticResource BoolInvToVisibilityConverter}}" VerticalAlignment="Center"/>
+                <TextBox x:Name="FilterTextBox" Visibility="{Binding FilterVisible, Converter={StaticResource BoolToVisibilityConverter}}" TextChanged="{x:Bind _vm.FilterTb_OnTextChanged}" VerticalAlignment="Center" Height="24" x:Uid="FilterTextbox"/>
+                <Button Grid.Column="1" Command="{Binding FilterCommand}" Visibility="{Binding FilterAvailable, Converter={StaticResource BoolToVisibilityConverter}}" Style="{StaticResource FilterButtonStyle}">
+                    <TextBlock Style="{StaticResource TextStyle}" Text="&#xE71C;" FontFamily="Segoe MDL2 Assets" FontSize="20" VerticalAlignment="Center" TextAlignment="Right"/>
+                </Button>
+            </Grid>
+
+        </Grid>
+
+
+        <SplitView x:Name="SplitView" OpenPaneLength="240" CompactPaneLength="48" IsPaneOpen="False" PaneBackground="{StaticResource PaneColorBrush}" Grid.Row="1" DisplayMode="Overlay" PaneClosed="SplitView_PaneClosed">
+            <SplitView.Pane>
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="SplitViewPanePanel">
+
+                        <AutoSuggestBox x:Name="SearchContainer" Visibility="Collapsed" Margin="8,8,8,2" QuerySubmitted="{x:Bind _vm.SearchContainer_OnQuerySubmitted}" Height="30" PlaceholderText="Search" x:Uid="MenuSearch"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="SearchButton_OnClick" x:Name="SearchButton">
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="/Images/di_search.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="zzSearch" Style="{StaticResource MenuFontStyle}" x:Uid="Search"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding PlayQueueCommand}">
+                            <StackPanel Orientation="Horizontal" >
+                                <Image Source="/Images/di_playqueue.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="zzPlay queue" Style="{StaticResource MenuFontStyle}" x:Uid="PlayQueue"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding ArtistCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_artists.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="zzArtists" Style="{StaticResource MenuFontStyle}" x:Uid="Artists"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding AlbumsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_albums.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Albums" Style="{StaticResource MenuFontStyle}" x:Uid="Albums"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding AlbumArtistCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_albumartists.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Album artists" Style="{StaticResource MenuFontStyle}" x:Uid="AlbumArtists"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding GenresCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_genres.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Genres" Style="{StaticResource MenuFontStyle}" x:Uid="Genres"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding LabelsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_publishers.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Labels" Style="{StaticResource MenuFontStyle}" x:Uid="Labels"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding RatingsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_ratings.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Ratings" Style="{StaticResource MenuFontStyle}" x:Uid="Ratings"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding YearsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_years.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Years" Style="{StaticResource MenuFontStyle}" x:Uid="Years"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding AddedDateCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_dates.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Added date" Style="{StaticResource MenuFontStyle}" x:Uid="AddedDate"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding PlayedDateCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_playeddates.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Played date" Style="{StaticResource MenuFontStyle}" x:Uid="PlayedDate"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding FavArtistsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_favartists.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Favourite artists" Style="{StaticResource MenuFontStyle}" x:Uid="FavouriteArtists"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding FavAlbumsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_favalbums.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Favourite albums" Style="{StaticResource MenuFontStyle}" x:Uid="FavouriteAlbums"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding FavTracksCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_favtracks.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Favourite tracks" Style="{StaticResource MenuFontStyle}" x:Uid="FavouriteTracks"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding PlaylistsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_playlist.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Playlists" Style="{StaticResource MenuFontStyle}" x:Uid="Playlists"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Command="{Binding SmartPlaylistsCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Images/di_smp.png" Style="{StaticResource MenuIcon}"/>
+                                <TextBlock Text="Smart playlists" Style="{StaticResource MenuFontStyle}" x:Uid="SmartPlaylists"/>
+                            </StackPanel>
+                        </Button>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3"/>
+                        <RowDefinition Height="64"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame Grid.Row="0" Name="MyFrame" Navigated="{x:Bind _vm.ContentFrame_OnNavigated}"/>
+
+                    <ProgressBar Grid.Row="1" Height="3" Maximum="{Binding Duration}" Value="{Binding TrackPosition, Mode=TwoWay}" Background="{StaticResource RowColor1Brush}"/>
+
+                    <Grid Background="{StaticResource RowColor1Brush}" Grid.Row="2" Tapped="MiniPlayer_OnTapped">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="64"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="64"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Width="64" Height="64" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Medium}"/>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Center">
+                            <StackPanel RelativePanel.AlignLeftWithPanel="True" x:Name="PlayerTimePane" Margin="6,2">
+                                <TextBlock Text="{Binding TrackPosition, Converter={StaticResource DurationConverter}}" Style="{StaticResource TextStyleDimLarger}"/>
+                                <TextBlock Text="{Binding Duration, Converter={StaticResource DurationConverter}}" Style="{StaticResource TextStyleDimLarger}"/>
+                            </StackPanel>
+                            <StackPanel VerticalAlignment="Center" Margin="6,2" RelativePanel.RightOf="PlayerTimePane">
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource TextStyleLarger}"/>
+                                <TextBlock Text="{Binding Artist}" Style="{StaticResource TextStyleDimLarger}"/>
+                            </StackPanel>
+                        </RelativePanel>
+                        <Button Grid.Column="2" Style="{StaticResource ImageButtonStyle}" Tapped="{x:Bind _vm.PlayPause_OnTapped}">
+                            <Image Source="{Binding State, Converter={StaticResource PlayStateImageConverter}}" Width="60"/>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </SplitView.Content>
+        </SplitView>
+    </Grid>
+</Page>
