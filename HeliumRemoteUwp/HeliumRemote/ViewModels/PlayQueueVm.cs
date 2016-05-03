@@ -15,32 +15,37 @@ namespace HeliumRemote.ViewModels
 {
     public class PlayQueueVm : ViewModelBase
     {
-        public RelayCommand<int> PlayByIndexCommand { get; }
-        private IWebService _webService;
-        private ObservableCollection<TrackContainer> tracks;
-
-        public ObservableCollection<TrackContainer> Tracks
-        {
-            get { return tracks;}
-            set { tracks = value; RaisePropertyChanged("Tracks"); }
-        }
+        private readonly IWebService _webService;
+        private ObservableCollection<TrackContainer> _tracks;
 
         public PlayQueueVm()
         {
             _webService = CompositionRoot.WebService;
-            PlayByIndexCommand = new RelayCommand<int>(playByIndexExecute);
+            PlayByIndexCommand = new RelayCommand<int>(PlayByIndexExecute);
         }
 
-        private void playByIndexExecute(int index)
+        public RelayCommand<int> PlayByIndexCommand { get; }
+
+        public ObservableCollection<TrackContainer> Tracks
+        {
+            get { return _tracks; }
+            set
+            {
+                _tracks = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private void PlayByIndexExecute(int index)
         {
             _webService.PlayByIndex(index);
         }
 
         public async Task Refresh()
         {
-            var res = (List<Track>)await _webService.GetPlayQueue();
+            var res = (List<Track>) await _webService.GetPlayQueue();
             var trks = new List<TrackContainer>();
-            for (var i = 0; i < res.Count(); i++)
+            for (var i = 0; i < res.Count; i++)
             {
                 var trk = res[i];
                 trks.Add(new TrackContainer {Track = trk, Index = i, PlayQueueIndex = i});
@@ -50,21 +55,18 @@ namespace HeliumRemote.ViewModels
 
         public void PropagateUpdate()
         {
-            if (tracks == null)
+            if (_tracks == null)
                 return;
-            for (var i = 0; i < tracks.Count; i++)
+            for (var i = 0; i < _tracks.Count; i++)
             {
                 var trk = Tracks[i];
                 if (trk.Track.Id == AppHelpers.ActiveId)
+                {
                     trk.Index = AppConstants.ACTIVE_ID_DECORATOR;
+                }
                 else
                 {
-                    if ((i & 1) == 1)
-                        trk.Index = 1;
-                    else
-                    {
-                        trk.Index = 0;
-                    }
+                    trk.Index = (i & 1) == 1 ? 1 : 0;
                 }
                 trk.PlayQueueIndex = i;
             }

@@ -8,47 +8,55 @@ using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Helpers;
 using HeliumRemote.Types;
-using NeonShared.Classes;
 using HeliumRemote.Views;
+using NeonShared.Classes;
 
 namespace HeliumRemote.ViewModels
 {
     public class SettingsVm : ViewModelBase
     {
-        private bool isConnecting;
-        public Frame MainFrame { get; set; }
-        public RelayCommand<int> LoginCommand { get; }
+        private string _address;
+
+        private int _port;
+        private bool _isConnecting;
 
         public SettingsVm()
         {
-            LoginCommand = new RelayCommand<int>(loginCommandExecute, i => { return !isConnecting;});
+            LoginCommand = new RelayCommand<int>(LoginCommandExecute, i => { return !_isConnecting; });
         }
 
-        private string _address;
+        public Frame MainFrame { get; set; }
+        public RelayCommand<int> LoginCommand { get; }
 
         public string Address
         {
-            get {  return _address;}
-            set { _address = value; RaisePropertyChanged("Address"); }
+            get { return _address; }
+            set
+            {
+                _address = value;
+                RaisePropertyChanged();
+            }
         }
-
-        private int _port;
 
         public int Port
         {
-            get { return _port;}
-            set { _port = value; RaisePropertyChanged("Port"); }
+            get { return _port; }
+            set
+            {
+                _port = value;
+                RaisePropertyChanged();
+            }
         }
 
-        private async void loginCommandExecute(int id)
+        private async void LoginCommandExecute(int id)
         {
-            isConnecting = true;
+            _isConnecting = true;
             LoginCommand.RaiseCanExecuteChanged();
             var rep = NeonAppRepository.Instance.Repository;
-            if (_address.IndexOf("http://") != 0)
+            if (_address.IndexOf("http://", StringComparison.CurrentCultureIgnoreCase) != 0)
                 _address = "http://" + _address;
             var adr = string.Format("{0}:{1}", _address, _port);
-            if (adr.IndexOf("http://") != 0)
+            if (adr.IndexOf("http://", StringComparison.CurrentCultureIgnoreCase) != 0)
                 adr = "http://" + adr;
             rep.BaseUrl = adr;
             var ws = CompositionRoot.WebService;
@@ -69,7 +77,7 @@ namespace HeliumRemote.ViewModels
             {
                 var dialog = new MessageDialog(TranslationHelper.GetString("UnableToConnect"));
                 await dialog.ShowAsync();
-                isConnecting = false;
+                _isConnecting = false;
                 LoginCommand.RaiseCanExecuteChanged();
             }
         }

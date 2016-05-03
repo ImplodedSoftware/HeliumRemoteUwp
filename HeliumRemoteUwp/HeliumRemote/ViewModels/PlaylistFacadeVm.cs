@@ -5,9 +5,9 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
+using HeliumRemote.Views;
 using NeonShared.Interfaces;
 using NeonShared.Types;
-using HeliumRemote.Views;
 
 namespace HeliumRemote.ViewModels
 {
@@ -15,6 +15,8 @@ namespace HeliumRemote.ViewModels
     {
         private readonly IPlaylistsVm _playlistsVm;
         private ViewParameters _params;
+
+        private ObservableCollection<PlaylistContainerItem> _playlists;
 
         public PlaylistFacadeVm(IPlaylistsVm playlistsVm)
         {
@@ -29,15 +31,17 @@ namespace HeliumRemote.ViewModels
             foreach (var item in _playlistsVm.Playlists)
                 res.Add(item);
             Playlists = res;
-            ((App)Application.Current).ActiveViewType = param.ViewType;
+            ((App) Application.Current).ActiveViewType = param.ViewType;
         }
-
-        private ObservableCollection<PlaylistContainerItem> playlists;
 
         public ObservableCollection<PlaylistContainerItem> Playlists
         {
-            get { return playlists; }
-            set { playlists = value; RaisePropertyChanged("Playlists"); }
+            get { return _playlists; }
+            set
+            {
+                _playlists = value;
+                RaisePropertyChanged();
+            }
         }
 
         public void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -45,11 +49,17 @@ namespace HeliumRemote.ViewModels
             PlaylistContainerItem item = null;
             if (sender is ListBox)
             {
-                var lst = (ListBox)sender;
-                item = (PlaylistContainerItem)lst.SelectedItem;
+                var lst = (ListBox) sender;
+                item = (PlaylistContainerItem) lst.SelectedItem;
             }
             if (item != null)
-                AppHelpers.ContentFrame.Navigate(typeof(TracksPage), new ViewParameters { Value = item.Playlist.Id, ViewType = _params.ViewType, Letter = item.Playlist.Name});
+                AppHelpers.ContentFrame.Navigate(typeof (TracksPage),
+                    new ViewParameters
+                    {
+                        Value = item.Playlist.Id,
+                        ViewType = _params.ViewType,
+                        Letter = item.Playlist.Name
+                    });
         }
     }
 }

@@ -9,7 +9,6 @@
 
     <Grid Background="{StaticResource DefaultBgBrush}" x:Name="RootGrid">
         <ListBox x:Name="ItemsLb"
-                Tapped="{x:Bind _vm.OnTapped}"
                 ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
                 Background="{StaticResource DefaultBgBrush}"
                 ItemTemplate="{StaticResource TrackTemplate}" 
