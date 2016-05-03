@@ -3,6 +3,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
 using HeliumRemote.ViewModels;
@@ -79,11 +80,12 @@ namespace HeliumRemote.Views
 
         private void RootPage_OnLoaded(object sender, RoutedEventArgs e)
         {
+            var frame = Window.Current.Content as Frame;
+            frame.BackStack.Clear();
+            ((App)Application.Current).UpdateBackNavigationButton();
             if (!NeonSession.Instance.Instansiated)
             {
                 NeonSession.Instance.Instansiated = true;
-                var frame = Window.Current.Content as Frame;
-                frame.BackStack.Clear();
             }
             _vm.PlayQueueCommand.Execute(null);
             AdjustUi();
@@ -104,5 +106,6 @@ namespace HeliumRemote.Views
         {
             AdjustUi();
         }
+
     }
 }

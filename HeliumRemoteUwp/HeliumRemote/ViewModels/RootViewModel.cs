@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
@@ -408,6 +409,11 @@ namespace HeliumRemote.ViewModels
         private void ClearFilter()
         {
             ((App) Application.Current).ViewFilter.ClearFilter();
+        }
+
+        public void ContentFrame_OnNavigated(object sender, NavigationEventArgs e)
+        {
+            ((App)Application.Current).UpdateBackNavigationButton();
         }
     }
 }

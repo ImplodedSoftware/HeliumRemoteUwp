@@ -104,10 +104,18 @@ namespace HeliumRemote
         private void OnNavigated(object sender, NavigationEventArgs e)
         {
             // Each time a navigation event occurs, update the Back button's visibility
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                ((Frame)sender).CanGoBack ?
-                AppViewBackButtonVisibility.Visible :
-                AppViewBackButtonVisibility.Collapsed;
+            var frame = (Frame) sender;
+            if (frame.Content is NowPlayingPage)
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            }
+            else
+            {
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    frame.CanGoBack ?
+                    AppViewBackButtonVisibility.Visible :
+                    AppViewBackButtonVisibility.Collapsed;
+            }
         }
 
         /// <summary>
@@ -156,5 +164,12 @@ namespace HeliumRemote
 
         public IViewFilter ViewFilter { get; set; }
 
+        public void UpdateBackNavigationButton()
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                ContentFrame.CanGoBack ?
+                AppViewBackButtonVisibility.Visible :
+                AppViewBackButtonVisibility.Collapsed;
+        }
     }
 }
