@@ -7,6 +7,8 @@ This repo contains the code for Helium Remote for the Universal Windows Platform
 To be able to run this application you will need to have Neon installed and its webservice active.
 Neon can be downloaded from: https://implodedsoftware.wordpress.com/
 
+When you open the solution for the first time, be sure to restore NuGet packages.
+
 ## Folders
 
 * HeliumRemoteUwp/HeliumRemote - The UWP application folder
