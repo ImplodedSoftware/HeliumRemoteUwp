@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{211024C0-EC16-46F1-86FB-96F8F1378B7E}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HeliumRemote</RootNamespace>
+    <AssemblyName>HeliumRemote</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>HeliumRemote_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="project.json" />
+    <PRIResource Include="Strings\sv-SE\Resources.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bootstraper\CompositionRoot.cs" />
+    <Compile Include="Classes\AppConstants.cs" />
+    <Compile Include="Classes\NeonSession.cs" />
+    <Compile Include="Classes\OpenMenuFlyoutAction.cs" />
+    <Compile Include="Converters\AlbumDetailsSelector.cs" />
+    <Compile Include="Converters\AlbumImageDownloadConverter.cs" />
+    <Compile Include="Converters\AlternationConverter.cs" />
+    <Compile Include="Converters\ArtistDetailSelector.cs" />
+    <Compile Include="Converters\ArtistImageDownloadConverter.cs" />
+    <Compile Include="Converters\BoolInvToVisibilityConverter.cs" />
+    <Compile Include="Converters\BoolToOpacityConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DiscographyTextConverter.cs" />
+    <Compile Include="Converters\DurationConverter.cs" />
+    <Compile Include="Converters\LargeFavouriteConverter.cs" />
+    <Compile Include="Converters\PlayStateImageConverter.cs" />
+    <Compile Include="Converters\RatingToImageConverter.cs" />
+    <Compile Include="Converters\RatingToImRatingConverter.cs" />
+    <Compile Include="Converters\RightTappedRoutedEventArgsConverter.cs" />
+    <Compile Include="Converters\SearchViewConverter.cs" />
+    <Compile Include="Converters\StringToVisibilityConverter.cs" />
+    <Compile Include="Converters\TrackBgConverter.cs" />
+    <Compile Include="Converters\UpperCaseConverter.cs" />
+    <Compile Include="Helpers\AppHelpers.cs" />
+    <Compile Include="Helpers\DeviceTypeHelper.cs" />
+    <Compile Include="Helpers\TranslationHelper.cs" />
+    <Compile Include="Interfaces\IAlbumDetailsFacadeVm.cs" />
+    <Compile Include="Interfaces\IAlbumListFacadeVm.cs" />
+    <Compile Include="Interfaces\IArtistDetailsFacadeVm.cs" />
+    <Compile Include="Interfaces\IArtistListFacadeVm.cs" />
+    <Compile Include="Interfaces\ILetterFacadeVm.cs" />
+    <Compile Include="Interfaces\INowPlayingVm.cs" />
+    <Compile Include="Interfaces\IPlaylistsFacadeVm.cs" />
+    <Compile Include="Interfaces\ISearchFacadeVm.cs" />
+    <Compile Include="Interfaces\ITracksVmFacade.cs" />
+    <Compile Include="Interfaces\IViewFilter.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\AlbumContainer.cs" />
+    <Compile Include="Types\AlbumDetailItem.cs" />
+    <Compile Include="Types\ArtistDetailItem.cs" />
+    <Compile Include="Types\GroupInfoList.cs" />
+    <Compile Include="Types\PlaylistContainer.cs" />
+    <Compile Include="Types\RemoteSettings.cs" />
+    <Compile Include="Types\TrackContainer.cs" />
+    <Compile Include="UserControls\ImRating.xaml.cs">
+      <DependentUpon>ImRating.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ImStar.xaml.cs">
+      <DependentUpon>ImStar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TabButton.xaml.cs">
+      <DependentUpon>TabButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AlbumDetailsFacadeVm.cs" />
+    <Compile Include="ViewModels\AlbumListFacadeVm.cs" />
+    <Compile Include="ViewModels\ArtistDetailsFacadeVm.cs" />
+    <Compile Include="ViewModels\ArtistListFacadeVm.cs" />
+    <Compile Include="ViewModels\LetterFacadeVm.cs" />
+    <Compile Include="ViewModels\NowPlayingVm.cs" />
+    <Compile Include="ViewModels\PlaylistFacadeVm.cs" />
+    <Compile Include="ViewModels\PlayQueueVm.cs" />
+    <Compile Include="ViewModels\RootViewModel.cs" />
+    <Compile Include="ViewModels\SearchFacadeVm.cs" />
+    <Compile Include="ViewModels\SettingsVm.cs" />
+    <Compile Include="ViewModels\TracksVmFacade.cs" />
+    <Compile Include="Views\ActionDialogAlbum.xaml.cs">
+      <DependentUpon>ActionDialogAlbum.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ActionDialogTracks.xaml.cs">
+      <DependentUpon>ActionDialogTracks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlbumDetailsPage.xaml.cs">
+      <DependentUpon>AlbumDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AlbumListPage.xaml.cs">
+      <DependentUpon>AlbumListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArtistDetailPage.xaml.cs">
+      <DependentUpon>ArtistDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ArtistListPage.xaml.cs">
+      <DependentUpon>ArtistListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LettersPage.xaml.cs">
+      <DependentUpon>LettersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NowPlayingPage.xaml.cs">
+      <DependentUpon>NowPlayingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaylistsPage.xaml.cs">
+      <DependentUpon>PlaylistsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayQueuePage.xaml.cs">
+      <DependentUpon>PlayQueuePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RootPage.xaml.cs">
+      <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchResultsPage.xaml.cs">
+      <DependentUpon>SearchResultsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TracksPage.xaml.cs">
+      <DependentUpon>TracksPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="HeliumRemote_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\LockScreenLogo.scale-100.png" />
+    <Content Include="Assets\LockScreenLogo.scale-125.png" />
+    <Content Include="Assets\LockScreenLogo.scale-150.png" />
+    <Content Include="Assets\LockScreenLogo.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-20.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-20_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-30.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-30_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-36.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-36_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-40.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-40_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-60.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-60_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-64.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-64_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-72.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-72_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-80.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-80_altform-unplated.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-96.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-96_altform-unplated.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Images\a0000.png" />
+    <Content Include="Images\a0001.png" />
+    <Content Include="Images\a0002.png" />
+    <Content Include="Images\a0003.png" />
+    <Content Include="Images\a0004.png" />
+    <Content Include="Images\a0005.png" />
+    <Content Include="Images\a0006.png" />
+    <Content Include="Images\a0007.png" />
+    <Content Include="Images\a0008.png" />
+    <Content Include="Images\a0009.png" />
+    <Content Include="Images\a0010.png" />
+    <Content Include="Images\ad_dots.png" />
+    <Content Include="Images\ad_fav.png" />
+    <Content Include="Images\ad_fav_d.png" />
+    <Content Include="Images\appbar_play_rest.png" />
+    <Content Include="Images\di_albumartists.png" />
+    <Content Include="Images\di_albums.png" />
+    <Content Include="Images\di_artists.png" />
+    <Content Include="Images\di_dates.png" />
+    <Content Include="Images\di_favalbums.png" />
+    <Content Include="Images\di_favartists.png" />
+    <Content Include="Images\di_favtracks.png" />
+    <Content Include="Images\di_genres.png" />
+    <Content Include="Images\di_playeddates.png" />
+    <Content Include="Images\di_playlist.png" />
+    <Content Include="Images\di_playqueue.png" />
+    <Content Include="Images\di_publishers.png" />
+    <Content Include="Images\di_ratings.png" />
+    <Content Include="Images\di_search.png" />
+    <Content Include="Images\di_settings.png" />
+    <Content Include="Images\di_smp.png" />
+    <Content Include="Images\di_years.png" />
+    <Content Include="Images\dots.png" />
+    <Content Include="Images\enqueuebutton.png" />
+    <Content Include="Images\hr1.scale-100.png" />
+    <Content Include="Images\hr1.scale-150.png" />
+    <Content Include="Images\hr1.scale-225.png" />
+    <Content Include="Images\hr1.scale-400.png" />
+    <Content Include="Images\hr10.scale-100.png" />
+    <Content Include="Images\hr10.scale-150.png" />
+    <Content Include="Images\hr10.scale-225.png" />
+    <Content Include="Images\hr10.scale-400.png" />
+    <Content Include="Images\hr2.scale-100.png" />
+    <Content Include="Images\hr2.scale-150.png" />
+    <Content Include="Images\hr2.scale-225.png" />
+    <Content Include="Images\hr2.scale-400.png" />
+    <Content Include="Images\hr3.scale-100.png" />
+    <Content Include="Images\hr3.scale-150.png" />
+    <Content Include="Images\hr3.scale-225.png" />
+    <Content Include="Images\hr3.scale-400.png" />
+    <Content Include="Images\hr4.scale-100.png" />
+    <Content Include="Images\hr4.scale-150.png" />
+    <Content Include="Images\hr4.scale-225.png" />
+    <Content Include="Images\hr4.scale-400.png" />
+    <Content Include="Images\hr5.scale-100.png" />
+    <Content Include="Images\hr5.scale-150.png" />
+    <Content Include="Images\hr5.scale-225.png" />
+    <Content Include="Images\hr5.scale-400.png" />
+    <Content Include="Images\hr6.scale-100.png" />
+    <Content Include="Images\hr6.scale-150.png" />
+    <Content Include="Images\hr6.scale-225.png" />
+    <Content Include="Images\hr6.scale-400.png" />
+    <Content Include="Images\hr7.scale-100.png" />
+    <Content Include="Images\hr7.scale-150.png" />
+    <Content Include="Images\hr7.scale-225.png" />
+    <Content Include="Images\hr7.scale-400.png" />
+    <Content Include="Images\hr8.scale-100.png" />
+    <Content Include="Images\hr8.scale-150.png" />
+    <Content Include="Images\hr8.scale-225.png" />
+    <Content Include="Images\hr8.scale-400.png" />
+    <Content Include="Images\hr9.scale-100.png" />
+    <Content Include="Images\hr9.scale-150.png" />
+    <Content Include="Images\hr9.scale-225.png" />
+    <Content Include="Images\hr9.scale-400.png" />
+    <Content Include="Images\ic_action_overflow.png" />
+    <Content Include="Images\ic_action_pause.png" />
+    <Content Include="Images\ic_action_play.png" />
+    <Content Include="Images\ic_menu_close_clear_cancel.png" />
+    <Content Include="Images\isfavl.png" />
+    <Content Include="Images\lad_fav.scale-200.png" />
+    <Content Include="Images\lad_fav.scale-400.png" />
+    <Content Include="Images\lad_fav_d.scale-200.png" />
+    <Content Include="Images\lad_fav_d.scale-400.png" />
+    <Content Include="Images\nbtn_next.png" />
+    <Content Include="Images\nbtn_pause.png" />
+    <Content Include="Images\nbtn_play.png" />
+    <Content Include="Images\nbtn_previous.png" />
+    <Content Include="Images\no_album.png" />
+    <Content Include="Images\no_artist.png" />
+    <Content Include="Images\s_no_album.png" />
+    <Content Include="Images\s_no_artist.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ImRating.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\ImStar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\TabButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ActionDialogAlbum.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ActionDialogTracks.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AlbumDetailsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AlbumListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArtistDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ArtistListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LettersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NowPlayingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlaylistsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PlayQueuePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RootPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SearchResultsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TracksPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Neon.Api.Pcl.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Neon.Api.Pcl.Models.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="..\..\NeonShared\NeonShared.projitems" Label="Shared" />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
