@@ -60,7 +60,7 @@ namespace Uwp.SharedResources.UserControls
             set
             {
                 SetValue(CustomTextProperty, value);
-                //Windows.UI.Xaml.Controls.TextBlock.Text = CustomText;
+                TextBlock.Text = CustomText;
             }
         }
 

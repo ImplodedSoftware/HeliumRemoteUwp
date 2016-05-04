@@ -13,7 +13,7 @@
         <converters:SearchViewConverter x:Key="SearchViewConverter"/>
     </Page.Resources>
     
-    <Grid Background="{StaticResource DefaultBgBrush}">
+    <Grid Background="{StaticResource DefaultBgBrush}" x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -45,6 +45,7 @@
             Visibility="{Binding ActiveView, Converter={StaticResource SearchViewConverter}, ConverterParameter=Albums}"
             ItemsSource="{Binding Albums}"
             x:Name="AlbumsLb" 
+            Margin="0,0,8,0"
             ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"/>
         <ListBox 
             x:Name="TracksLb"
@@ -54,6 +55,7 @@
             ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
             Background="{StaticResource DefaultBgBrush}"
             ItemTemplate="{StaticResource TrackTemplate}" 
+            Margin="0,0,8,0"
             ItemsSource="{Binding Tracks}">
         </ListBox>
 

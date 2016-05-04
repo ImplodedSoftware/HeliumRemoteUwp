@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using GalaSoft.MvvmLight;
@@ -9,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Pcl.Interfaces;
 using NeonShared.Pcl.Types;
+using Uwp.SharedResources.Classes;
 using Uwp.SharedResources.Interfaces;
 using Uwp.SharedResources.Types;
 using Uwp.SharedResources.Views;
@@ -25,8 +25,9 @@ namespace Uwp.SharedResources.ViewModels
 
     public class SearchFacadeVm : ViewModelBase, ISearchFacadeVm
     {
-        private readonly ISearchVm _vm;
+        private readonly IPlayerProvider _playerProvider;
         private readonly ISharedApp _sharedApp;
+        private readonly ISearchVm _vm;
 
         private SearchViews _activeView;
         private ObservableCollection<AlbumContainer> _albums;
@@ -41,14 +42,20 @@ namespace Uwp.SharedResources.ViewModels
 
         private ObservableCollection<TrackContainer> _tracks;
 
-        public SearchFacadeVm(ISearchVm vm, ISharedApp sharedApp)
+        public SearchFacadeVm(ISearchVm vm, ISharedApp sharedApp, IPlayerProvider playerProvider)
         {
             _vm = vm;
             _sharedApp = sharedApp;
+            _playerProvider = playerProvider;
             ShowArtistsCommand = new RelayCommand(ShowArtistsExecute, null);
             ShowAlbumsCommand = new RelayCommand(ShowAlbumsExecute, null);
             ShowTracksCommand = new RelayCommand(ShowTracksExecute, null);
+            ShowTrackActionsCommand = new RelayCommand<int>(ShowTrackActionsExecute, null);
+            ShowAlbumActionsCommand = new RelayCommand<int>(ShowAlbumActionsExecute, null);
         }
+
+        public RelayCommand<int> ShowTrackActionsCommand { get; }
+        public RelayCommand<int> ShowAlbumActionsCommand { get; }
 
         public Action UpdateUi { get; set; }
 
@@ -204,6 +211,42 @@ namespace Uwp.SharedResources.ViewModels
         private void ShowTracksExecute()
         {
             ActiveView = SearchViews.Tracks;
+        }
+
+        private async void ShowTrackActionsExecute(int id)
+        {
+            var dlg = new ActionDialogTracks();
+            await dlg.ShowAsync();
+            switch (dlg.ResultCode)
+            {
+                case AppConstants.TRK_RES_CODE_PLAYNOW:
+                    await _playerProvider.PlayTrack(id);
+                    break;
+                case AppConstants.TRK_RES_CODE_ENQUEUENEXT:
+                    await _playerProvider.EnqueueNext(id);
+                    break;
+                case AppConstants.TRK_RES_CODE_ENQUEUELAST:
+                    await _playerProvider.EnqueueLast(id);
+                    break;
+            }
+        }
+
+        private async void ShowAlbumActionsExecute(int id)
+        {
+            var dlg = new ActionDialogAlbum();
+            await dlg.ShowAsync();
+            switch (dlg.ResultCode)
+            {
+                case AppConstants.ALB_RES_CODE_PLAYNOW:
+                    await _playerProvider.PlayAlbum(id);
+                    break;
+                case AppConstants.ALB_RES_CODE_ENQUEUENEXT:
+                    await _playerProvider.EnqueueAlbumNext(id);
+                    break;
+                case AppConstants.ALB_RES_CODE_ENQUEUELAST:
+                    await _playerProvider.EnqueueAlbumLast(id);
+                    break;
+            }
         }
     }
 }

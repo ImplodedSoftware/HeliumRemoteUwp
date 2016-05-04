@@ -13,22 +13,22 @@
         <converters:SearchViewConverter x:Key="SearchViewConverter"/>
     </Page.Resources>
     
-    <Grid Background="{StaticResource DefaultBgBrush}">
+    <Grid x:ConnectionId='2' Background="{StaticResource DefaultBgBrush}" x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid x:ConnectionId='2' x:Name="TopGrid" Grid.Row="0">
+        <Grid x:ConnectionId='3' x:Name="TopGrid" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <userControls:TabButton x:ConnectionId='6' Visibility="{Binding HasArtists, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="True" CustomText="Artists" Grid.Column="0" x:Name="tbArtists" ClickCommand="{Binding ShowArtistsCommand}" x:Uid="SearchButtonArtists"/>
-            <userControls:TabButton x:ConnectionId='7' Visibility="{Binding HasAlbums, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="False" CustomText="Albums" Grid.Column="1" x:Name="tbAlbums" ClickCommand="{Binding ShowAlbumsCommand}" x:Uid="SearchButtonAlbums"/>
-            <userControls:TabButton x:ConnectionId='8' Visibility="{Binding HasTracks, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="False" CustomText="Tracks" Grid.Column="2" x:Name="tbTracks" ClickCommand="{Binding ShowTracksCommand}" x:Uid="SearchButtonTracks"/>
+            <userControls:TabButton x:ConnectionId='7' Visibility="{Binding HasArtists, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="True" CustomText="Artists" Grid.Column="0" x:Name="tbArtists" ClickCommand="{Binding ShowArtistsCommand}" x:Uid="SearchButtonArtists"/>
+            <userControls:TabButton x:ConnectionId='8' Visibility="{Binding HasAlbums, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="False" CustomText="Albums" Grid.Column="1" x:Name="tbAlbums" ClickCommand="{Binding ShowAlbumsCommand}" x:Uid="SearchButtonAlbums"/>
+            <userControls:TabButton x:ConnectionId='9' Visibility="{Binding HasTracks, Converter={StaticResource BoolToVisibilityConverter}}" IsSelected="False" CustomText="Tracks" Grid.Column="2" x:Name="tbTracks" ClickCommand="{Binding ShowTracksCommand}" x:Uid="SearchButtonTracks"/>
         </Grid>
-        <ListBox x:ConnectionId='3'
+        <ListBox x:ConnectionId='4'
             Grid.Row="1"
                                                    
             Background="{StaticResource DefaultBgBrush}"
@@ -37,7 +37,7 @@
             ItemsSource="{Binding Artists}"
             x:Name="ArtistsLb" 
             ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"/>
-        <ListBox x:ConnectionId='4'
+        <ListBox x:ConnectionId='5'
             Grid.Row="1"
                                                    
             Background="{StaticResource DefaultBgBrush}"
@@ -45,8 +45,9 @@
             Visibility="{Binding ActiveView, Converter={StaticResource SearchViewConverter}, ConverterParameter=Albums}"
             ItemsSource="{Binding Albums}"
             x:Name="AlbumsLb" 
+            Margin="0,0,8,0"
             ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"/>
-        <ListBox x:ConnectionId='5' 
+        <ListBox x:ConnectionId='6' 
             x:Name="TracksLb"
             Grid.Row="1"
                                                    
@@ -54,6 +55,7 @@
             ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"
             Background="{StaticResource DefaultBgBrush}"
             ItemTemplate="{StaticResource TrackTemplate}" 
+            Margin="0,0,8,0"
             ItemsSource="{Binding Tracks}">
         </ListBox>
 
