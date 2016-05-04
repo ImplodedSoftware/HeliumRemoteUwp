@@ -5,12 +5,16 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using HeliumRemote.Interfaces;
+using HeliumRemote.Bootstraper;
+using HeliumRemote.Helpers;
 using HeliumRemote.ViewModels;
 using HeliumRemote.Views;
-using NeonShared.Classes;
-using NeonShared.Interfaces;
-using NeonShared.Types;
+using NeonShared.Pcl.Classes;
+using NeonShared.Pcl.Interfaces;
+using NeonShared.Pcl.Types;
+using Uwp.SharedResources.Classes;
+using Uwp.SharedResources.Interfaces;
+using Uwp.SharedResources.Views;
 using UwpSharedViews.Interfaces;
 
 namespace HeliumRemote
@@ -18,7 +22,7 @@ namespace HeliumRemote
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application, INeonAppRepository
+    sealed partial class App : Application, INeonAppRepository, ISharedRepository
     {
         public Frame ContentFrame { get; set; }
         /// <summary>
@@ -33,6 +37,7 @@ namespace HeliumRemote
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             NeonAppRepository.Instance.Repository = this;
+            SharedRepository.Instance.Repository = this;
         }
 
         /// <summary>
@@ -172,5 +177,22 @@ namespace HeliumRemote
                 AppViewBackButtonVisibility.Visible :
                 AppViewBackButtonVisibility.Collapsed;
         }
+
+        public string GetString(string key)
+        {
+            return AppHelpers.GetString(key);
+        }
+
+        public IWebService WebService => CompositionRoot.WebService;
+        public ILetterFacadeVm LetterFacadeVm => CompositionRoot.LetterFacadeVm;
+        public ISharedApp SharedApp => CompositionRoot.SharedApp;
+        public ITracksVmFacade TracksVmFacade => CompositionRoot.TracksVmFacade;
+        public IAlbumListFacadeVm AlbumListFacadeVm => CompositionRoot.AlbumListFacadeVm;
+        public IArtistListFacadeVm ArtistListFacadeVm => CompositionRoot.ArtistListFacadeVm;
+        public IAlbumDetailsFacadeVm AlbumDetailsFacadeVm => CompositionRoot.AlbumDetailsFacadeVm;
+        public IArtistDetailsFacadeVm ArtistDetailsFacadeVm => CompositionRoot.ArtistDetailsFacadeVm;
+        public IPlaylistsFacadeVm PlaylistsFacadeVm => CompositionRoot.PlaylistsFacadeVm;
+        public ISearchFacadeVm SearchFacadeVm => CompositionRoot.SearchFacadeVm;
+        public int LargeImageSize => AppHelpers.LargeImageSize;
     }
 }

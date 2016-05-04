@@ -219,26 +219,8 @@
   <data name="UnableToConnect" xml:space="preserve">
     <value>Kunde ej ansluta. Vänligen kontrollera att webbtjänsten är startad.</value>
   </data>
-  <data name="From.Text" xml:space="preserve">
-    <value>Från</value>
-  </data>
   <data name="NowPlaying.Text" xml:space="preserve">
     <value>NU SPELAS</value>
-  </data>
-  <data name="Tracks.Text" xml:space="preserve">
-    <value>spår</value>
-  </data>
-  <data name="ActionCancel.Content" xml:space="preserve">
-    <value>Avbryt</value>
-  </data>
-  <data name="ActionEnqueueLast.Content" xml:space="preserve">
-    <value>Köa sist</value>
-  </data>
-  <data name="ActionEnqueueNext.Content" xml:space="preserve">
-    <value>Köa som nästa</value>
-  </data>
-  <data name="ActionPlayNow.Content" xml:space="preserve">
-    <value>Spela nu</value>
   </data>
   <data name="SearchAlbums.Content" xml:space="preserve">
     <value>Album</value>
@@ -259,7 +241,7 @@
     <value>Album</value>
   </data>
   <data name="FavouriteAlbumsTitle" xml:space="preserve">
-    <value>Favorit album</value>
+    <value>Favoritalbum</value>
   </data>
   <data name="Label" xml:space="preserve">
     <value>Utgivare</value>
@@ -359,5 +341,8 @@
   </data>
   <data name="Discography" xml:space="preserve">
     <value>Diskografi</value>
+  </data>
+  <data name="FromText" xml:space="preserve">
+    <value>från</value>
   </data>
 </root>

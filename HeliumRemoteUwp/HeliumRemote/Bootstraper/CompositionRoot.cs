@@ -2,11 +2,12 @@
 using HeliumRemote.Classes;
 using HeliumRemote.Interfaces;
 using HeliumRemote.ViewModels;
-using NeonShared.Classes;
-using NeonShared.Interfaces;
-using NeonShared.ViewModels;
+using NeonShared.Pcl.Classes;
+using NeonShared.Pcl.Interfaces;
+using NeonShared.Pcl.ViewModels;
+using Uwp.SharedResources.Interfaces;
+using Uwp.SharedResources.ViewModels;
 using UwpSharedViews.Interfaces;
-using UwpSharedViews.ViewModels;
 
 namespace HeliumRemote.Bootstraper
 {

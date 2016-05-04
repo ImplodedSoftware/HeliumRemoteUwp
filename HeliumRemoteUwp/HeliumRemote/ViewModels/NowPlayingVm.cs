@@ -3,9 +3,9 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
-using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using Neon.Api.Pcl.Models.Entities;
+using Uwp.SharedResources.Helpers;
 
 namespace HeliumRemote.ViewModels
 {
@@ -18,6 +18,8 @@ namespace HeliumRemote.ViewModels
 
         private string _infoLine1;
         private string _infoLine2;
+
+        private bool _isFavourite;
         private NowPlayingInfo _nowPlayingInfo;
         private PlayerState _playerState;
 
@@ -29,12 +31,14 @@ namespace HeliumRemote.ViewModels
 
         public NowPlayingVm()
         {
+            ChangeIsFavouriteCommand = new RelayCommand(ChangeIsFavouriteExecute, null);
             CloseCommand = new RelayCommand(CloseExecute, null);
             PlayPauseCommand = new RelayCommand(PlayPauseExecute, null);
             PreviousCommand = new RelayCommand(PreviousExecute, null);
             NextCommand = new RelayCommand(NextExecute, null);
         }
 
+        public RelayCommand ChangeIsFavouriteCommand { get; }
         public RelayCommand CloseCommand { get; }
         public RelayCommand PlayPauseCommand { get; }
         public RelayCommand PreviousCommand { get; }
@@ -56,6 +60,16 @@ namespace HeliumRemote.ViewModels
             set
             {
                 _infoLine2 = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool IsFavourite
+        {
+            get { return _isFavourite; }
+            set
+            {
+                _isFavourite = value;
                 RaisePropertyChanged();
             }
         }
@@ -149,8 +163,9 @@ namespace HeliumRemote.ViewModels
                 Duration = _nowPlayingInfo.Duration;
                 InfoLine1 = _nowPlayingInfo.Title;
                 InfoLine2 = string.Format("{0} {1} {2}", _nowPlayingInfo.Artist,
-                    TranslationHelper.GetString("From.Text"),
+                    TranslationHelper.GetString("FromText"),
                     _nowPlayingInfo.Album);
+                IsFavourite = _nowPlayingInfo.IsFavourite;
             }
         }
 
@@ -175,6 +190,20 @@ namespace HeliumRemote.ViewModels
         private void CloseExecute()
         {
             MainFrame.GoBack();
+        }
+
+        private void ChangeIsFavouriteExecute()
+        {
+            IsFavourite = !IsFavourite;
+            _nowPlayingInfo.IsFavourite = IsFavourite;
+            if (IsFavourite)
+            {
+                CompositionRoot.WebService.SetTrackAsFavourite(_nowPlayingInfo.DetailId);
+            }
+            else
+            {
+                CompositionRoot.WebService.UnsetTrackAsFavourite(_nowPlayingInfo.DetailId);
+            }
         }
     }
 }

@@ -9,7 +9,8 @@ using HeliumRemote.Bootstraper;
 using HeliumRemote.Helpers;
 using HeliumRemote.Types;
 using HeliumRemote.Views;
-using NeonShared.Classes;
+using NeonShared.Pcl.Classes;
+using Uwp.SharedResources.Helpers;
 
 namespace HeliumRemote.ViewModels
 {

@@ -4,13 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:HeliumRemote.UserControls"
-    xmlns:converters="using:HeliumRemote.Converters"
+    xmlns:userControls1="using:Uwp.SharedResources.UserControls"
+    xmlns:converters1="using:Uwp.SharedResources.Converters"
     Loaded="NowPlayingPage_OnLoaded"
     mc:Ignorable="d">
     <Page.Resources>
-        <converters:RatingToImRatingConverter x:Key="RatingToImRatingConverter"/>
-        <converters:TooltipConverter x:Key="TooltipConverter"/>
+        <converters1:RatingToImRatingConverter x:Key="RatingToImRatingConverter"/>
+        <converters1:TooltipConverter x:Key="TooltipConverter"/>
         <Style x:Key="CloseButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -225,15 +225,17 @@
             <Button RelativePanel.AlignRightWithPanel="True" Command="{Binding CloseCommand}" Style="{StaticResource CloseButtonStyle}">
                 <Image Source="/Images/ic_menu_close_clear_cancel.png" Height="36"/>
             </Button>
-            <TextBlock Text="Now playing" VerticalAlignment="Center" Style="{StaticResource TextStyle}" x:Uid="NowPlaying" Grid.Column="1"/>
-            <Button RelativePanel.AlignRightWithPanel="True" Command="{Binding MoreCommand}" Style="{StaticResource CloseButtonStyle}" Grid.Column="2">
+            <TextBlock Text="Now playing" VerticalAlignment="Center" Style="{StaticResource PageTitleStyle}" x:Uid="NowPlaying" Grid.Column="1"/>
+            <Button RelativePanel.AlignRightWithPanel="True" Command="{Binding MoreCommand}" Style="{StaticResource CloseButtonStyle}" Grid.Column="2" Visibility="Collapsed">
                 <Image Source="/Images/ic_action_overflow.png" Height="36"/>
             </Button>
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button></Button>
-            <userControls:ImRating NumberOfStars="5" Foreground="White" StarForegroundColor="White" StarOutlineColor="Transparent" Width="Auto" Margin="8,0,0,0" x:Name="ImRating" Value="{Binding NowPlayingInfo.Rating, Converter={StaticResource RatingToImRatingConverter}}"/>
+            <Button Style="{StaticResource ImageButtonStyle}" Command="{Binding ChangeIsFavouriteCommand}">
+                <Image Source="/Images/isfavl.png" Margin="8,0,0,0" Opacity="{Binding IsFavourite, Converter={StaticResource BoolToOpacityConverter}}"/>
+            </Button>
+            <userControls1:ImRating NumberOfStars="5" Foreground="White" StarForegroundColor="White" StarOutlineColor="Transparent" Width="Auto" Margin="8,0,0,0" x:Name="ImRating" Value="{Binding NowPlayingInfo.Rating, Converter={StaticResource RatingToImRatingConverter}}"/>
         </StackPanel>
         <Image Grid.Row="2" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Large}"/>
         <StackPanel Grid.Row="3">
