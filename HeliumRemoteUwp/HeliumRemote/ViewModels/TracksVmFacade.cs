@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using HeliumRemote.Bootstraper;
 using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
@@ -20,6 +19,7 @@ namespace HeliumRemote.ViewModels
 {
     public class TracksVmFacade : ViewModelBase, ITracksVmFacade, IViewFilter
     {
+        private readonly IPlayerProvider _playerProvider;
         private readonly ITracksVm _tracksVm;
 
         private Thickness _elementMargin;
@@ -28,9 +28,10 @@ namespace HeliumRemote.ViewModels
 
         private ObservableCollection<TrackContainer> _tracks;
 
-        public TracksVmFacade(ITracksVm tracksVm)
+        public TracksVmFacade(ITracksVm tracksVm, IPlayerProvider playerProvider)
         {
             _tracksVm = tracksVm;
+            _playerProvider = playerProvider;
             ShowTrackActionsCommand = new RelayCommand<int>(ShowTrackActionsExecute, null);
         }
 
@@ -127,20 +128,20 @@ namespace HeliumRemote.ViewModels
             }
         }
 
-        private static async void ShowTrackActionsExecute(int id)
+        private async void ShowTrackActionsExecute(int id)
         {
             var dlg = new ActionDialogTracks();
             await dlg.ShowAsync();
             switch (dlg.ResultCode)
             {
                 case AppConstants.TRK_RES_CODE_PLAYNOW:
-                    await CompositionRoot.WebService.PlayTrack(id);
+                    await _playerProvider.PlayTrack(id);
                     break;
                 case AppConstants.TRK_RES_CODE_ENQUEUENEXT:
-                    await CompositionRoot.WebService.EnqueueTrackNext(id);
+                    await _playerProvider.EnqueueNext(id);
                     break;
                 case AppConstants.TRK_RES_CODE_ENQUEUELAST:
-                    await CompositionRoot.WebService.EnqueueTrackLast(id);
+                    await _playerProvider.EnqueueLast(id);
                     break;
             }
         }

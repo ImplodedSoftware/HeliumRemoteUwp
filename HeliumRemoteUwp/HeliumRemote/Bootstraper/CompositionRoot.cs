@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using HeliumRemote.Classes;
 using HeliumRemote.Interfaces;
 using HeliumRemote.ViewModels;
 using NeonShared.Classes;
@@ -14,6 +15,7 @@ namespace HeliumRemote.Bootstraper
         static CompositionRoot()
         {
             SimpleIoc.Default.Register<IWebService>(() => new WebService());
+            SimpleIoc.Default.Register<IPlayerProvider, RemotePlayerProvider>();
 
             SimpleIoc.Default.Register<ILetterVm, LetterVm>();
             SimpleIoc.Default.Register<ILetterFacadeVm, LetterFacadeVm>();

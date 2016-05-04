@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using HeliumRemote.Bootstraper;
 using HeliumRemote.Helpers;
 using HeliumRemote.ViewModels;
 
@@ -17,7 +18,7 @@ namespace HeliumRemote.Views
         public PlayQueuePage()
         {
             InitializeComponent();
-            _vm = new PlayQueueVm();
+            _vm = new PlayQueueVm(CompositionRoot.WebService);
             DataContext = _vm;
         }
 
