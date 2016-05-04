@@ -4,8 +4,15 @@ This repo contains the code for Helium Remote for the Universal Windows Platform
 
 ## Using the code
 
-To be able to run this application you will need to have Neon installed and its webservice active.
+To be able to run this application you will need to have Neon installed and its web service active.
 Neon can be downloaded from: https://implodedsoftware.wordpress.com/
+
+To setup the web service, follow these steps:
+* Open TOOLS > Options
+* Select Web service
+* Checkmark "Enable web service"
+* Select a port (make sure that it open in your router/Windows firewall)
+* Click OK
 
 When you open the solution for the first time, be sure to restore NuGet packages.
 
