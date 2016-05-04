@@ -3,12 +3,13 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using NeonShared.Types;
 
-namespace HeliumRemote.Interfaces
+namespace UwpSharedViews.Interfaces
 {
-    public interface IPlaylistsFacadeVm
+    public interface ILetterFacadeVm
     {
         Task Populate(ViewParameters param);
-        ObservableCollection<PlaylistContainerItem> Playlists { get; }
+        ObservableCollection<LetterContainerItem> Letters { get; }
         void OnSelectionChanged(object sender, SelectionChangedEventArgs e);
+        UwpViewTypes ViewType { get; set; }
     }
 }

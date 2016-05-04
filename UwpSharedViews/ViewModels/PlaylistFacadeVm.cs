@@ -3,13 +3,15 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
+using HeliumRemote;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Views;
 using NeonShared.Interfaces;
 using NeonShared.Types;
+using UwpSharedViews.Interfaces;
 
-namespace HeliumRemote.ViewModels
+namespace UwpSharedViews.ViewModels
 {
     public class PlaylistFacadeVm : ViewModelBase, IPlaylistsFacadeVm
     {

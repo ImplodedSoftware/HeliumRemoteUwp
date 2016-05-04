@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using HeliumRemote;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
@@ -17,8 +18,11 @@ using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
 using NeonShared.Types;
+using UwpSharedViews.Classes;
+using UwpSharedViews.Interfaces;
+using UwpSharedViews.Types;
 
-namespace HeliumRemote.ViewModels
+namespace UwpSharedViews.ViewModels
 {
     public class AlbumListFacadeVm : ViewModelBase, IAlbumListFacadeVm, IViewFilter
     {

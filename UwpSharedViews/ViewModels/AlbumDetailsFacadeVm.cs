@@ -7,17 +7,18 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using HeliumRemote;
 using HeliumRemote.Bootstraper;
-using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
-using HeliumRemote.Interfaces;
-using HeliumRemote.Types;
 using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
 using NeonShared.Types;
+using UwpSharedViews.Classes;
+using UwpSharedViews.Interfaces;
+using UwpSharedViews.Types;
 
-namespace HeliumRemote.ViewModels
+namespace UwpSharedViews.ViewModels
 {
     public class AlbumDetailsFacadeVm : ViewModelBase, IAlbumDetailsFacadeVm
     {

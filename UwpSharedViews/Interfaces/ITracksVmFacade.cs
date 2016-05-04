@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
-using HeliumRemote.Types;
 using NeonShared.Types;
+using UwpSharedViews.Types;
 
-namespace HeliumRemote.Interfaces
+namespace UwpSharedViews.Interfaces
 {
     public interface ITracksVmFacade
     {
