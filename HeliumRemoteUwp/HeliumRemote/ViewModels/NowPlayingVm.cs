@@ -150,7 +150,7 @@ namespace HeliumRemote.ViewModels
                 Duration = _nowPlayingInfo.Duration;
                 InfoLine1 = _nowPlayingInfo.Title;
                 InfoLine2 = string.Format("{0} {1} {2}", _nowPlayingInfo.Artist,
-                    TranslationHelper.GetString("From.Text"),
+                    TranslationHelper.GetString("FromText"),
                     _nowPlayingInfo.Album);
             }
         }
