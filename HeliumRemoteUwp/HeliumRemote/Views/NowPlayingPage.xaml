@@ -232,7 +232,9 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <Button></Button>
+            <Button Style="{StaticResource ImageButtonStyle}" Command="{Binding ChangeIsFavouriteCommand}">
+                <Image Source="/Images/isfavl.png" Margin="8,0,0,0" Opacity="{Binding IsFavourite, Converter={StaticResource BoolToOpacityConverter}}"/>
+            </Button>
             <userControls1:ImRating NumberOfStars="5" Foreground="White" StarForegroundColor="White" StarOutlineColor="Transparent" Width="Auto" Margin="8,0,0,0" x:Name="ImRating" Value="{Binding NowPlayingInfo.Rating, Converter={StaticResource RatingToImRatingConverter}}"/>
         </StackPanel>
         <Image Grid.Row="2" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Large}"/>

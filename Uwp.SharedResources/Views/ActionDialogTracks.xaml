@@ -15,9 +15,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Button Content="Play now" Tag="0" Click="ButtonBase_OnClick" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,8,0,0" Style="{StaticResource ImButtonStyle}" x:Uid="PlayNow"/>
-        <Button Content="Enqueue next" Tag="1" Click="ButtonBase_OnClick" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,8" Style="{StaticResource ImButtonStyle}" x:Uid="EnqueueNext"/>
-        <Button Content="Enqueue last" Tag="2" Click="ButtonBase_OnClick" Grid.Row="2" HorizontalAlignment="Stretch" Style="{StaticResource ImButtonStyle}" x:Uid="EnqueueLast"/>
-        <Button Content="Cancel" Margin="0,24,0,0" Tag="3" Click="ButtonBase_OnClick" Grid.Row="4" HorizontalAlignment="Stretch" Style="{StaticResource ImButtonStyle}" x:Uid="Cancel"/>
+        <Button Content="Play now" Tag="0" Click="ButtonBase_OnClick" Grid.Row="0" HorizontalAlignment="Stretch" Margin="0,8,0,0" Style="{StaticResource ImButtonStyle}"  x:Uid="ActionPlayNow"/>
+        <Button Content="Enqueue next" Tag="1" Click="ButtonBase_OnClick" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,8" Style="{StaticResource ImButtonStyle}" x:Uid="ActionEnqueueNext"/>
+        <Button Content="Enqueue last" Tag="2" Click="ButtonBase_OnClick" Grid.Row="2" HorizontalAlignment="Stretch" Style="{StaticResource ImButtonStyle}" x:Uid="ActionEnqueueLast"/>
+        <Button Content="Cancel" Margin="0,24,0,0" Tag="3" Click="ButtonBase_OnClick" Grid.Row="4" HorizontalAlignment="Stretch" Style="{StaticResource ImButtonStyle}" x:Uid="ActionCancel"/>
     </Grid>
 </ContentDialog>

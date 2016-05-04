@@ -281,10 +281,6 @@
     <Content Include="Images\ic_action_play.png" />
     <Content Include="Images\ic_menu_close_clear_cancel.png" />
     <Content Include="Images\isfavl.png" />
-    <Content Include="Images\lad_fav.scale-200.png" />
-    <Content Include="Images\lad_fav.scale-400.png" />
-    <Content Include="Images\lad_fav_d.scale-200.png" />
-    <Content Include="Images\lad_fav_d.scale-400.png" />
     <Content Include="Images\nbtn_next.png" />
     <Content Include="Images\nbtn_pause.png" />
     <Content Include="Images\nbtn_play.png" />
