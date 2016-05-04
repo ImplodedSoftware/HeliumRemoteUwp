@@ -11,8 +11,9 @@ When you open the solution for the first time, be sure to restore NuGet packages
 
 ## Folders
 
-* HeliumRemoteUwp/HeliumRemote - The UWP application folder
-* NeonShared - A shared library containing basic types, interfaces and view models
+* HeliumRemote - The UWP application folder
+* NeonShared.Pcl - A portable class library containing basic types, interfaces and view models
+* Uwp.SharedResources - A UWP class library containing shared view models, styles and more
 * lib - Contains the Neon.Api.Pcl.Models.dll file which is a PCL file containing basic entities
 
 ## See also
