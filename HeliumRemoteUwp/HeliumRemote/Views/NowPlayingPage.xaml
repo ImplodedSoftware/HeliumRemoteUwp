@@ -237,8 +237,8 @@
             </Button>
             <userControls1:ImRating NumberOfStars="5" Foreground="White" StarForegroundColor="White" StarOutlineColor="Transparent" Width="Auto" Margin="8,0,0,0" x:Name="ImRating" Value="{Binding NowPlayingInfo.Rating, Converter={StaticResource RatingToImRatingConverter}}"/>
         </StackPanel>
-        <Image Grid.Row="2" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Large}"/>
-        <StackPanel Grid.Row="3">
+        <Image Grid.Row="2" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Large}" ImageFailed="Image_ImageFailed"/>
+        <StackPanel Grid.Row="3" Margin="8,0">
             <TextBlock Text="{Binding InfoLine1}" Style="{StaticResource TextStyleLarger}"/>
             <TextBlock Text="{Binding InfoLine2}" Style="{StaticResource TextStyleDim}"/>
             <Grid>

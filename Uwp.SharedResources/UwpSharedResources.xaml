@@ -12,6 +12,8 @@
     <Color x:Key="DefaultBg">#121213</Color>
     <Color x:Key="DefaultFontColor">#f1f1f1</Color>
     <Color x:Key="DimFontColor">#99999a</Color>
+    <Color x:Key="MiniplayerBgColor">#141415</Color>
+    <Color x:Key="SeparatorColor">#363637</Color>
     <Color x:Key="RowColor1">#252526</Color>
     <Color x:Key="RowColor2">#1e1e1e</Color>
     <Color x:Key="AccentColor">#007ACC</Color>
@@ -31,8 +33,12 @@
     <Color x:Key="DimBg">#77333333</Color>
     <Color x:Key="DimBgEx">#55333333</Color>
 
+    <SolidColorBrush x:Key="SeparatorBrush" Color="{StaticResource SeparatorColor}"/>
+
     <SolidColorBrush x:Key="NavLineBrush" Color="{StaticResource NavLineColor}"/>
     <SolidColorBrush x:Key="NavLineDisabledBrush" Color="{StaticResource NavLineInactiveColor}"/>
+
+    <SolidColorBrush x:Key="MiniplayerBgBrush" Color="{StaticResource MiniplayerBgColor}"/>
 
     <SolidColorBrush x:Key="DefaultBgBrush" Color="{StaticResource DefaultBg}"/>
     <SolidColorBrush x:Key="DefaultFontBrush" Color="{StaticResource DefaultFontColor}"/>

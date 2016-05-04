@@ -217,7 +217,7 @@
     <value>Years</value>
   </data>
   <data name="UnableToConnect" xml:space="preserve">
-    <value>Unable to connect to the specified address. Please ensure that webservice is running.</value>
+    <value>Unable to connect to the specified address. Please ensure that web service is running.</value>
   </data>
   <data name="NowPlaying.Text" xml:space="preserve">
     <value>NOW PLAYING</value>
@@ -331,7 +331,7 @@
     <value>Tracks</value>
   </data>
   <data name="HelperText.Text" xml:space="preserve">
-    <value>Enter the address to Heliums webservice in the address field and the port the webservice tuns on in the port field. </value>
+    <value>Enter the address to Heliums web service in the address field and the port the web service tuns on in the port field. </value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
     <value>Settings</value>
@@ -344,5 +344,11 @@
   </data>
   <data name="FromText" xml:space="preserve">
     <value>from</value>
+  </data>
+  <data name="ConnectButton.Content" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="EnterAddress.PlaceholderText" xml:space="preserve">
+    <value>Enter address</value>
   </data>
 </root>

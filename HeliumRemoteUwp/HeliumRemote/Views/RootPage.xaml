@@ -268,20 +268,22 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="3"/>
+                        <RowDefinition Height="1"/>
                         <RowDefinition Height="64"/>
                     </Grid.RowDefinitions>
 
                     <Frame Grid.Row="0" Name="MyFrame" Navigated="{x:Bind _vm.ContentFrame_OnNavigated}"/>
 
                     <ProgressBar Grid.Row="1" Height="3" Maximum="{Binding Duration}" Value="{Binding TrackPosition, Mode=TwoWay}" Background="{StaticResource RowColor1Brush}"/>
+                    <Rectangle Grid.Row="2" Fill="{StaticResource SeparatorBrush}"/>
 
-                    <Grid Background="{StaticResource RowColor1Brush}" Grid.Row="2" Tapped="MiniPlayer_OnTapped">
+                    <Grid Background="{StaticResource MiniplayerBgBrush}" Grid.Row="3" Tapped="MiniPlayer_OnTapped">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="64"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="64"/>
                         </Grid.ColumnDefinitions>
-                        <Image Width="64" Height="64" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Medium}"/>
+                        <Image Width="64" Height="64" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Medium, Mode=TwoWay}" ImageFailed="Image_ImageFailed"/>
                         <RelativePanel Grid.Column="1" VerticalAlignment="Center">
                             <StackPanel RelativePanel.AlignLeftWithPanel="True" x:Name="PlayerTimePane" Margin="6,2">
                                 <TextBlock Text="{Binding TrackPosition, Converter={StaticResource DurationConverter}}" Style="{StaticResource TextStyleDimLarger}"/>

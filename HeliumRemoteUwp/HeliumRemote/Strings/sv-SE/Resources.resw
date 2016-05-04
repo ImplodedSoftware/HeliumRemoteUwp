@@ -331,7 +331,7 @@
     <value>Spår</value>
   </data>
   <data name="HelperText.Text" xml:space="preserve">
-    <value>Skriv in adressen till Heliums webservice i adress fältet och porten till webservicen i port fältet.</value>
+    <value>Skriv in adressen till Heliums webbtjänst i adress fältet och porten till webbtjänst i port fältet.</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
     <value>Inställningar</value>
@@ -344,5 +344,11 @@
   </data>
   <data name="FromText" xml:space="preserve">
     <value>från</value>
+  </data>
+  <data name="ConnectButton.Content" xml:space="preserve">
+    <value>Anslut</value>
+  </data>
+  <data name="EnterAddress.PlaceholderText" xml:space="preserve">
+    <value>Skriv in adress</value>
   </data>
 </root>

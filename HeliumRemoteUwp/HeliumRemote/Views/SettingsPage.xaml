@@ -18,10 +18,10 @@
         <TextBlock Grid.Row="0" Style="{StaticResource PageTitleStyle}" x:Uid="SettingsTitle" Margin="0,0,0,8"/>
         <RelativePanel Grid.Row="1">
             <TextBlock Style="{StaticResource TextStyle}" Text="Address" x:Uid="Address" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="AddressTb"/>
-            <TextBox RelativePanel.Below="AddressTb" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="AddressTextBox" PlaceholderText="Enter address" Text="{Binding Address, Mode=TwoWay}"/>
+            <TextBox RelativePanel.Below="AddressTb" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="AddressTextBox" PlaceholderText="Enter address" Text="{Binding Address, Mode=TwoWay}" x:Uid="EnterAddress"/>
             <TextBlock Style="{StaticResource TextStyle}" Text="Port" x:Uid="Port" x:Name="PortTb" RelativePanel.Below="AddressTextBox" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True"/>
             <TextBox RelativePanel.Below="PortTb" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" x:Name="PortTextBox" PlaceholderText="Enter port" InputScope="Number" KeyDown="{x:Bind _vm.PortTextBox_OnKeyDown}" Text="{Binding Port, Mode=TwoWay}"/>
-            <Button Margin="0,32,0,0" RelativePanel.Below="PortTextBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" HorizontalAlignment="Stretch" Command="{Binding LoginCommand}" Style="{StaticResource ImButtonStyle}">Connect</Button>
+            <Button Margin="0,32,0,0" RelativePanel.Below="PortTextBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" HorizontalAlignment="Stretch" Command="{Binding LoginCommand}" Style="{StaticResource ImButtonStyle}" x:Uid="ConnectButton"/>
         </RelativePanel>
         <TextBlock TextWrapping="Wrap" Style="{StaticResource TextStyleDim}" x:Uid="HelperText" Grid.Row="2" Margin="0,16,0,0"/>
     </Grid>

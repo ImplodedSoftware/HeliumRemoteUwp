@@ -3,11 +3,14 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
 using HeliumRemote.Classes;
-using HeliumRemote.Helpers;
 using HeliumRemote.ViewModels;
 using Uwp.SharedResources.Helpers;
+using Windows.UI.Xaml.Media.Imaging;
+using System;
+using System.Threading.Tasks;
+using NeonShared.Pcl.Helpers;
+using Uwp.SharedResources.Classes;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,7 +26,7 @@ namespace HeliumRemote.Views
         public RootPage()
         {
             InitializeComponent();
-            _vm = new RootViewModel(MyFrame, UpdateAction);
+            _vm = new RootViewModel(MyFrame, UpdateAction, UpdateImageAction);
             _vm.CloseSlider += () =>
             {
                 _vm.FilterVisible = false;
@@ -108,5 +111,10 @@ namespace HeliumRemote.Views
             AdjustUi();
         }
 
+        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var img = (Image)sender;
+            img.Source = new BitmapImage(new Uri("ms-appx:///Images/s_no_album.png"));
+        }
     }
 }

@@ -10,6 +10,8 @@ namespace Uwp.SharedResources.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var id = (int) value;
+            if (id <= 0)
+                return string.Empty;
             var url = string.Empty;
             if (parameter == null)
                 url = NeonUrls.AlbumImage(id, AppConstants.SMALL_IMAGE_SIZE);
@@ -28,7 +30,7 @@ namespace Uwp.SharedResources.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return "ms-appx:///Images/s_no_album";
         }
     }
 }

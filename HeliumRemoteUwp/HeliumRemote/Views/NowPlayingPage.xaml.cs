@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using HeliumRemote.Bootstraper;
 using NeonShared.Pcl.Helpers;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -70,6 +71,12 @@ namespace HeliumRemote.Views
                 _isValueChanged = true;
                 _newValue = e.NewValue;
             }
+        }
+
+        private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            var img = (Image)sender;
+            img.Source = new BitmapImage(new Uri("ms-appx:///Images/no_album.png"));
         }
     }
 }
