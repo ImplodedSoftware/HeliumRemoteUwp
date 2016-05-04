@@ -5,9 +5,7 @@ using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HeliumRemote.Bootstraper;
-using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
-using HeliumRemote.Types;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Pcl.Interfaces;
 using Uwp.SharedResources.Classes;
@@ -25,7 +23,7 @@ namespace HeliumRemote.ViewModels
 
         public PlayQueueVm(IWebService webService)
         {
-            _webService = webService;// CompositionRoot.WebService;
+            _webService = webService;
             PlayByIndexCommand = new RelayCommand<int>(PlayByIndexExecute);
         }
 

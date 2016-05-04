@@ -283,6 +283,8 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="64"/>
                         </Grid.ColumnDefinitions>
+                        <!-- Avoid binding -->
+                        <!--<Image Width="64" Height="64" Source="/Images/s_no_album.png" ImageFailed="Image_ImageFailed" x:Name="MiniplayerPicture"/>-->
                         <Image Width="64" Height="64" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Medium, Mode=TwoWay}" ImageFailed="Image_ImageFailed"/>
                         <RelativePanel Grid.Column="1" VerticalAlignment="Center">
                             <StackPanel RelativePanel.AlignLeftWithPanel="True" x:Name="PlayerTimePane" Margin="6,2">

@@ -152,6 +152,7 @@ namespace HeliumRemote.ViewModels
             set
             {
                 _albumId = value;
+                RaisePropertyChanged();
             }
         }
 
