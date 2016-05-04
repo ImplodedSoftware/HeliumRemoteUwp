@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using HeliumRemote.ViewModels;
+using UwpSharedViews.ViewModels;
 
 namespace HeliumRemote.Converters
 {

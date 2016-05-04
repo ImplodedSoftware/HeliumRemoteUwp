@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using HeliumRemote.Types;
 using NeonShared.Types;
+using UwpSharedViews.Types;
 
-namespace HeliumRemote.Interfaces
+namespace UwpSharedViews.Interfaces
 {
     public interface IAlbumListFacadeVm
     {

@@ -1,4 +1,4 @@
-﻿namespace HeliumRemote.Interfaces
+﻿namespace UwpSharedViews.Interfaces
 {
     public interface IViewFilter
     {

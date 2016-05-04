@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace HeliumRemote.Interfaces
+namespace UwpSharedViews.Interfaces
 {
     public interface IPlayerProvider
     {

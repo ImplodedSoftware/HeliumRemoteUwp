@@ -1,12 +1,17 @@
-﻿using Windows.UI.Xaml;
-using GalaSoft.MvvmLight;
-using HeliumRemote.Classes;
+﻿using GalaSoft.MvvmLight;
 using Neon.Api.Pcl.Models.Entities;
+using UwpSharedViews.Classes;
+using UwpSharedViews.Interfaces;
 
-namespace HeliumRemote.Types
+namespace UwpSharedViews.Types
 {
     public class TrackContainer : ViewModelBase
     {
+        private readonly ISharedApp _sharedApp;
+        public TrackContainer(ISharedApp sharedApp)
+        {
+            _sharedApp = sharedApp;
+        }
         private int _index;
         public Track Track { get; set; }
         public int CurrentCd { get; set; }
@@ -15,10 +20,8 @@ namespace HeliumRemote.Types
         {
             get
             {
-                var aid = ((App) Application.Current).ActiveId;
-                if (Track.Id == aid)
-                    return AppConstants.ACTIVE_ID_DECORATOR;
-                return _index;
+                var aid = _sharedApp.ActiveId;
+                return Track.Id == aid ? AppConstants.ACTIVE_ID_DECORATOR : _index;
             }
             set
             {

@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using Neon.Api.Pcl.Models.Entities;
 
-namespace HeliumRemote.Types
+namespace UwpSharedViews.Types
 {
     public class PlaylistContainer : ViewModelBase
     {

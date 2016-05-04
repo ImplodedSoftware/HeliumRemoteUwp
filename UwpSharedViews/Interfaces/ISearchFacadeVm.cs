@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Input;
 using GalaSoft.MvvmLight.Command;
-using HeliumRemote.Types;
-using HeliumRemote.ViewModels;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Types;
+using UwpSharedViews.Types;
+using UwpSharedViews.ViewModels;
 
-namespace HeliumRemote.Interfaces
+namespace UwpSharedViews.Interfaces
 {
     public interface ISearchFacadeVm
     {

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using HeliumRemote.Bootstraper;
-using HeliumRemote.Interfaces;
 using NeonShared.Interfaces;
+using UwpSharedViews.Interfaces;
 
 namespace HeliumRemote.Classes
 {

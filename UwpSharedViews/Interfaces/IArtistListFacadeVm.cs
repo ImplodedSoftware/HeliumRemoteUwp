@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Types;
 
-namespace HeliumRemote.Interfaces
+namespace UwpSharedViews.Interfaces
 {
     public interface IArtistListFacadeVm
     {
