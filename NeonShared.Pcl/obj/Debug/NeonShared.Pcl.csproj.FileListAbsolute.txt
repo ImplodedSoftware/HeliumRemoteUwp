@@ -1,8 +1,0 @@
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\bin\Debug\NeonShared.Pcl.dll
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\bin\Debug\NeonShared.Pcl.pdb
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\bin\Debug\Neon.Api.Pcl.Models.dll
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\bin\Debug\Newtonsoft.Json.dll
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\bin\Debug\Newtonsoft.Json.xml
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\obj\Debug\NeonShared.Pcl.dll
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\obj\Debug\NeonShared.Pcl.pdb
-C:\dev\HeliumRemoteUwp\NeonShared.Pcl\obj\Debug\NeonShared.Pcl.csprojResolveAssemblyReference.cache

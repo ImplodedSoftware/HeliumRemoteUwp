@@ -13,3 +13,8 @@ HeliumRemoteUwp/HeliumRemote/_scale-225.appx
 HeliumRemoteUwp/HeliumRemote/_scale-400.appx
 Uwp.SharedResources/bin/
 Uwp.SharedResources/obj/
+NeonShared.Pcl/bin/
+NeonShared.Pcl/obj/Debug/NeonShared.Pcl.csproj.FileListAbsolute.txt
+NeonShared.Pcl/obj/Release/NeonShared.Pcl.csproj.FileListAbsolute.txt
+NeonShared.Pcl/obj/Release/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+NeonShared.Pcl/obj/

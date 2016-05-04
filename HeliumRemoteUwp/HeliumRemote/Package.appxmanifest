@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="ImplodedSoftware.HeliumRemote2" Publisher="CN=26FF3D2F-0C3D-4A47-BBA7-75B45F2EF5E6" Version="1.0.2.0" />
+  <Identity Name="ImplodedSoftware.HeliumRemote2" Publisher="CN=26FF3D2F-0C3D-4A47-BBA7-75B45F2EF5E6" Version="1.0.7.0" />
   <mp:PhoneIdentity PhoneProductId="7adce9d4-fc63-48cc-a3b5-a8476b27ba4c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Helium Remote 2</DisplayName>
