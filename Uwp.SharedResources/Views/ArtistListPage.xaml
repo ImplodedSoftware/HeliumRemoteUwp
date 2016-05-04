@@ -1,0 +1,62 @@
+﻿<Page
+    x:Class="Uwp.SharedResources.Views.ArtistListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="ArtistListPage_OnLoaded"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="ListBoxItemContainerStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="0"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource DefaultBgBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter Target="ItemsLb.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="Items.Visibility" Value="Visible"></Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Mobile">
+                    <VisualState.Setters>
+                        <Setter Target="ItemsLb.Visibility" Value="Visible"></Setter>
+                        <Setter Target="Items.Visibility" Value="Collapsed"></Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ProgressRing IsActive="True" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        
+        <GridView
+            SelectionChanged="{x:Bind _vm.OnSelectionChanged}"
+            Background="{StaticResource DefaultBgBrush}"
+            ItemTemplate="{StaticResource ArtistGroupedItem}"
+            ItemsSource="{Binding Artists}"
+            ItemContainerStyle="{StaticResource ArtistGridItemContainerStyle}"
+            Visibility="{Binding IsBusy, Converter={StaticResource BoolInvToVisibilityConverter}}"
+            x:Name="Items">
+        </GridView>
+        <ListBox
+            SelectionChanged="{x:Bind _vm.OnSelectionChanged}"            
+            Background="{StaticResource DefaultBgBrush}"
+            ItemTemplate="{StaticResource ArtistListItem}"
+            Visibility="{Binding IsBusy, Converter={StaticResource BoolInvToVisibilityConverter}}"
+            ItemsSource="{Binding Artists}"
+            x:Name="ItemsLb" 
+            ItemContainerStyle="{StaticResource ListBoxItemContainerStyle}"/>
+    </Grid>
+</Page>

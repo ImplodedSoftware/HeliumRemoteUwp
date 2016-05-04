@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using NeonShared.Interfaces;
+using NeonShared.Pcl.Interfaces;
+using Uwp.SharedResources.Interfaces;
 using UwpSharedViews.Interfaces;
 
 namespace HeliumRemote.Classes

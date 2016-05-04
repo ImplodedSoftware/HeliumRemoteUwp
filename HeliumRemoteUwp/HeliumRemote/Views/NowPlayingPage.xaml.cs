@@ -5,8 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using HeliumRemote.Bootstraper;
-using HeliumRemote.UserControls;
-using NeonShared.Helpers;
+using NeonShared.Pcl.Helpers;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,7 +24,7 @@ namespace HeliumRemote.Views
         public NowPlayingPage()
         {
             InitializeComponent();
-            ImRating.PropagateValueChanged += async d =>
+            Uwp.SharedResources.UserControls.ImRating.PropagateValueChanged += async d =>
             {
                 var usr = d*2.0;
                 var rr = NeonHelpers.UpsizeRating((int) usr);

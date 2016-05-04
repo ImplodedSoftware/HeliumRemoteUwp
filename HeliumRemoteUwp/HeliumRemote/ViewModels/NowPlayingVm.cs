@@ -6,6 +6,7 @@ using HeliumRemote.Bootstraper;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using Neon.Api.Pcl.Models.Entities;
+using Uwp.SharedResources.Helpers;
 
 namespace HeliumRemote.ViewModels
 {

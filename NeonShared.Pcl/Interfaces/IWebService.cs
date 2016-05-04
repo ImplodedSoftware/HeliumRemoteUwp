@@ -1,0 +1,90 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Neon.Api.Pcl.Models.Entities;
+
+namespace NeonShared.Pcl.Interfaces
+{
+    public interface IWebService
+    {
+        Task<IEnumerable<string>> ArtistLetters();
+        Task<IEnumerable<Artist>> ArtistsByLetter(string letter);
+        Task<Artist> ArtistDetails(int id);
+        Task<IEnumerable<string>> AlbumLetters();
+        Task<IEnumerable<string>> AlbumArtistLetters();
+        Task<IEnumerable<Artist>> AlbumArtistsByLetter(string letter);
+        Task<IEnumerable<Genre>> GenreLetters();
+        Task<IEnumerable<Track>> TracksFromGenre(string genre);
+        Task<IEnumerable<string>> LabelLetters();
+        Task<IEnumerable<string>> LabelsByLetter(string letter);
+
+        Task<Handshake> Handshake();
+        Task<bool> GetRemoteToken(string authKey);
+        Task<IEnumerable<Album>> AlbumsByLetter(string letter);
+        Task<object> AlbumThumbnailImage(int id, int size);
+        Task<IEnumerable<Track>> GetPlayQueue();
+        Task<PlayerState> GetPlayerState();
+        Task<NowPlayingInfo> GetNowPlayingInfo();
+        Task PlayAlbum(int id);
+        Task EnqueueAlbumNext(int id);
+        Task EnqueueAlbumLast(int id);
+        Task<Album> AlbumDetails(int id);
+        Task<IEnumerable<Track>> TracksForAlbum(int id);
+        Task PlayTrack(int id);
+        Task EnqueueTrackNext(int id);
+        Task EnqueueTrackLast(int id);
+        Task Play();
+        Task Pause();
+        Task PlayByIndex(int index);
+        Task<RemoteResult> GetPlayQueueIndex();
+        Task<List<string>> GetRatingLetters();
+        Task<List<string>> GetYearLetters();
+        Task<List<string>> GetAddedYearLetters();
+        Task<List<string>> GetAddedMonthLetters(int year);
+        Task<List<string>> GetAddedDateLetters(int year, int month);
+        Task<List<string>> GetPlayedYearLetters();
+        Task<List<string>> GetPlayedMonthLetters(int year);
+        Task<List<string>> GetPlayedDateLetters(int year, int month);
+        Task<IEnumerable<Album>> FavouriteAlbums();
+        Task<IEnumerable<Album>> AlbumsFromYear(int year);
+        Task<IEnumerable<Album>> AlbumsFromLabel(string label);
+        Task<IEnumerable<Artist>> FavouriteArtists();
+        Task<IEnumerable<Playlist>> Playlists();
+        Task PlayPlaylist(int id);
+        Task SetAlbumAsFavourite(int albumId);
+        Task UnsetAlbumAsFavourite(int albumId);
+        Task<IEnumerable<Album>> AlbumsByAddedDate(string date);
+        Task<IEnumerable<Album>> AlbumSearch(string expr);
+        Task<IEnumerable<Track>> FavouriteTracks();
+        Task<IEnumerable<Track>> TracksByRating(int rating);
+        Task<IEnumerable<Track>> TracksByPlayedDate(string date);
+        Task<IEnumerable<Track>> PlaylistTracks(int playlistId);
+        Task<IEnumerable<Track>> SmartPlaylistTracks(int smartPlaylistId);
+        Task<IEnumerable<Track>> TrackSearch(string expr);
+        Task<IEnumerable<Track>> SimilarTracks(int id);
+        Task SetArtistAsFavourite(int artistId);
+        Task UnsetArtistAsFavourite(int artistId);
+        Task<IEnumerable<Artist>> ArtistSearch(string expr);
+        Task NextTrack();
+        Task PreviousTrack();
+        Task RateTrack(int id, int rating);
+        Task SetTrackAsFavourite(int id);
+        Task UnsetTrackAsFavourite(int id);
+        Task SetVolume(int volume);
+        Task SetPosition(int position);
+        Task<string> GetLyrics(int detailId);
+        Task UpdatePlaycounter(int detailId);
+        Task UpdateLastFm(int detailId);
+        Task UpdateLastFmNowPlaying(int detailId);
+        Task EnqueuePlaylistNext(int playlistId);
+        Task EnqueuePlaylistLast(int playlistId);
+        Task<IEnumerable<Playlist>> SmartPlaylists();
+        Task PlaySmartPlaylist(int id);
+        Task EnqueueSmartPlaylistNext(int playlistId);
+        Task EnqueueSmartPlaylistLast(int playlistId);
+        Task<Version> BuildNumber();
+        Task<IEnumerable<User>> Users();
+        Task<string> Login(string username, string password);
+        Task<Track> GetTrack(int detailId);
+        Task DownloadFile(int detailId);
+    }
+}

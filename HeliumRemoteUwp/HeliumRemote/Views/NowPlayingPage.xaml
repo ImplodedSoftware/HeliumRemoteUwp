@@ -4,13 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:HeliumRemote.UserControls"
-    xmlns:converters="using:HeliumRemote.Converters"
+    xmlns:userControls1="using:Uwp.SharedResources.UserControls"
+    xmlns:converters1="using:Uwp.SharedResources.Converters"
     Loaded="NowPlayingPage_OnLoaded"
     mc:Ignorable="d">
     <Page.Resources>
-        <converters:RatingToImRatingConverter x:Key="RatingToImRatingConverter"/>
-        <converters:TooltipConverter x:Key="TooltipConverter"/>
+        <converters1:RatingToImRatingConverter x:Key="RatingToImRatingConverter"/>
+        <converters1:TooltipConverter x:Key="TooltipConverter"/>
         <Style x:Key="CloseButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -233,7 +233,7 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button></Button>
-            <userControls:ImRating NumberOfStars="5" Foreground="White" StarForegroundColor="White" StarOutlineColor="Transparent" Width="Auto" Margin="8,0,0,0" x:Name="ImRating" Value="{Binding NowPlayingInfo.Rating, Converter={StaticResource RatingToImRatingConverter}}"/>
+            <userControls1:ImRating NumberOfStars="5" Foreground="White" StarForegroundColor="White" StarOutlineColor="Transparent" Width="Auto" Margin="8,0,0,0" x:Name="ImRating" Value="{Binding NowPlayingInfo.Rating, Converter={StaticResource RatingToImRatingConverter}}"/>
         </StackPanel>
         <Image Grid.Row="2" Source="{Binding AlbumId, Converter={StaticResource AlbumImageDownloadConverter}, ConverterParameter=Large}"/>
         <StackPanel Grid.Row="3">
