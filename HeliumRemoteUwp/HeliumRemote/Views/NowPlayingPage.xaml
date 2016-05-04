@@ -226,7 +226,7 @@
                 <Image Source="/Images/ic_menu_close_clear_cancel.png" Height="36"/>
             </Button>
             <TextBlock Text="Now playing" VerticalAlignment="Center" Style="{StaticResource PageTitleStyle}" x:Uid="NowPlaying" Grid.Column="1"/>
-            <Button RelativePanel.AlignRightWithPanel="True" Command="{Binding MoreCommand}" Style="{StaticResource CloseButtonStyle}" Grid.Column="2">
+            <Button RelativePanel.AlignRightWithPanel="True" Command="{Binding MoreCommand}" Style="{StaticResource CloseButtonStyle}" Grid.Column="2" Visibility="Collapsed">
                 <Image Source="/Images/ic_action_overflow.png" Height="36"/>
             </Button>
         </Grid>
