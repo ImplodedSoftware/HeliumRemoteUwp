@@ -8,9 +8,6 @@ using HeliumRemote.ViewModels;
 using Uwp.SharedResources.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
 using System;
-using System.Threading.Tasks;
-using NeonShared.Pcl.Helpers;
-using Uwp.SharedResources.Classes;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,7 +23,7 @@ namespace HeliumRemote.Views
         public RootPage()
         {
             InitializeComponent();
-            _vm = new RootViewModel(MyFrame, UpdateAction, UpdateImageAction);
+            _vm = new RootViewModel(MyFrame, UpdateAction);
             _vm.CloseSlider += () =>
             {
                 _vm.FilterVisible = false;
