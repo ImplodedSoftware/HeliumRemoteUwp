@@ -223,17 +223,17 @@ namespace HeliumRemote.ViewModels
 
         private async void PlayNowExecute(int id)
         {
-            await CompositionRoot.WebService.PlayAlbum(id);
+            await _playerProvider.PlayAlbum(id);
         }
 
         private async void EnqueueNextExecute(int id)
         {
-            await CompositionRoot.WebService.EnqueueAlbumNext(id);
+            await _playerProvider.EnqueueAlbumNext(id);
         }
 
-        private static async void EnqueueLastExecute(int id)
+        private  async void EnqueueLastExecute(int id)
         {
-            await CompositionRoot.WebService.EnqueueAlbumLast(id);
+            await _playerProvider.EnqueueAlbumLast(id);
         }
 
         private static void addToPlaylistExecute(int id)

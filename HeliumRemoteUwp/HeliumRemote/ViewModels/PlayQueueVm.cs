@@ -20,9 +20,9 @@ namespace HeliumRemote.ViewModels
         private Thickness _elementMargin;
         private ObservableCollection<TrackContainer> _tracks;
 
-        public PlayQueueVm()
+        public PlayQueueVm(IWebService webService)
         {
-            _webService = CompositionRoot.WebService;
+            _webService = webService;// CompositionRoot.WebService;
             PlayByIndexCommand = new RelayCommand<int>(PlayByIndexExecute);
         }
 
