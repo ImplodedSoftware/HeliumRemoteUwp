@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Helpers;
 using HeliumRemote.Views;
-using NeonShared.Classes;
+using NeonShared.Pcl.Classes;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 

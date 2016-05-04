@@ -8,35 +8,4 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>UwpSharedViews</Import_RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Views\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Classes\AppConstants.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAlbumDetailsFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IAlbumListFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IArtistDetailsFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IArtistListFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ILetterFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlayerProvider.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IPlaylistsFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISearchFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISharedApp.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ITracksVmFacade.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IViewFilter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types\AlbumContainer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types\AlbumDetailItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types\ArtistDetailItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types\GroupInfoList.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types\PlaylistContainer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types\TrackContainer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AlbumDetailsFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AlbumListFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ArtistDetailsFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ArtistListFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LetterFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PlaylistFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchFacadeVm.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TracksVmFacade.cs" />
-  </ItemGroup>
 </Project>

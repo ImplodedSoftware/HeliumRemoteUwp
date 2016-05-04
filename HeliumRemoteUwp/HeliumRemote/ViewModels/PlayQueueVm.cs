@@ -9,9 +9,10 @@ using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
 using HeliumRemote.Types;
 using Neon.Api.Pcl.Models.Entities;
-using NeonShared.Interfaces;
-using UwpSharedViews.Classes;
-using UwpSharedViews.Types;
+using NeonShared.Pcl.Interfaces;
+using Uwp.SharedResources.Classes;
+using Uwp.SharedResources.Helpers;
+using Uwp.SharedResources.Types;
 
 namespace HeliumRemote.ViewModels
 {

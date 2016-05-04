@@ -7,8 +7,8 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using HeliumRemote.Types;
-using NeonShared.Helpers;
 using Newtonsoft.Json;
+using Uwp.SharedResources.Helpers;
 
 namespace HeliumRemote.Helpers
 {
@@ -102,45 +102,11 @@ namespace HeliumRemote.Helpers
             app.RootViewModel.PageTitle = title;
         }
 
-        public static string GetMonthName(int month)
-        {
-            return CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
-        }
 
         public static string GetString(string key)
         {
             return TranslationHelper.GetString(key);
         }
 
-        public static string GetRatingName(int rating)
-        {
-            switch (rating)
-            {
-                case NeonConstants.HELIUM_RATING_0:
-                    return GetString("Rating0");
-                case NeonConstants.HELIUM_RATING_0_5:
-                    return GetString("Rating1");
-                case NeonConstants.HELIUM_RATING_1:
-                    return GetString("Rating2");
-                case NeonConstants.HELIUM_RATING_1_5:
-                    return GetString("Rating3");
-                case NeonConstants.HELIUM_RATING_2:
-                    return GetString("Rating4");
-                case NeonConstants.HELIUM_RATING_2_5:
-                    return GetString("Rating5");
-                case NeonConstants.HELIUM_RATING_3:
-                    return GetString("Rating6");
-                case NeonConstants.HELIUM_RATING_3_5:
-                    return GetString("Rating7");
-                case NeonConstants.HELIUM_RATING_4:
-                    return GetString("Rating8");
-                case NeonConstants.HELIUM_RATING_4_5:
-                    return GetString("Rating9");
-                case NeonConstants.HELIUM_RATING_5:
-                    return GetString("Rating10");
-                default:
-                    return GetString("Rating0");
-            }
-        }
     }
 }

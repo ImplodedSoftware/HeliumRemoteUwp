@@ -219,26 +219,8 @@
   <data name="UnableToConnect" xml:space="preserve">
     <value>Unable to connect to the specified address. Please ensure that webservice is running.</value>
   </data>
-  <data name="From.Text" xml:space="preserve">
-    <value>From</value>
-  </data>
   <data name="NowPlaying.Text" xml:space="preserve">
     <value>NOW PLAYING</value>
-  </data>
-  <data name="Tracks.Text" xml:space="preserve">
-    <value>tracks</value>
-  </data>
-  <data name="ActionCancel.Content" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="ActionEnqueueLast.Content" xml:space="preserve">
-    <value>Enqueue last</value>
-  </data>
-  <data name="ActionEnqueueNext.Content" xml:space="preserve">
-    <value>Enqueue next</value>
-  </data>
-  <data name="ActionPlayNow.Content" xml:space="preserve">
-    <value>Play now</value>
   </data>
   <data name="SearchAlbums.Content" xml:space="preserve">
     <value>Albums</value>
@@ -359,5 +341,8 @@
   </data>
   <data name="Discography" xml:space="preserve">
     <value>Discography</value>
+  </data>
+  <data name="FromText" xml:space="preserve">
+    <value>from</value>
   </data>
 </root>

@@ -11,3 +11,5 @@ HeliumRemoteUwp/HeliumRemote/_scale-125.appx
 HeliumRemoteUwp/HeliumRemote/_scale-150.appx
 HeliumRemoteUwp/HeliumRemote/_scale-225.appx
 HeliumRemoteUwp/HeliumRemote/_scale-400.appx
+Uwp.SharedResources/bin/
+Uwp.SharedResources/obj/
