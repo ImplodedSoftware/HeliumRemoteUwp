@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Neon.Api.Pcl.Models.Entities;
 
-namespace HeliumRemote.Interfaces
+namespace UwpSharedViews.Interfaces
 {
     public interface IAlbumDetailsFacadeVm
     {

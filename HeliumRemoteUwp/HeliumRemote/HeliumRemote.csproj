@@ -106,9 +106,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstraper\CompositionRoot.cs" />
-    <Compile Include="Classes\AppConstants.cs" />
     <Compile Include="Classes\NeonSession.cs" />
     <Compile Include="Classes\OpenMenuFlyoutAction.cs" />
+    <Compile Include="Classes\RemotePlayerProvider.cs" />
+    <Compile Include="Classes\SharedApp.cs" />
     <Compile Include="Converters\AlbumDetailsSelector.cs" />
     <Compile Include="Converters\AlbumImageDownloadConverter.cs" />
     <Compile Include="Converters\AlternationConverter.cs" />
@@ -132,27 +133,12 @@
     <Compile Include="Helpers\AppHelpers.cs" />
     <Compile Include="Helpers\DeviceTypeHelper.cs" />
     <Compile Include="Helpers\TranslationHelper.cs" />
-    <Compile Include="Interfaces\IAlbumDetailsFacadeVm.cs" />
-    <Compile Include="Interfaces\IAlbumListFacadeVm.cs" />
-    <Compile Include="Interfaces\IArtistDetailsFacadeVm.cs" />
-    <Compile Include="Interfaces\IArtistListFacadeVm.cs" />
-    <Compile Include="Interfaces\ILetterFacadeVm.cs" />
     <Compile Include="Interfaces\INowPlayingVm.cs" />
-    <Compile Include="Interfaces\IPlaylistsFacadeVm.cs" />
-    <Compile Include="Interfaces\ISearchFacadeVm.cs" />
-    <Compile Include="Interfaces\ITracksVmFacade.cs" />
-    <Compile Include="Interfaces\IViewFilter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Types\AlbumContainer.cs" />
-    <Compile Include="Types\AlbumDetailItem.cs" />
-    <Compile Include="Types\ArtistDetailItem.cs" />
-    <Compile Include="Types\GroupInfoList.cs" />
-    <Compile Include="Types\PlaylistContainer.cs" />
     <Compile Include="Types\RemoteSettings.cs" />
-    <Compile Include="Types\TrackContainer.cs" />
     <Compile Include="UserControls\ImRating.xaml.cs">
       <DependentUpon>ImRating.xaml</DependentUpon>
     </Compile>
@@ -162,18 +148,10 @@
     <Compile Include="UserControls\TabButton.xaml.cs">
       <DependentUpon>TabButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AlbumDetailsFacadeVm.cs" />
-    <Compile Include="ViewModels\AlbumListFacadeVm.cs" />
-    <Compile Include="ViewModels\ArtistDetailsFacadeVm.cs" />
-    <Compile Include="ViewModels\ArtistListFacadeVm.cs" />
-    <Compile Include="ViewModels\LetterFacadeVm.cs" />
     <Compile Include="ViewModels\NowPlayingVm.cs" />
-    <Compile Include="ViewModels\PlaylistFacadeVm.cs" />
     <Compile Include="ViewModels\PlayQueueVm.cs" />
     <Compile Include="ViewModels\RootViewModel.cs" />
-    <Compile Include="ViewModels\SearchFacadeVm.cs" />
     <Compile Include="ViewModels\SettingsVm.cs" />
-    <Compile Include="ViewModels\TracksVmFacade.cs" />
     <Compile Include="Views\ActionDialogAlbum.xaml.cs">
       <DependentUpon>ActionDialogAlbum.xaml</DependentUpon>
     </Compile>
@@ -476,6 +454,7 @@
     </Reference>
   </ItemGroup>
   <Import Project="..\..\NeonShared\NeonShared.projitems" Label="Shared" />
+  <Import Project="..\..\UwpSharedViews\UwpSharedViews.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

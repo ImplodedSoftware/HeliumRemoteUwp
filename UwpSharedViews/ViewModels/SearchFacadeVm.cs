@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using HeliumRemote;
 using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Types;
@@ -13,8 +14,10 @@ using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
 using NeonShared.Types;
+using UwpSharedViews.Interfaces;
+using UwpSharedViews.Types;
 
-namespace HeliumRemote.ViewModels
+namespace UwpSharedViews.ViewModels
 {
     public enum SearchViews
     {
@@ -27,6 +30,7 @@ namespace HeliumRemote.ViewModels
     public class SearchFacadeVm : ViewModelBase, ISearchFacadeVm
     {
         private readonly ISearchVm _vm;
+        private readonly ISharedApp _sharedApp;
 
         private SearchViews _activeView;
         private ObservableCollection<AlbumContainer> _albums;
@@ -41,9 +45,10 @@ namespace HeliumRemote.ViewModels
 
         private ObservableCollection<TrackContainer> _tracks;
 
-        public SearchFacadeVm(ISearchVm vm)
+        public SearchFacadeVm(ISearchVm vm, ISharedApp sharedApp)
         {
             _vm = vm;
+            _sharedApp = sharedApp;
             ShowArtistsCommand = new RelayCommand(ShowArtistsExecute, null);
             ShowAlbumsCommand = new RelayCommand(ShowAlbumsExecute, null);
             ShowTracksCommand = new RelayCommand(ShowTracksExecute, null);
@@ -109,7 +114,7 @@ namespace HeliumRemote.ViewModels
             var trkres = new ObservableCollection<TrackContainer>();
             foreach (var trk in _vm.Tracks)
             {
-                trkres.Add(new TrackContainer {Index = idx++, Track = trk});
+                trkres.Add(new TrackContainer(_sharedApp) {Index = idx++, Track = trk});
             }
             Tracks = trkres;
             HasArtists = Artists.Count > 0;

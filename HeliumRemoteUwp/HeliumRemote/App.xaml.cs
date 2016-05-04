@@ -11,6 +11,7 @@ using HeliumRemote.Views;
 using NeonShared.Classes;
 using NeonShared.Interfaces;
 using NeonShared.Types;
+using UwpSharedViews.Interfaces;
 
 namespace HeliumRemote
 {

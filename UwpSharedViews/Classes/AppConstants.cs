@@ -1,4 +1,4 @@
-﻿namespace HeliumRemote.Classes
+﻿namespace UwpSharedViews.Classes
 {
     public class AppConstants
     {

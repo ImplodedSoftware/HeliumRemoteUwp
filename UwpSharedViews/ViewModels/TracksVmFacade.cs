@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using HeliumRemote.Bootstraper;
-using HeliumRemote.Classes;
+using HeliumRemote;
 using HeliumRemote.Helpers;
-using HeliumRemote.Interfaces;
-using HeliumRemote.Types;
 using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
 using NeonShared.Types;
+using UwpSharedViews.Classes;
+using UwpSharedViews.Interfaces;
+using UwpSharedViews.Types;
 
-namespace HeliumRemote.ViewModels
+namespace UwpSharedViews.ViewModels
 {
     public class TracksVmFacade : ViewModelBase, ITracksVmFacade, IViewFilter
     {
+        private readonly IPlayerProvider _playerProvider;
         private readonly ITracksVm _tracksVm;
+        private readonly ISharedApp _sharedApp;
 
         private Thickness _elementMargin;
 
@@ -28,9 +30,11 @@ namespace HeliumRemote.ViewModels
 
         private ObservableCollection<TrackContainer> _tracks;
 
-        public TracksVmFacade(ITracksVm tracksVm)
+        public TracksVmFacade(ITracksVm tracksVm, IPlayerProvider playerProvider, ISharedApp sharedApp)
         {
             _tracksVm = tracksVm;
+            _playerProvider = playerProvider;
+            _sharedApp = sharedApp;
             ShowTrackActionsCommand = new RelayCommand<int>(ShowTrackActionsExecute, null);
         }
 
@@ -76,7 +80,7 @@ namespace HeliumRemote.ViewModels
             var idx = 0;
             foreach (var trk in _tracksVm.Tracks)
             {
-                res.Add(new TrackContainer {Index = idx++, Track = trk});
+                res.Add(new TrackContainer(_sharedApp) {Index = idx++, Track = trk});
             }
             _originalTracks = (List<Track>) _tracksVm.Tracks;
             Tracks = res;
@@ -113,7 +117,7 @@ namespace HeliumRemote.ViewModels
             var idx = 0;
             foreach (var trk in resd)
             {
-                Tracks.Add(new TrackContainer {Index = idx++, Track = trk});
+                Tracks.Add(new TrackContainer(_sharedApp) {Index = idx++, Track = trk});
             }
         }
 
@@ -123,24 +127,24 @@ namespace HeliumRemote.ViewModels
             var idx = 0;
             foreach (var trk in _tracksVm.Tracks)
             {
-                Tracks.Add(new TrackContainer {Index = idx++, Track = trk});
+                Tracks.Add(new TrackContainer(_sharedApp) {Index = idx++, Track = trk});
             }
         }
 
-        private static async void ShowTrackActionsExecute(int id)
+        private async void ShowTrackActionsExecute(int id)
         {
             var dlg = new ActionDialogTracks();
             await dlg.ShowAsync();
             switch (dlg.ResultCode)
             {
                 case AppConstants.TRK_RES_CODE_PLAYNOW:
-                    await CompositionRoot.WebService.PlayTrack(id);
+                    await _playerProvider.PlayTrack(id);
                     break;
                 case AppConstants.TRK_RES_CODE_ENQUEUENEXT:
-                    await CompositionRoot.WebService.EnqueueTrackNext(id);
+                    await _playerProvider.EnqueueNext(id);
                     break;
                 case AppConstants.TRK_RES_CODE_ENQUEUELAST:
-                    await CompositionRoot.WebService.EnqueueTrackLast(id);
+                    await _playerProvider.EnqueueLast(id);
                     break;
             }
         }

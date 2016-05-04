@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using HeliumRemote;
 using HeliumRemote.Bootstraper;
 using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
@@ -19,12 +20,16 @@ using HeliumRemote.Views;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
 using NeonShared.Types;
+using UwpSharedViews.Classes;
+using UwpSharedViews.Interfaces;
+using UwpSharedViews.Types;
 
-namespace HeliumRemote.ViewModels
+namespace UwpSharedViews.ViewModels
 {
     public class ArtistDetailsFacadeVm : ViewModelBase, IArtistDetailsFacadeVm
     {
         private readonly IArtistDetailsVm _artistDetailsVm;
+        private readonly IPlayerProvider _playerProvider;
 
         private Artist _artist;
 
@@ -34,9 +39,10 @@ namespace HeliumRemote.ViewModels
         private ObservableCollection<AlbumContainer> _albumItems;
         private ObservableCollection<IArtistDetailItem> _artistDetailCells;
 
-        public ArtistDetailsFacadeVm(IArtistDetailsVm artistDetailsVm)
+        public ArtistDetailsFacadeVm(IArtistDetailsVm artistDetailsVm, IPlayerProvider playerProvider)
         {
             _artistDetailsVm = artistDetailsVm;
+            _playerProvider = playerProvider;
             PlayNowCommand = new RelayCommand<int>(PlayNowExecute, null);
             EnqueueNextCommand = new RelayCommand<int>(EnqueueNextExecute, null);
             EnqueueLastCommand = new RelayCommand<int>(EnqueueLastExecute, null);
@@ -197,13 +203,13 @@ namespace HeliumRemote.ViewModels
             switch (dlg.ResultCode)
             {
                 case AppConstants.ALB_RES_CODE_PLAYNOW:
-                    await CompositionRoot.WebService.PlayAlbum(id);
+                    await _playerProvider.PlayAlbum(id);
                     break;
                 case AppConstants.ALB_RES_CODE_ENQUEUENEXT:
-                    await CompositionRoot.WebService.EnqueueAlbumNext(id);
+                    await _playerProvider.EnqueueAlbumNext(id);
                     break;
                 case AppConstants.ALB_RES_CODE_ENQUEUELAST:
-                    await CompositionRoot.WebService.EnqueueAlbumLast(id);
+                    await _playerProvider.EnqueueAlbumLast(id);
                     break;
             }
         }
@@ -221,17 +227,17 @@ namespace HeliumRemote.ViewModels
 
         private async void PlayNowExecute(int id)
         {
-            await CompositionRoot.WebService.PlayAlbum(id);
+            await _playerProvider.PlayAlbum(id);
         }
 
         private async void EnqueueNextExecute(int id)
         {
-            await CompositionRoot.WebService.EnqueueAlbumNext(id);
+            await _playerProvider.EnqueueAlbumNext(id);
         }
 
-        private static async void EnqueueLastExecute(int id)
+        private  async void EnqueueLastExecute(int id)
         {
-            await CompositionRoot.WebService.EnqueueAlbumLast(id);
+            await _playerProvider.EnqueueAlbumLast(id);
         }
 
         private static void addToPlaylistExecute(int id)

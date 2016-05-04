@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using HeliumRemote.Types;
+using UwpSharedViews.Types;
 
 namespace HeliumRemote.Converters
 {

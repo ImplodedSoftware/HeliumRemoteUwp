@@ -1,9 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using HeliumRemote.Classes;
 using HeliumRemote.Interfaces;
 using HeliumRemote.ViewModels;
 using NeonShared.Classes;
 using NeonShared.Interfaces;
 using NeonShared.ViewModels;
+using UwpSharedViews.Interfaces;
+using UwpSharedViews.ViewModels;
 
 namespace HeliumRemote.Bootstraper
 {
@@ -14,6 +17,8 @@ namespace HeliumRemote.Bootstraper
         static CompositionRoot()
         {
             SimpleIoc.Default.Register<IWebService>(() => new WebService());
+            SimpleIoc.Default.Register<IPlayerProvider, RemotePlayerProvider>();
+            SimpleIoc.Default.Register<ISharedApp, SharedApp>();
 
             SimpleIoc.Default.Register<ILetterVm, LetterVm>();
             SimpleIoc.Default.Register<ILetterFacadeVm, LetterFacadeVm>();
@@ -44,6 +49,7 @@ namespace HeliumRemote.Bootstraper
         public static IPlaylistsFacadeVm PlaylistsFacadeVm => SimpleIoc.Default.GetInstance<IPlaylistsFacadeVm>();
         public static ISearchFacadeVm SearchFacadeVm => SimpleIoc.Default.GetInstance<ISearchFacadeVm>();
         public static INowPlayingVm NowPlayingVm => SimpleIoc.Default.GetInstance<INowPlayingVm>();
+        public static ISharedApp SharedApp => SimpleIoc.Default.GetInstance<ISharedApp>();
 
         public static CompositionRoot Instance
         {

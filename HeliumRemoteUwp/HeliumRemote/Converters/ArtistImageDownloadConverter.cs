@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Data;
 using HeliumRemote.Classes;
 using HeliumRemote.Helpers;
 using NeonShared.Helpers;
+using UwpSharedViews.Classes;
 
 namespace HeliumRemote.Converters
 {

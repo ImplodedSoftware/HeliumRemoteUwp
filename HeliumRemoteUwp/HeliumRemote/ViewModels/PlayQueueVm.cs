@@ -10,6 +10,8 @@ using HeliumRemote.Helpers;
 using HeliumRemote.Types;
 using Neon.Api.Pcl.Models.Entities;
 using NeonShared.Interfaces;
+using UwpSharedViews.Classes;
+using UwpSharedViews.Types;
 
 namespace HeliumRemote.ViewModels
 {
@@ -20,9 +22,9 @@ namespace HeliumRemote.ViewModels
         private Thickness _elementMargin;
         private ObservableCollection<TrackContainer> _tracks;
 
-        public PlayQueueVm()
+        public PlayQueueVm(IWebService webService)
         {
-            _webService = CompositionRoot.WebService;
+            _webService = webService;// CompositionRoot.WebService;
             PlayByIndexCommand = new RelayCommand<int>(PlayByIndexExecute);
         }
 
@@ -60,7 +62,13 @@ namespace HeliumRemote.ViewModels
             for (var i = 0; i < res.Count; i++)
             {
                 var trk = res[i];
-                trks.Add(new TrackContainer {Track = trk, Index = i, PlayQueueIndex = i});
+                var tc = new TrackContainer(CompositionRoot.SharedApp)
+                {
+                    Track = trk,
+                    Index = i,
+                    PlayQueueIndex = i
+                };
+                trks.Add(tc);
             }
             Tracks = new ObservableCollection<TrackContainer>(trks);
         }

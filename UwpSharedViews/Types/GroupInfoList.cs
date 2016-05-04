@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace HeliumRemote.Types
+namespace UwpSharedViews.Types
 {
     public class GroupInfoList<T> : List<object>
     {

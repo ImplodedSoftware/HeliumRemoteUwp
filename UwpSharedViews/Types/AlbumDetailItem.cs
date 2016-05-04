@@ -1,6 +1,6 @@
 ﻿using Neon.Api.Pcl.Models.Entities;
 
-namespace HeliumRemote.Types
+namespace UwpSharedViews.Types
 {
     public enum AlbumDetailCellTypes
     {

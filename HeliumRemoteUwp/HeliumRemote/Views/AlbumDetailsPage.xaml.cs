@@ -7,6 +7,8 @@ using HeliumRemote.Helpers;
 using HeliumRemote.Interfaces;
 using HeliumRemote.Types;
 using Neon.Api.Pcl.Models.Entities;
+using UwpSharedViews.Interfaces;
+using UwpSharedViews.Types;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
