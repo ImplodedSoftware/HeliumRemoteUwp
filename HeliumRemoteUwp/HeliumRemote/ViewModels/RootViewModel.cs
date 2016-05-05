@@ -70,16 +70,27 @@ namespace HeliumRemote.ViewModels
             _updateTimer = new DispatcherTimer {Interval = new TimeSpan(1000)};
             _updateTimer.Tick += async (sender, o) =>
             {
+                if (((App) Application.Current).BlockUpdates)
+                {
+                    return;
+                }
                 if (_isUpdating)
                     return;
                 _isUpdating = true;
                 var oldFilename = string.Empty;
                 if (_playerState != null)
                     oldFilename = _playerState.Filename;
-                PlayerState = await _webService.GetPlayerState();
-                if (NowPlayingInfo == null || !oldFilename.Equals(PlayerState.Filename))
+                try
                 {
-                    NowPlayingInfo = await _webService.GetNowPlayingInfo();
+                    PlayerState = await _webService.GetPlayerState();
+                    if (NowPlayingInfo == null || !oldFilename.Equals(PlayerState.Filename))
+                    {
+                        NowPlayingInfo = await _webService.GetNowPlayingInfo();
+                    }
+                }
+                catch 
+                {
+                    // tolerate exceptions
                 }
                 _isUpdating = false;
             };

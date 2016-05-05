@@ -4,9 +4,12 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using HeliumRemote.Bootstraper;
-using NeonShared.Pcl.Helpers;
 using Windows.UI.Xaml.Media.Imaging;
+using HeliumRemote.Bootstraper;
+using HeliumRemote.Interfaces;
+using NeonShared.Pcl.Helpers;
+using NeonShared.Pcl.Interfaces;
+using Uwp.SharedResources.UserControls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -17,30 +20,41 @@ namespace HeliumRemote.Views
     /// </summary>
     public sealed partial class NowPlayingPage : Page
     {
+        private readonly IWebService _webService;
+        private readonly INowPlayingVm _vm;
         private bool _isPressed;
-        private double _newValue;
         private bool _isValueChanged;
-
+        private double _newValue;
 
         public NowPlayingPage()
         {
             InitializeComponent();
-            Uwp.SharedResources.UserControls.ImRating.PropagateValueChanged += async d =>
+            _vm = CompositionRoot.NowPlayingVm;
+            _webService = CompositionRoot.WebService;
+            ImRating.PropagateValueChanged += async d =>
             {
                 var usr = d*2.0;
                 var rr = NeonHelpers.UpsizeRating((int) usr);
-                if (rr != CompositionRoot.NowPlayingVm.NowPlayingInfo.Rating)
-                    await CompositionRoot.WebService.RateTrack(CompositionRoot.NowPlayingVm.NowPlayingInfo.DetailId, rr);
-            };
-            DataContext = CompositionRoot.NowPlayingVm;
-            CompositionRoot.NowPlayingVm.UpdatePosition += async () =>
-            {
-                if (!_isPressed)
+                if (rr != _vm.NowPlayingInfo.Rating)
                 {
-                    await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                        () => { PosSlider.Value = CompositionRoot.NowPlayingVm.TrackPosition; });
+                    ((App) Application.Current).BlockUpdates = true;
+                    _vm.NowPlayingInfo.Rating = rr;
+                    await _webService.RateTrack(_vm.NowPlayingInfo.DetailId, rr);
+                    ((App) Application.Current).BlockUpdates = false;
                 }
             };
+            DataContext = _vm;
+            if (_vm.UpdatePosition == null)
+            {
+                _vm.UpdatePosition += async () =>
+                {
+                    if (!_isPressed)
+                    {
+                        await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                            () => { PosSlider.Value = _vm.TrackPosition; });
+                    }
+                };
+            }
 
             Window.Current.CoreWindow.PointerPressed += (e, a) => { _isPressed = true; };
 
@@ -48,8 +62,8 @@ namespace HeliumRemote.Views
             {
                 if (_isValueChanged)
                 {
-                    await CompositionRoot.WebService.SetPosition((int) _newValue);
-                    CompositionRoot.NowPlayingVm.TrackPosition = (int) _newValue;
+                    await _webService.SetPosition((int) _newValue);
+                    _vm.TrackPosition = (int) _newValue;
                 }
                 _isPressed = false;
             };
@@ -57,7 +71,7 @@ namespace HeliumRemote.Views
 
         private void NowPlayingPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            CompositionRoot.NowPlayingVm.MainFrame = Frame;
+            _vm.MainFrame = Frame;
         }
 
         private void RangeBase_OnValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -75,7 +89,7 @@ namespace HeliumRemote.Views
 
         private void Image_ImageFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            var img = (Image)sender;
+            var img = (Image) sender;
             img.Source = new BitmapImage(new Uri("ms-appx:///Images/no_album.png"));
         }
     }

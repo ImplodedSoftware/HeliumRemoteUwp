@@ -24,7 +24,6 @@ namespace HeliumRemote
     /// </summary>
     sealed partial class App : Application, INeonAppRepository, ISharedRepository
     {
-        public Frame ContentFrame { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -146,7 +145,8 @@ namespace HeliumRemote
                 ContentFrame.GoBack();
             }
         }
-
+        public Frame ContentFrame { get; set; }
+        public bool BlockUpdates { get; set; }
 
         public string Token { get; set; }
         public string BaseUrl { get; set; }
