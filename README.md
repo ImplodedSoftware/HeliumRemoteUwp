@@ -25,5 +25,5 @@ When you open the solution for the first time, be sure to restore NuGet packages
 
 ## See also
 
-*For additional information about Neon, see: https://implodedsoftware.wordpress.com/
-*A reference to the Neon web service can be found here: http://support.imploded.com/solution/articles/9000063810-neon-webservices-api
+* For additional information about Neon, see: https://implodedsoftware.wordpress.com/
+* A reference to the Neon web service can be found here: http://support.imploded.com/solution/articles/9000063810-neon-webservices-api
