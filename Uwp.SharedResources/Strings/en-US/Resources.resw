@@ -121,10 +121,10 @@
     <value>Cancel</value>
   </data>
   <data name="ActionEnqueueLast.Content" xml:space="preserve">
-    <value>Enqueue last</value>
+    <value>Queue last</value>
   </data>
   <data name="ActionEnqueueNext.Content" xml:space="preserve">
-    <value>Enqueue next</value>
+    <value>Queue next</value>
   </data>
   <data name="ActionPlayNow.Content" xml:space="preserve">
     <value>Play now</value>

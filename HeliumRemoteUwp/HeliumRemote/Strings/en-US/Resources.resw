@@ -136,10 +136,10 @@
     <value>Cancel</value>
   </data>
   <data name="EnqueueLast.Text" xml:space="preserve">
-    <value>Enqueue last</value>
+    <value>Queue last</value>
   </data>
   <data name="EnqueueNext.Text" xml:space="preserve">
-    <value>Enqueue next</value>
+    <value>Queue next</value>
   </data>
   <data name="FavouriteAlbums.Text" xml:space="preserve">
     <value>Favourite albums</value>

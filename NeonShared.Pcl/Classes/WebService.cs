@@ -200,7 +200,8 @@ namespace NeonShared.Pcl.Classes
 
         public async Task<Album> AlbumDetails(int id)
         {
-            var json = await generalHttpCall(NeonUrls.AlbumDetails(id));
+            var url = NeonUrls.AlbumDetails(id);
+            var json = await generalHttpCall(url);
             var alblst = JsonConvert.DeserializeObject<List<Album>>(json);
             return alblst.First();
         }
